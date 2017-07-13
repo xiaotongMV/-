@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<div id="box" class="box clearfix">
+			<div class="conbox">
+				<!--头部-->
+				<div class="head">
+					<div class="headLeft">
+						<a href="javascript:;" class="logo"></a>
+						<span>妙味云盘</span>
+					</div>
+					<div class="headRight">
+						<a href="javascript:;" class="info-detail">
+							<img src="img/8.png"/>
+							<i></i>
+						</a>
+						<a href="javascript:;" class="setmore"></a>
+					</div>				
+				</div>
+				<!--导航栏-->
+				<div class="nav">
+					<div class="operation">
+						<a href="javascript:;"  class="download" id="download"><i></i><span>下载</span></a>
+						<a href="javascript:;" class="share" id="share"><i></i><span>分享</span></a>
+						<a href="javascript:;" class="move" id="move"><i></i><span>移动到</span></a>
+						<a href="javascript:;" class="rename" id="rename"><i></i><span>重命名</span></a>
+						<a href="javascript:;" class="cancle" id="cancle"><i></i><span>删除</span></a>
+						<a href="javascript:;" class="newfolder" id="newfolder"><i></i><span>新建文件夹</span></a>
+						<a href="javascript:;" class="refresh" id="refresh"><i></i></a>
+					</div>
+					<div class="view">
+						<a href="javascript:;" class="changeView" id="changView">
+							<i></i>
+						</a>
+						<div class="select-view" id="selectview">
+							<a href="javascript:;" id="sortfolder">
+								<i></i>
+								<i></i>
+							</a>
+							<ul class="sortView" id="sortView">
+								<li><i></i><span>按时间排序</span></li>
+								<li><i></i><span>按字母顺序</span></li>
+								<li><i></i><span>显示缩略图</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--文件夹左侧-->
+				<div class="folder">
+					<div class="folderLeft">
+						<ul class="listfd clearfix" id="listfd">
+						<!--	<li>
+								<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>微云</span></h2>
+								<ul>
+									<li>
+										<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>js课程</span></h2>
+										<ul>
+											<li>
+												<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>123</span></h2>
+										</li>
+											<li>
+												<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>333</span></h2>
+											</li>
+											<li>
+												<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>CSS课程</span></h2>
+												<ul>
+													<li><h2><i class="activeicon1"></i><i class="activeicon2"></i><span>CSS课程</span></h2></li>
+													<li><h2><i class="activeicon1"></i><i class="activeicon2"></i><span>123</span></h2></li>
+													<li><h2><i class="activeicon1"></i><i class="activeicon2"></i><span>JS基础课程</span></h2></li>
+												</ul>
+											</li>
+											<li>
+												<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>11111</span></h2>
+											</li>
+											<li>
+												<h2><i class="activeicon1"></i><i class="activeicon2"></i><span>11111</span></h2>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>-->
+						</ul>
+					</div>						
+					<!--文件夹右侧-->
+					<div class="folderRight">
+						<!--上方路径-->
+						<div class="folder-path">
+							<input type="checkbox" class="allcheck" id="allcheck"/>
+							<ul class="breadnav" id="breadnav">
+								<!--<li><span>微云</span><i></i></li>
+								<li><span>JS课程</span><i></i></li>
+								<li><span>CSS课程</span><i></i></li>
+								<li><span>JS基础课程</span><i></i></li>-->
+							</ul>
+						</div>
+						<div class="file-demonstratebox" id="allrightBox">
+							<div class="shadow" id="shadow"></div>
+							<div class="shadow2" id="shadow2"></div>
+							<ul class="rightmenu" id="rightmenu">
+								<li>新建文件夹</li>
+								<li>刷新</li>
+								<li>排列</li>
+							</ul>
+							<ul class="rightmenu2" id="rightmenu2">
+								<li>删除</li>
+								<li>重命名</li>
+							</ul>
+							<div class="file-demonstrate2" id="fileDemonstrate2">
+								<!--<div class="newfilerename">
+									<input type="checkbox" class="flodercheck2"/>
+									<i class="folderpicss"></i>
+									<div class="newfileop">
+										<input type="text" class="insertname"/>										
+										<a href="javascript:;" class="choseyes" id="choseyes">✔</a>
+										<a href="javascript:;" class="choseno" id="choseno">✖</a>
+									</div>
+								</div>-->
+<!--								<div class="files2">
+									<input type="checkbox" class="flodercheck2"/>
+									<i class="folderpicss"></i>
+									<p class="foldertle2">
+										<input type="text" class="insertname"/>										
+										<a href="javascript:;" class="choseyes" id="choseyes">✔</a>
+										<a href="javascript:;" class="choseno" id="choseno">✖</a>
+									</p>
+								</div>
+									<div class="files2">
+									<input type="checkbox" class="flodercheck2"/>
+									<i class="folderpicss"></i>
+									<p class="foldertle">1</p>
+								</div>-->
+							</div>
+	<!--					<div class="file-demonstrate" id="fileDemostrate">
+								<div class="files">
+									<input type="checkbox" class="flodercheck"/>
+									<div class="files-name">
+										<i></i>
+										<span>JS基础课程</span>
+									</div>
+									<div class="files-op">
+										<a href="javascript:;" class="file-download"></a>
+										<a href="javascript:;" class="file-share"></a>
+										<a href="javascript:;" class="file-move"></a>
+										<a href="javascript:;" class="file-rename"></a>
+										<a href="javascript:;" class="file-delete"></a>
+									</div>
+									<div class="file-timer">2016-08-22   16:08</div>
+								</div>
+								<div class="files">
+									<input type="checkbox" class="flodercheck"/>
+									<div class="files-name">
+										<i></i>
+										<span>JS基础课程</span>
+									</div>
+									<div class="files-op">
+										<a href="javascript:;" class="file-download"></a>
+										<a href="javascript:;" class="file-share"></a>
+										<a href="javascript:;" class="file-move"></a>
+										<a href="javascript:;" class="file-rename"></a>
+										<a href="javascript:;" class="file-delete"></a>
+									</div>
+									<div class="file-timer">2016-08-22   16:08</div>
+								</div>
+							</div>-->							
+						</div>						
+					</div>
+				</div>				
+			</div>
+		</div>
+<script src="js/data.js"></script>
+<script src="js/tool.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
