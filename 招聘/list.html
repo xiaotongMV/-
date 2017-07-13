@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>招贤纳士-社会招聘</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="wrap">
+  	<div class="left">
+    	<h2>招贤纳士</h2>
+      <ul>
+      	<!--<li><a href="javascript:;">社会招聘</a></li>
+      	<li><a href="javascript:;">校园招聘</a></li> -->
+      </ul>
+    </div>
+  	<div class="right">
+    	<div class="title">
+      	<img src="img/shzp.gif" />
+      </div>
+      <div class="info">
+
+      	<!--<p class="zp">
+        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+          <span>需求人数：2名</span>
+         	<span class="date">2013年7月30日</span>
+        </p>
+      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+        </p>
+
+      	<p class="zp">
+        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+          <span>需求人数：12名</span>
+         	<span class="date">2013年7月30日</span>
+         	<span class="date">2013年7月30日</span>
+        </p>
+      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+        </p>
+
+      	<p class="zp">
+        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+          <span>需求人数：21名</span>
+         	<span class="date">2013年7月30日</span>
+        </p>
+      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+        </p>-->
+
+      </div>
+      <div class="pages">
+        <span class="prev">
+          <a href="javascript:;">
+            <img src="img/pre.gif">
+          </a>
+        </span>
+        <span class="next">
+          <a href="javascript:;">
+            <img src="img/next.gif">
+          </a>
+        </span>
+        <p>
+         <!--<span class="focus">
+            <a href="javascript:;">1</a>
+          </span>
+          <span>
+            <a href="javascript:;">2</a>
+          </span>
+          <span>
+            <a href="javascript:;">3</a>
+          </span>-->
+        </p>
+        
+      </div>
+      
+    </div>
+    <div class="clear"></div>
+  </div>
+<script src="js/data.js"></script>
+<script>
+	
+	
+	//获取元素
+	var uls = document.getElementsByTagName('ul')[0];
+	var imgs = document.getElementsByTagName('img')[0];
+	var lis = uls.getElementsByTagName('li');
+	var info = document.getElementsByClassName('info')[0];
+	//存当前页面获取到的数据
+	var arr = [];
+	//声明一个空字符串
+	var str = '';
+	for(var i=0;i<aData.list.length;i++){
+		str+='<li><a href="javascript:;">'+aData.list[i].text+'</a></li>';
+	}
+	uls.innerHTML = str;
+	
+	var s = location.search.substr(1).split('=');
+	console.log(s)
+	if(s[0]=='l'){
+		console.log(s[1])
+		arr = aData[s[1]];
+		if(s[1]=='sh'){
+			lis[0].className = 'focus';
+		}else{
+			lis[1].className = 'focus';
+		}
+	}else{
+		arr = aData[aData.list[0].lx];
+		lis[0].className = 'focus';
+	}
+	imgs.src = arr.img;
+	
+	//li点击设置search
+	for(var i=0;i<lis.length;i++){
+		lis[i].lx = aData.list[i].lx;
+		lis[i].onclick = function(){
+			location.hash = 'p=1';
+			location.search = 'l='+this.lx;
+		}
+	}
+	
+	//2,页码
+	
+	var p;
+	var h = location.hash.substr(1).split('=')[1];
+	
+	if(h){
+		//如果有设置
+		p = h;
+	}else{
+		//第一次hash默认为1
+		p = 1;
+	}
+	
+	//console.log(p)
+	//设定每页显示几个
+	var len = 2;
+	
+	//渲染列表内容
+	var start = (p-1)*len;	
+	var end = start+len;
+	if(end>arr.text.length){
+		end = arr.text.length;
+	}
+	
+	str = '';
+	
+	var data = arr.text;
+	for(var i=start;i<end;i++){
+		var t = data[i].info[0].l.join('');
+		if(t.length){
+			t = t.substr(0,100)+'...';
+		}
+		str += `<p class="zp">
+        	<span><a href="">★ 职位需求：${data[i].zw}</a></span>
+          <span>需求人数：${data[i].rs}名</span>
+         	<span class="date">${aData.date(data[i].sj)}</span>
+        </p>
+      	<p class="yq">${t}[<a href="">查看详情</a>]
+        </p>`;
+	}
+	info.innerHTML = str;
+	
+	var num = Math.ceil(data.length/len);
+	
+	str = '';
+	for(var i=0;i<num;i++){
+		var span = document.createElement('span');
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.line{
+				width: 100%;
+				height: 1px;
+				background: #000;
+				position: absolute;
+				top:400px;
+				left:0;
+			}
+			#div{
+				width: 50px;
+				height: 50px;
+				background: url(ma.png);
+				position: absolute;
+				top:350px;
+				left:0;
+				z-index: 100;
+				background-size:50px ;
+			}
+			span{
+				width: 50px;
+				height: 50px;
+				background: url(zhuan.png);
+				position: absolute;
+				top:200px;
+				background-size:50px ;
+			}
+			.star{
+				width: 20px;
+				height: 20px;
+				background: url(zhuan.png);
+				background-size:20px ;
+				position: absolute;
+				font-size:50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="line"></div>
+		<div id="div"></div>
+		<script>
+			var div = document.getElementById('div');
+			var line = document.getElementsByClassName('line')[0];
+			var span = document.getElementsByTagName('span')[0];
+			var onOff = true;
+			var timer = null;
+			//代理
+			var code = {
+				l:false,
+				r:false
+			}
+			//生成span
+			for(var i=0;i<6;i++){
+				var span = document.createElement('span');
+				span.style.left = i*200+200+'px';
+				document.body.appendChild(span);	
+			}
+			var spans = document.getElementsByTagName('span');
+			
+			//键盘按下
+			document.onkeydown = function(ev){
+				if(ev.keyCode==37){
+					code.l = true;
+				}else if(ev.keyCode==39){
+					code.r = true;
+				}
+				if(ev.keyCode==32){
+					if(onOff){
+						onOff = false;
+						var y = -15;
+						timer = setInterval(function(){
+							var t = parseFloat(getComputedStyle(div).top);
+							div.style.top = (t+=++y)+'px';
+							if(t>=350){
+								clearInterval(timer);
+								onOff = true;
+							}
+							for (var i=0;i<spans.length;i++) {
+								if(duang(div,spans[i])){
+									
+										var ls = spans[i].offsetLeft+spans[i].offsetWidth/2;
+										var ts = spans[i].offsetTop+spans[i].offsetHeight/2;
+										document.body.removeChild(spans[i]);					
+									//console.log(ls)
+									function tab(ls,ts){										
+										var box = document.createElement('div');										
+										box.className = 'star';
+										box.style.left = ls+'px';
+										box.style.top = ts+'px';
+										document.body.appendChild(box);
+										var xs = Math.round(Math.random()*10-5);
+										var ys = Math.round(Math.random()*10-20);
+										box.timer = setInterval(function(){
+											box.style.left = (ls+=xs)+'px';
+											box.style.top = (ts+=++ys)+'px';
+											if(ts>=320){
+												clearInterval(box.timer)
+												document.body.removeChild(box);
+											}
+										},20)
+									}
+									for(var i=0;i<20;i++){
+										tab(ls,ts);
+									}
+								}								
+							}								
+						},20)
+					}					
+				}				
+			}
+			
+			//键盘抬起
+			document.onkeyup = function(ev){
+				if(ev.keyCode==37){
+					code.l = false;
+				}else if(ev.keyCode==39){
+					code.r = false;
+				}							
+			}
+			
+			//开启定时器
+			
+			setInterval(function(){
+				var l = parseFloat(getComputedStyle(div).left);								
+				if(code.l){
+					div.style.left = (l-5)+'px';
+				}
+				if(code.r){
+					div.style.left = (l+5)+'px';
+				}
+				
+			},20)
+			//碰撞
+			function duang(obj1,obj2){
+				var pos1 = obj1.getBoundingClientRect();
+				var pos2 = obj2.getBoundingClientRect();
+				if(pos1.right<pos2.left || pos1.bottom<pos2.top || pos1.left>pos2.right || pos1.top>pos2.bottom){
+					return false;
+				}else{
+					return true;
+				}
+			}
+		</script>
+	</body>
+</html>
