@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 550px;
+				height: 550px;
+				margin:50px auto 0;
+				position: relative;
+			}
+			#box div{
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+				text-align: center;
+				position: absolute;
+				color: #fff;
+				border: 5px solid #fff;
+				border-radius:15px ;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			//1.10*10,颜色随机,生成结构
+			//2.点击找到附近颜色相同的div，只能上下左右，找到目标元素，放到数组里
+			//3.加黑框，
+			var box = document.getElementById('box');
+			var row = 10;
+			var cell = 10;
+			var boxs = [];
+			var prev = [];
+			for(var i=0;i<row;i++){
+				boxs[i] = [];
+			}
+			//1.生成结构
+			var str = '';
+			for(var i=0;i<row;i++){
+				for(var j=0;j<cell;j++){
+					str += '<div style="top:'+i*55+'px;left:'+j*55+'px;"></div>';
+				}
+			}
+			box.innerHTML = str;
+			var divs = box.getElementsByTagName('div');
+			for(var i=0;i<divs.length;i++){
+				divs[i].innerHTML = i+1;
+				var c = setColor();
+				divs[i].style.background = c;
+				//自定义属性color存自身颜色
+				divs[i].color = c;
+				//x,y在boxs数组里的位置坐标
+				divs[i].x = i%cell;
+				divs[i].y = Math.floor(i/row);
+				boxs[i%cell].push(divs[i])
+				divs[i].onclick = function(){
+					//console.log(boxs[this.x][this.y])
+					//点击时先用findEle找到目标div，然后再传给addBorder加边框，用prev存上一次加黑框的div
+					var c = findEle(this.x,this.y);
+					addBorder(c);
+					prev = c;
+				}
+			}
+			//随机颜色函数，每次执行返回随机一个颜色的字符串
+			function setColor(){
+				var arr = ['red','yellow','blue','green','purple','orange'];
+				var num = Math.round(Math.random()*(arr.length-1));
+				return arr[num];	
+			}
+			
+			//2.找到附近相同颜色div,放到数组里返回
+			function findEle(_x,_y){
+				//arr里放找到的符合条件的div元素
+				var arr = [];
+				//点击的div的目标颜色
+				var targetColor = boxs[_x][_y].color;
+				fn(_x,_y)
+				function fn(x,y){
+					var div = boxs[x][y];
+					//如果已经在数组里，证明已经找过了，不需要重复放数组里，return终止继续查找
+					if(arr.includes(div)){
+						return;
+					}else{
+						//如果没有，就放入数组
+						arr.push(div);
+					}
+					//左
+					if(boxs[x-1]&&boxs[x-1][y].color == targetColor){
+						fn(x-1,y);
+					}
+					//右
+					if(boxs[x+1]&&boxs[x+1][y].color == targetColor){
+						fn(x+1,y);
+					}
+					//上
+					if(boxs[x][y-1]&&boxs[x][y-1].color == targetColor){
+						fn(x,y-1);
+					}
+					//下
+					if(boxs[x][y+1]&&boxs[x][y+1].color == targetColor){
+						fn(x,y+1);
+					}
+				}
+				return arr;
+			}
+			//3.把找到的div加黑框
+			function addBorder(arr){
+				//prev里存上次的div，只要清除上一次div的黑框，比清除所有div的，性能好一点
+				for(var i=0;i<prev.length;i++){
+					prev[i].style.borderColor = '#fff';
+				}
+				//根据传入的数组，给目标div加黑框
+				for(var i=0;i<arr.length;i++){
+					arr[i].style.borderColor = '#000';
+				}
+			}
+		</script>
+	</body>
+</html>
