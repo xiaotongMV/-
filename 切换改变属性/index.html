@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			#box{
+				width: 715px;
+				height: 500px;
+				border: 1px solid #000;
+				background: #f1f1f1;
+				position: relative;
+			}
+			#box p{
+				font-size: 20px;
+			}
+			#box a{
+				display:inline-block;
+				width: 90px;
+				height: 30px;
+				background: red;
+				color:#FFFFFF;
+				font-size: 16px;
+				line-height: 30px;
+				text-align: center;
+				margin-left: 20px;
+			}
+			.box1{
+				width: 100px;
+				height: 100px;
+				border: 5px solid #000000;
+				margin-left: 20px;
+				border-radius: 50%;
+			}
+			.box2{
+				width: 715px;
+				height: 500px;
+				background: #000000;
+				opacity: 0.4;
+				position: absolute;
+				top:0px;
+				display: none;
+			}
+			#list{
+				width: 240px;
+				height: 200px;
+				border: 5px solid #0084BB;
+				background: #FFFFFF;
+				position: relative;
+				left: 450px;
+				bottom: 225px;
+				display: none;
+			}
+			#list li{
+				width: 240px;
+				height: 30px;
+				margin-top: 15px;
+			}
+			#list span{
+				display: inline-block;
+				width: 113px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 14px;
+				margin-left: 2px;
+				float: left;
+			}
+			#list a{
+				display: inline-block;
+				width: 28px;
+				height: 20px;
+				border: 1px solid #000000;
+				font-size: 12px;
+				margin-right: 6px;
+				margin-top: 5px;
+				line-height: 20px;
+				text-align: center;
+				float: left;
+				color: #000;
+				border-radius: 50%;
+			}
+			#list li a:hover{
+				background: deeppink;
+			}
+			#list .huif,#list .qued{
+				width: 50px;
+				background: deepskyblue;
+				margin-left: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p>请为下面的div设置样式<a href="javasript:;">点击设置</a></p>
+			<div class="box1"></div>
+			<div class="box2"></div>			
+		</div>
+		<ul id="list">
+				<li>
+					<span>选择背景颜色:</span>
+					<a href="javasript:;" style="background:red;color:#fff">红</a>
+					<a href="javasript:;"style="background:pink;color:#fff">粉</a>
+					<a href="javasript:;"style="background:blue;color:#fff">蓝</a>
+				</li>
+				<li>
+					<span>请选择宽度(px):</span>
+					<a href="javasript:;">200</a>
+					<a href="javasript:;">300</a>
+					<a href="javasript:;">400</a>
+				</li>
+				<li>
+					<span>请选择高度(px):</span>
+					<a href="javasript:;">200</a>
+					<a href="javasript:;">300</a>
+					<a href="javasript:;">400</a>
+				</li>
+				<li>
+					<a href="javasript:;"class="huif">恢复</a>
+					<a href="javasript:;" class="qued">确定</a>
+				</li>
+			</ul>
+			<script type="text/javascript">
+				
+				//获取元素
+				
+				var box = document.getElementById('box');
+				var aS = box.getElementsByTagName('a')[0];
+				var box1 = box.getElementsByClassName('box1')[0];
+				var box2 = box.getElementsByClassName('box2')[0];
+				var list = document.getElementById('list');
+				var aT = list.getElementsByTagName('a');
+				
+				var arr = ['200px','300px','400px'];
+				//点击弹出设置框
+				aS.onclick = function(){
+					box2.style.display = 'block';
+					list.style.display = 'block';
+				}
+				aT[0].onclick = function(){
+					box1.style.background = 'red';
+				}
+				aT[1].onclick = function(){
+					box1.style.background = 'pink';
+				}
+				aT[2].onclick = function(){
+					box1.style.background = 'blue';
+				}
+				aT[3].onclick = function(){
+					box1.style.width = arr[0];
+				}
+				aT[4].onclick = function(){
+					box1.style.width = arr[1];
+				}
+				aT[5].onclick = function(){
+					box1.style.width = arr[2];
+				}
+				aT[6].onclick = function(){
+					box1.style.height = arr[0];
+				}
+				aT[7].onclick = function(){
+					box1.style.height = arr[1];
+				}
+				aT[8].onclick = function(){
+					box1.style.height = arr[2];
+				}
+				aT[9].onclick = function(){
+					box1.style.width = '';
+					box1.style.height = '';
+					box1.style.background = '';
+				}
+				aT[10].onclick = function(){
+					box2.style.display = 'none';
+					list.style.display = 'none';
+				}
+			</script>
+	</body>
+</html>
