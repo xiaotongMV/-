@@ -81,14 +81,14 @@
 			}
 			/*li属性*/
 			.list,.list2{
-				width: 280px;
+				width: 274px;
 				margin-top: 22px;
 				margin-left: 22px;
 				overflow: hidden;
 				position: relative;
 			}
 			.list p,.list2 p{
-				max-width: 210px;
+				max-width: 200px;
 				font-size: 16px;
 				background:#bf4e6f ;
 				border-radius: 3px;
@@ -159,15 +159,15 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			
 			//获取元素
-			var texts = document.getElementById('text');
-			var imgs = document.getElementById('pic');
-			var txt = document.getElementById('txt');
-			var send = document.getElementById('send');
+			var conT = document.getElementById('text');//显示内容
+			var imgs = document.getElementById('pic');//头像元素
+			var txt = document.getElementById('txt');//输入内容
+			var btn = document.getElementById('send');//点击按钮
 			
+			//声明一个开关
 			var onOff = true;
-			//点击头像交替更换
+			//点击头像切换
 			imgs.onclick = function(){
 				if(onOff){
 					imgs.src = 'img/blue.png';
@@ -175,31 +175,33 @@
 				}else{
 					imgs.src = 'img/red.png';
 					onOff = true;
-				}				
+				}
 			}
-			//点击发送文本内容
-			send.onclick = function(){
+			
+			//点击发送按钮发送内容
+			btn.onclick  = function(){
 				var val = txt.value;
-				if(!val==''){
+				
+				if(val!=''){
 					if(onOff){
-						texts.innerHTML += '<li class="list">'+
+						conT.innerHTML = '<li class="list">'+
 							'<b></b>'+
 							'<img src="img/red.png"/>'+
 							'<p>'+val+'</p>'+
-						'</li>';
+						'</li>'+conT.innerHTML;
 					}else{
-						texts.innerHTML += '<li class="list2">'+
+						conT.innerHTML = '<li class="list2">'+
 							'<b></b>'+
 							'<img src="img/blue.png"/>'+
 							'<p>'+val+'</p>'+
-						'</li>';
+						'</li>'+conT.innerHTML;
 					}
-					
-						txt.value = '';
+					txt.value = '';
 				}else{
-					alert('亲，写点什么吧')
-				}				
+					alert('请输入内容');
+				}
 			}
+			
 			
 		</script>
 	</body>

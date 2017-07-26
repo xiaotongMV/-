@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="box">
+				<img src="img/pic1.png" class="pic"/>
+				<img src="img/logo.png" class="logo"/>
+				<div class="con">
+					<div class="switch">
+						<a href="javascript:;" id="swLeft">循环切换</a>
+						<a href="javascript:;">顺序切换</a>
+					</div>
+					<p class="txt">图片可从最后一张跳转到第一张循环切换</p>
+					<div class="content">
+						<img src="img/1.png" class="pIc"/>
+						<a href="javascript:;" class="conLeft"><img src="img/left.png"/></a>
+						<a href="javascript:;" class="conRight"><img src="img/right.png"/></a>
+						<p class="text">
+							<b></b>
+							<span class="text1">文字描述一</span>
+						</p>
+						<p class="text2">1/4</p>
+					</div>
+					<div class="remind">
+						<a href="javascript:;" class="shut">&Chi;</a>
+						<a href="javascript:;" class="determine">确定</a>
+						<p class="txt3">JavaScript提醒</p>
+						<p class="txt4">已经到最后一张啦～</p>
+					</div>
+					<div class="remind2">
+						<a href="javascript:;" class="shut"">&Chi;</a>
+						<a href="javascript:;" class="determine">确定</a>
+						<p class="txt3">JavaScript提醒</p>
+						<p class="txt4">这已经是第一张了，不能再往前了~</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			
+		<script >
+			/*
+			 1.点击循环/顺序
+			 	高亮 字体颜色 模式
+			 2.图片翻页
+			 	循环模式 
+			 	 左右无限循环
+			 	顺序模式
+			 	到第一张之后弹窗 最后一张之后弹窗
+			 * */
+			//获取元素
+			
+			//获取切换模式按钮
+			var sWitch = document.getElementsByClassName('switch')[0];
+			var btn = sWitch.getElementsByTagName('a');
+			//获取文本信息
+			var txt = document.getElementsByClassName('txt')[0];
+			
+			//获取图片元素
+			var imgs = document.getElementsByClassName('pIc')[0];
+			//获取左边按钮元素
+			var btnL = document.getElementsByClassName('conLeft')[0];
+			//获取右边按钮元素
+			var btnR = document.getElementsByClassName('conRight')[0];
+			//获取图片上方序号元素
+			var textT = document.getElementsByClassName('text2')[0];
+			//获取文本描述元素
+			var texts = document.getElementsByClassName('text1')[0];
+			//获取左边弹框
+			var reLeft = document.getElementsByClassName('remind')[0];
+			var aS = reLeft.getElementsByTagName('a');
+			//获取右边的弹框
+			var reRight = document.getElementsByClassName('remind2')[0];
+			var aT = reRight.getElementsByTagName('a');
+			
+			
+			//声明一个变量
+			var n = 0;
+			//声明一个数组
+			var arr = ['img/1.png','img/2.png','img/3.png','img/4.png'];
+			
+			var arr2 = ['文本描述一','文本描述二','文本描述三','文本描述四'];
+			
+			//声明一个开关
+			var onOff = true;
+			var pwer = true;
+			//初始化样式
+			btn[0].className = 'active';
+			
+			//点击循环按钮事件
+			btn[0].onclick = function(){
+				if(pwer){
+					onOff = true;
+					btn[0].className = 'active';
+					btn[1].className = '';
+					txt.innerHTML = '图片可从最后一张跳转到第一张循环切换';	
+				}
+				
+			}
+			
+			//点击顺序按钮事件
+			btn[1].onclick = function(){
+				if(pwer){
+					onOff = false;
+					btn[0].className = '';
+					btn[1].className = 'active';
+					txt.innerHTML = '图片只能最后一张或只能到第一张切换';
+				}
+				
+			}
+			
+			//点击左边按钮切换图片
+			btnL.onclick = function(){
+				if(pwer){
+					n--;
+					if(onOff){
+						if(n<0){
+							n = arr.length-1;
+						}					
+					}else{
+						if(n<0){
+							n = 0;
+							reRight.style.display = 'block';	
+							pwer = false;
+						}	
+					}
+					fn();
+				}
+				
+			}
+			
+			//点击右边按钮切换图片
+			btnR.onclick = function(){
+				if(pwer){
+					n++;
+					if(onOff){
+						if(pwer){
+							if(n>arr.length-1){
+								n = 0;
+							}
+						}
+						
+					}else{
+						if(n>arr.length-1){
+							n = arr.length-1;
+							reLeft.style.display = 'block';
+							pwer = false;
+						}
+					}				
+					//console.log(n)
+					fn();
+				}
+				
+			}
+
+			//点击XX跟确定弹出框隐藏
+			aS[0].onclick = aS[1].onclick = function(){
+				reLeft.style.display = 'none';
+				pwer = true;
+			}
+			aT[0].onclick = aT[1].onclick = function(){
+				reRight.style.display = 'none';
+				pwer = true;
+			}
+			//封装一个函数
+			function fn(){
+				imgs.src = arr[n];
+				textT.innerHTML = n+1+'/'+arr.length;
+				texts.innerHTML = arr2[n];
+			}
+		</script>
+		
+		
+	</body>
+</html>
