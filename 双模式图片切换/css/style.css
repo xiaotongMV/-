@@ -23,6 +23,7 @@ img{
 	background: url(../img/bg.png);
 	padding-top: 152px;
 	padding-left: 160px;
+	margin: 0 auto;
 }
 .box{
 	width: 678px;

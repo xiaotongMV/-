@@ -86,13 +86,14 @@
 			
 			var arr2 = ['文本描述一','文本描述二','文本描述三','文本描述四'];
 			
-			//声明一个开关
+			//声明循环及顺序模式的开关
 			var onOff = true;
+			//声明一个全局点击按钮的开关 当顺序模式弹出框弹出以后其他按钮都不能点击
 			var pwer = true;
 			//初始化样式
 			btn[0].className = 'active';
 			
-			//点击循环按钮事件
+			//点击循环按钮显示高亮
 			btn[0].onclick = function(){
 				if(pwer){
 					onOff = true;
@@ -103,7 +104,7 @@
 				
 			}
 			
-			//点击顺序按钮事件
+			//点击顺序按钮高亮
 			btn[1].onclick = function(){
 				if(pwer){
 					onOff = false;
