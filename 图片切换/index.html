@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				border: 0;
+				display: block;
+				float: left;
+			}
+			#box{
+				width: 550px;
+				height: 310px;
+				border: 1px solid #333;
+				margin: 50px auto;
+				overflow: hidden;
+				position: relative;
+			}
+			.con{
+				width: 2250px;	
+				transition: 1s;			
+			}
+			#box a{
+				display: block;
+				width: 40px;
+				height: 40px;
+				background: #000000;
+				color: #FFFFFF;
+				opacity: 0.5;
+				text-decoration: none;
+				text-align: center;
+				line-height: 40px;
+				font-size: 30px;
+				position: absolute;
+			}
+			.btnLeft{
+				left: 0px;
+				top: 50%;
+				margin-left: 2px;
+			}
+			.btnRight{
+				right: 0px;
+				top: 50%;
+				margin-right: 2px;
+			}
+			#box span{
+				display: block;
+				position: absolute;
+				color: #FFFFFF;
+				left: 50%;
+				top: 5px;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="box">
+		<a href="javascript:;" class="btnLeft"><</a>
+		<a href="javascript:;" class="btnRight">></a>
+		<span>1/4</span>
+		<div class="con">
+			<img src="img/1.png"/>
+			<img src="img/2.png"/>
+			<img src="img/3.png"/>
+			<img src="img/4.png"/>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		
+		//获取元素
+		
+		//获取内容区
+		var con = document.getElementsByClassName('con')[0];
+		//获取图片元素
+		var imgs = con.getElementsByTagName('img');
+		//获取左边切换点击按钮
+		var btnL = document.getElementsByClassName('btnLeft')[0];
+		//获取右边切换点击按钮
+		var btnR = document.getElementsByClassName('btnRight')[0];
+		//获取序号元素
+		var spans = document.getElementsByTagName('span')[0];
+		//声明一个控制内容区left值得变量
+		var n = 0;
+		//点击左边按钮切换图片
+		btnL.onclick = function(){
+			n++;
+			if(n>imgs.length-1){
+				con.style.transition = 'none';
+				n=0;				
+			}else{
+				con.style.transition = '1s';
+			}
+			con.style.marginLeft = '-'+550*n+'px';
+			spans.innerHTML = n+1+'/'+imgs.length;
+		}
+		
+		//点击右边按钮切换图片
+		btnR.onclick = function(){
+			n++;
+			if(n>imgs.length-1){
+				con.style.transition = 'none';
+				n=0;				
+			}else{
+				con.style.transition = '1s';
+			}
+			con.style.marginLeft = '-'+550*n+'px';
+			spans.innerHTML = n+1+'/'+imgs.length;
+		}
+	</script>
+	</body>
+</html>
