@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			ul,li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.box{
+				width: 1000px;
+				height: 800px;
+				background: url(img/pic.png);
+				position: relative;
+			}
+			.con{
+				width: 530px;
+				height: 350px;
+				border: 3px solid #000000;
+				position: absolute;
+				left: 297px;
+				top: 170px;				
+			}
+			.left,.right{
+				width: 26px;
+				height: 46px;
+				opacity: 0.8;
+				
+			}
+			.left{
+				position: absolute;
+				left: 10px;
+				top: 152px;
+			}
+			.right{
+				position: absolute;
+				right: 10px;
+				top: 152px;
+			}
+			.bor{
+				width: 180px;
+				height: 16px;
+				position: absolute;
+				left:188px;
+				bottom:-50px;
+			}
+			.bor li{
+				width: 16px;
+				height:16px;
+				background: #c9c9c9;
+				border-radius: 8px;				
+				margin-right: 18px;
+				float: left;
+				position: relative;
+			}
+			.blk{
+				width: 90px;
+				height: 59px;
+				border: 2px solid #000000;
+				position: absolute;
+				left: -40px;
+				top: -70px;
+				display: none;
+			}
+			.blk img{
+				width: 100%;
+				height: 100%;
+			}
+			.blk span{
+				display: block;
+				border: 5px solid transparent;
+				border-top-color:#000;
+				position: absolute;
+				left: 40px;
+				bottom: -12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="con">
+				<img src="img/1.png"/ id="pic">
+				<a href="javascript:;" class="left"><img src="img/le.png"/></a>
+				<a href="javascript:;" class="right"><img src="img/ri.png"/></a>
+				<ul class="bor">
+					<li>
+						<div class="blk " >
+							<img src="img/1.png"/>
+							<span></span>
+						</div>
+					</li>
+					<li>
+						<div class="blk">
+							<img src="img/2.png"/>
+							<span></span>
+						</div>
+					</li>
+					<li>
+						<div class="blk">
+							<img src="img/3.png"/>
+							<span></span>
+						</div>
+					</li>
+					<li>
+						<div class="blk">
+							<img src="img/4.png"/>
+							<span></span>
+						</div>
+					</li>
+					<li>
+						<div class="blk">
+							<img src="img/5.png"/>
+							<span></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			
+			//获取元素
+			
+			//获取图片元素
+			var imgs = document.getElementById('pic');
+			//获取左右点击图片切换按钮
+			var aS = document.getElementsByTagName('a');
+			//获取圆点元素集合
+			var lis = document.getElementsByTagName('li');
+			//获取缩略图元素集合
+			var pic = document.getElementsByClassName('blk');
+			
+			//声明一个图片数组
+			var arr = ['img/1.png','img/2.png','img/3.png','img/4.png','img/5.png'];
+			//声明一个控制图片切换的变量
+			var n = 0;
+			
+			//点击左边按钮图片切换
+			aS[0].onclick = function(){
+				n--;
+				if(n<0){
+					n = arr.length-1;
+				}
+				tap();
+			}
+			//点击右边按钮图片切换
+			aS[1].onclick = function(){
+				n++;
+				if(n>arr.length-1){
+					n = 0;
+				}
+				tap();
+			}
+				
+			//封装一个图片切换以及切换圆点的函数
+			function tap(){
+				imgs.src = arr[n];
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.background = '';
+				}
+				lis[n].style.background = '#009FBE';
+			}
+			
+			
+			
+			//初始化圆点样式
+			lis[0].style.background = '#009FBE';
+			//点击圆点图片根据圆点切换
+			for(var i=0;i<lis.length;i++){
+				lis[i].index = i;
+				//鼠标点击切换小圆点以及图片
+				lis[i].onclick = function(){
+					for(var i=0;i<lis.length;i++){
+						lis[i].style.background = '';
+						pic[i].style.display = 'none';
+					}
+					this.style.background = '#009FBE';
+					imgs.src = arr[this.index];
+					pic[this.index].style.display = 'block';
+					n = this.index;
+				}
+				//鼠标滑入圆点缩略图显示
+				lis[i].onmouseover = function(){
+					pic[this.index].style.display = 'block';
+				}
+				//鼠标滑出圆点缩略图消失
+				lis[i].onmouseout = function(){
+					pic[this.index].style.display = 'none';
+				}
+			}
+			
+		</script>
+	</body>
+</html>

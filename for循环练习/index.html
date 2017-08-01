@@ -19,7 +19,7 @@
 			#box{
 				width: 320px;
 				height: 600px;
-				background: #000000;
+				background: #fff;
 				border-radius: 20px;
 				margin: 0 auto;
 				position: relative;
@@ -28,7 +28,7 @@
 			.top{
 				width: 60px;
 				height: 8px;
-				background: #fff;
+				background: #000;
 				border-radius: 30px;
 				/*position: absolute;
 				left: 0px;
@@ -38,7 +38,7 @@
 			.bottom{
 				width: 40px;
 				height: 40px;
-				border: 1px solid #fff;
+				border: 1px solid #000;
 				border-radius: 50%;
 				position: absolute;
 				left: 145px;
@@ -47,7 +47,7 @@
 			.bottom p{
 				width: 15px;
 				height: 15px;
-				border: 1px solid #fff;
+				border: 1px solid #000;
 				border-radius: 5px;
 				margin: 11px auto;
 			}
@@ -161,6 +161,9 @@
 							spans[i].style.borderColor = 'transparent transparent transparent #FFFFFF';
 							divs[i].onOff = true;
 						}
+						for(var i=0;i<lis.length;i++){
+							lis[i].style.background = '';
+						}
 						this.className = 'active';	
 						list[this.index].style.display = 'block';
 						spans[this.index].style.borderColor = '#FFFFFF transparent transparent transparent';
@@ -170,7 +173,7 @@
 						this.className = '';	
 						list[this.index].style.display = 'none';
 						spans[this.index].style.borderColor = 'transparent transparent transparent #FFFFFF';
-						this.onOff = true;
+						this.onOff = true;						
 					}						
 				}
 			}
@@ -186,7 +189,7 @@
 					
 					this.className = '';					
 				}
-				lis[i].style.background = '';
+				//lis[i].style.background = '';
 				//鼠标点击时发生的事件
 				lis[i].onclick = function(){
 					for(var i=0;i<lis.length;i++){
