@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		p{
+			width: 250px;
+			height: 150px;
+			margin: 200px auto;
+			background: #E15671;
+			padding-left: 50px;
+			padding-top: 50px;
+		}
+		a{
+			text-decoration: none;
+			font-size: 50px;
+			color: #FFFFFF;
+		}
+		.red{
+			color:red;
+		}
+		.green{
+			color:green;
+		}
+		.yellow{
+			color:yellow;
+		}
+	</style>
+</head>
+<body>
+	<p><a href="javascript:;">★</a><a href="javascript:;">★</a><a href="javascript:;">★</a><a href="javascript:;">★</a><a href="javascript:;">★</a></p>
+	
+	<script type="text/javascript">
+		
+		
+		var aS = document.getElementsByTagName('a');
+		
+		var n = -1;
+		for(var i=0;i<aS.length;i++){			
+			aS[i].index = i;
+			//鼠标滑入之后星星变色
+			aS[i].onmouseover = function(){				
+				for(var i=0;i<aS.length;i++){
+						aS[i].className = '';
+				}
+				for(var i=0;i<=this.index;i++){
+					if(this.index <3){
+						aS[i].className = 'yellow';
+					}else{
+						aS[i].className = 'red';
+					}
+				}											
+			}
+			//鼠标滑出
+			aS[i].onmouseout = function(){
+				if(n<0){
+					for(var i=0;i<aS.length;i++){
+						aS[i].className = '';
+					}
+				}else{
+					for(var i=0;i<aS.length;i++){
+						aS[i].className = '';
+					}
+					for(var i=0;i<=n;i++){
+						if(n<3){
+							aS[i].className = 'yellow';
+						}else{
+							aS[i].className = 'red';
+						}
+					}	
+				}
+			}
+			
+			//鼠标点击
+			aS[i].onclick = function(){
+				n = this.index;
+			}
+		}
+		
+	</script>
+	</body>
+</html>

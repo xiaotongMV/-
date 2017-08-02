@@ -171,7 +171,7 @@
 			lis[0].style.background = '#009FBE';
 			//点击圆点，图片根据圆点切换
 			for(var i=0;i<lis.length;i++){
-				lis[i].index = i;
+				lis[i].index =	i;				
 				//鼠标点击切换小圆点以及图片
 				lis[i].onclick = function(){
 					for(var i=0;i<lis.length;i++){
@@ -184,6 +184,7 @@
 					pic[this.index].style.display = 'block';
 					//把当前的点击的下标赋值给n
 					n = this.index;
+					
 				}
 				//鼠标滑入圆点缩略图显示
 				lis[i].onmouseover = function(){
@@ -193,7 +194,13 @@
 				lis[i].onmouseout = function(){
 					pic[this.index].style.display = 'none';
 				}
+				
 			}
+			
+			
+			
+			
+			
 			
 		</script>
 	</body>
