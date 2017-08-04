@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			var divs = document.getElementsByTagName('div');
+			
+			
+			var max = 0;
+			
+			var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90,false ];
+
+			var str = '<p>所有的数字:&nbsp;&nbsp;';
+			for(var i=0;i<arr.length;i++){
+				if(typeof arr[i]=='number'&&!isNaN(arr[i])){
+					str += arr[i]+',&nbsp;&nbsp;';
+				}
+			}
+			str +='</p>';
+			divs[0].innerHTML = str;
+			
+			str = '';
+			str = '<p>可以转成数字的:&nbsp;&nbsp;';
+			for(var i=0;i<arr.length;i++){
+				if(parseFloat(arr[i])||typeof arr[i]=='number'&&!isNaN(arr[i])){
+					str += arr[i]+',&nbsp;&nbsp;';
+				}
+			}
+			str +='</p>';
+			divs[1].innerHTML = str;
+			
+			
+			
+			str = '';
+			for(var i=0;i<arr.length;i++){
+				if(max<parseFloat(arr[i])){
+					max = parseFloat(arr[i]);
+					str = '<p>转成数字的最大值:&nbsp;&nbsp;'+max+',&nbsp;&nbsp;'+'</p>';				
+				}
+			}
+			divs[2].innerHTML = str;
+			
+			str = '';
+			str = '<p>把NAN的位置找出来:&nbsp;&nbsp;';
+			for(var i=0;i<arr.length;i++){
+				if(typeof arr[i]=='number'&&isNaN(arr[i])){					
+					str += i+',&nbsp;&nbsp;';	
+				}					
+			}
+			str +='</p>';
+			divs[3].innerHTML = str;
+		</script>
+	</body>
+</html>
