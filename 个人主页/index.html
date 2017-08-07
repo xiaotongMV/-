@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="header">
+			<div class="titl">
+				<h1>
+					<div class="titl_logo">
+						<img src="img/pic2.gif"/>
+					</div>
+					<div class="titl_logo2">
+						<img src="img/pic1.png"/>
+					</div>
+					<div class="titl_logo3">&nbsp;PERSONAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HOMEPAGE</div>
+				</h1>
+				<h2>JS CSS HTML INDIUIDUAL PORTFOLIO</h2>
+				<h3><img src="img/picy.png"/></h3>
+			</div>
+			<div class="bg">
+				<img src="img/intro_bkg.jpg" id="bg_img"/>
+			</div>
+		</div>
+		
+		<!--内容-->
+		<div class="section">
+			<div class="nav">
+				<ul class="list">
+					<li class="list_home">
+						<span>
+							<div class="nav_logo"></div>
+							<div class="nav_up"></div>
+						</span>
+					</li>
+					<li><a href="https://github.com/xiaotongMV" target="_blank">HTML</a></li>
+					<li><a href="https://github.com/nizp" target="_blank">CSS</a></li>
+					<li><a href="https://github.com/WYseven" target="_blank">JAVAscript</a></li>
+				</ul>
+			</div>
+			<div class="con">
+				<h1>the selected team</h1>
+				<h2>Michael Van Valkenburgh Associates, Inc. and Thomas Phifer & Partners</h2>
+				<div class="con_a">
+					<div class="con_b">
+						<img src="img/1.jpg"/>
+						<a href="javascript:;" class="prev">
+							<span></span>
+						</a>
+						<a href="javascript:;" class="next">
+							<span></span>
+						</a>
+						<div class="photo">
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+							<a href="javascript:;"></a>
+						</div>
+					</div>	
+				</div>
+				<!--内容二-->
+				<div class="con2">
+					<ul class="uls">
+						<li><img src="img/MVVA_board1.jpg"/></li>
+						<li><img src="img/MVVA_board2.jpg"/></li>
+						<li><img src="img/MVVA_board3.jpg"/></li>
+						<li><img src="img/MVVA_board4.jpg"/></li>
+						<li><img src="img/MVVA_board5.jpg"/></li>
+						<li><img src="img/MVVA_board6.jpg"/></li>
+						<li><img src="img/MVVA_board7.jpg"/></li>
+						<li><img src="img/MVVA_board8.jpg"/></li>
+						<li><img src="img/MVVA_board4.jpg"/></li>
+						<li><img src="img/MVVA_board5.jpg"/></li>
+						<li><img src="img/MVVA_board6.jpg"/></li>
+						<li><img src="img/MVVA_board1.jpg"/></li>
+						<li><img src="img/MVVA_board2.jpg"/></li>
+						<li><img src="img/MVVA_board3.jpg"/></li>
+						<li><img src="img/MVVA_board6.jpg"/></li>
+						<li><img src="img/MVVA_board7.jpg"/></li>
+						<li><img src="img/MVVA_board8.jpg"/></li>
+					</ul>
+				</div>
+			</div>
+			<!--尾部-->
+			<div class="floor">
+				<h1>the finalists</h1>
+				<h2>Select a design team to review their project renderings and design concept summary.</h2>
+				<ul class="practice">
+					<li>
+						<a href="../短信发送/index.html" target="_blank">短信发送</a>
+					</li>
+					<li>
+						<a href="../双模式图片切换/index.html" target="_blank">模式图片切换</a>
+					</li>
+					<li>
+						<a href="../多个图片切换/index.html" target="_blank">双变量图片切换</a>
+					</li>
+					<li>
+						<a href="../缩略图作业/index.html" target="_blank">缩略图切换</a>
+					</li>
+					<li>
+						<a href="../评分练习/index.html" target="_blank">评分练习</a>
+					</li>
+					<li>
+						<a href="../for循环练习/index.html" target="_blank">for循环练习</a>
+					</li>
+					<li>
+						<a href="../擦擦擦/index.html" target="_blank">擦擦擦擦</a>
+					</li>
+					<li>
+						<a href="../数据类型判断/根据结果想办法.html" target="_blank">数据类型判断</a>
+					</li>
+					<li>
+						<a href="../音乐全选/index.html" target="_blank">音乐全选</a>
+					</li>
+					<li>
+						<a href="../商品累计/index.html" target="_blank">商品累计</a>
+					</li>
+					<li>
+						<a href="../让子弹飞/让子弹飞.html" target="_blank">让子弹飞</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/Mtween.js"></script>
+		<script type="text/javascript">
+			
+			//获取元素
+			var heaD = document.getElementsByClassName('header')[0];
+			var h3S = heaD.getElementsByTagName('h3')[0];
+			//获取内容区元素
+			var seC = document.getElementsByClassName('section')[0];
+			//获取导航栏的元素
+			var naV = document.getElementsByClassName('nav')[0];
+			//获取导航栏logo元素
+			var lhome = document.getElementsByClassName('list_home')[0];
+			
+			
+			//获取轮播图元素
+			var conB = document.getElementsByClassName('con_b')[0];
+			//获取图片元素
+			var imgs = conB.getElementsByTagName('img')[0];
+			//获取左边点击按钮
+			var prev = document.getElementsByClassName('prev')[0];
+			//获取右边点击按钮
+			var next = document.getElementsByClassName('next')[0];			
+			//获取图片圆点元素
+			var photo = document.getElementsByClassName('photo')[0];
+			var aS = photo.getElementsByTagName('a');
+			
+			//拖拽元素
+			var uls = document.getElementsByClassName('uls')[0];
+			
+			
+			//声明一个数组存储图片数据
+			var arr = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+			//声明一个变量控制图片切换
+			var n = 0;
+			//声明一个开光控制运动函数的开关
+			var onOff = true;
+			//点击下拉三角跳转
+			h3S.onclick = function(){
+				if(onOff){
+					onOff = false;
+					move({
+						obj:seC,
+						attrs:{top:70},
+						duration:1000,
+						callBack:function(){
+							naV.style.position = 'fixed';
+							naV.style.zIndex = '999';
+							naV.style.top = '0';
+							onOff = true;
+						}
+					})
+				}
+			}
+			
+			//点击导航栏logo返回上层
+			lhome.onclick = function(){
+				if(onOff){
+					onOff = false;
+					naV.style.position = 'absolute';
+					naV.style.zIndex = '0';
+					naV.style.top = '-70px';
+					move({
+						obj:seC,
+						attrs:{top:735},
+						duration:1000,
+						callBack:function(){
+							onOff = true;
+						}
+					})
+				}
+			}
+			imgs.style.transform = 'rotateY(0deg)';
+			//点击左边按钮图片切换
+			prev.onclick = function(){				
+				n--;
+				if(n<0){
+					n=arr.length-1;
+					
+				}
+				if(imgs.style.transform == 'rotateY(0deg)'){
+					imgs.style.transform = 'rotateY(180deg)';
+				}else if(imgs.style.transform == 'rotateY(180deg)'){
+					imgs.style.transform = 'rotateY(0deg)';
+				}else if(imgs.style.transform == 'rotateY(180deg)'){
+					imgs.style.transform = 'rotateY(0deg)';
+				}
+				imgs.src = arr[n];
+				for(var i=0;i<aS.length;i++){
+					aS[i].style.backgroundPosition = 'top';
+				}
+				aS[n].style.backgroundPosition = 'bottom';
+			}
+			//点击右边按钮图片切换
+			
+			next.onclick = function(){
+				n++;
+				if(n>arr.length-1){
+					n=0;
+					
+				}
+				if(imgs.style.transform == 'rotateY(0deg)'){
+					imgs.style.transform = 'rotateY(-180deg)';
+				}else if(imgs.style.transform == 'rotateY(-180deg)'){
+					imgs.style.transform = 'rotateY(0deg)';
+				}else if(imgs.style.transform == 'rotateY(-180deg)'){
+					imgs.style.transform = 'rotateY(0deg)';
+				}
+				imgs.src = arr[n];
+				for(var i=0;i<aS.length;i++){
+						aS[i].style.backgroundPosition = 'top';
+				}
+				aS[n].style.backgroundPosition = 'bottom';
+			}
+			
+			//初始化圆点颜色
+			aS[0].style.backgroundPosition = 'bottom';
+			//点击圆点切换图片
+			for(var i=0;i<aS.length;i++){
+				aS[i].index = i;
+				aS[i].onclick = function(){
+					for(var i=0;i<aS.length;i++){
+						aS[i].style.backgroundPosition = 'top';
+					}
+					this.style.backgroundPosition = 'bottom';
+					imgs.src = arr[this.index];
+					n = this.index;
+				}
+			}
+			
+			//拖拽图片
+			function drag(obj){
+				//1.元素上按下
+				obj.onmousedown = function(ev){					
+					ev.preventDefault();
+					var disX = ev.clientX-obj.getBoundingClientRect().left;
+					//var disY = ev.clientY-obj.getBoundingClientRect().top;
+					//2.移动
+					document.onmousemove = function(ev){
+						var l = ev.clientX-disX;
+						//var t = ev.clientY-disY;
+						obj.style.left = l+'px';
+						//obj.style.top = t+'px';	
+					}
+					//3.抬起
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						document.onmouseup = null;
+					}
+				}
+			}
+			drag(uls);
+			
+			
+		</script>
+	</body>
+</html>
