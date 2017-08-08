@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="price.css" />
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="box">
+				<ul class="list">
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<div>
+							单价：<span>12.5元 </span> 小计：<strong>0元</strong>
+						</div>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<div>
+							单价：<span>10.5元 </span> 小计：<strong>0元</strong>
+						</div>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<div>
+							单价：<span>8.5元 </span> 小计：<strong>0元</strong>
+						</div>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<div>
+							单价：<span>8元 </span> 小计：<strong>0元</strong>
+						</div>
+					</li>
+					<li>
+						<i></i>
+						<em>0</em>
+						<i></i>
+						<div>
+							单价：<span>14.5元 </span> 小计：<strong>0元</strong>
+						</div>
+					</li>
+				</ul>
+				<div class="info">
+					<span>商品总合计：<em>0</em>件</span>
+					<span>共花费了：<em>0</em>元</span>
+					<br />
+					<br />
+					<span>其中最贵的商品单价是：<em>0</em>元</span>
+				</div>
+			</div>
+		</div>
+		<script>
+			
+			//获取元素
+			var list = document.getElementsByClassName('list')[0];
+			var info = document.getElementsByClassName('info')[0];
+			//获取li的集合
+			var lis = list.getElementsByTagName('li'); 
+			//获取小计的集合
+			var sTg = list.getElementsByTagName('strong');
+			//获取单价的集合
+			var price = list.getElementsByTagName('span');
+			//获取文本数字的集合
+			var eMs = list.getElementsByTagName('em');
+			//获取商品总合计,共花费以及最大单价的元素
+			var aEms = info.getElementsByTagName('em');
+			
+			//创建一个用于商品合计的变量
+			var m = 0;
+			//传参给每个li
+			for(var i=0;i<lis.length;i++){
+				fn(i);
+			}
+			//封装一个运行函数
+			function fn(j){
+				//获取li的集合用于传参
+				var lis = list.getElementsByTagName('li')[j]; 
+				//获取加、减号元素
+				var is = lis.getElementsByTagName('i');
+				//获取文本数字元素
+				var ems = lis.getElementsByTagName('em')[0];
+				//获取单价元素
+				var spans = lis.getElementsByTagName('span')[0];
+				//获取小计元素
+				var subt = lis.getElementsByTagName('strong')[0];
+				//存一下小计的属性用于计算
+				var s = parseFloat(spans.innerHTML);
+				//创建一个变量来控制个数以及计算
+				var n = 0;
+				//点击加号 个数随着n值++变化
+				is[1].onclick = function(){
+					m++;
+					n++;
+					ems.innerHTML = n;
+					subt.innerHTML = n*s+'元';
+					aEms[0].innerHTML = m;
+					tab();
+					maX()
+				}
+				//点击减号 个数随着n值++变化
+				is[0].onclick = function(){					
+					if(n>0){
+						n--;
+						m--;	
+					}					
+					ems.innerHTML = n;
+					subt.innerHTML = n*s+'元';
+					aEms[0].innerHTML = m;
+					tab();
+					maX();
+				}
+			}
+			
+			//封装一个存储花费的函数
+			function tab(){
+				var colt = 0;
+				for(var i=0;i<sTg.length;i++){
+						colt += parseFloat(sTg[i].innerHTML);
+					}
+				aEms[1].innerHTML  =  colt;
+			}
+			
+			//封装一个最贵单价的判断函数
+			function maX(){
+				var max = 0;
+				for(var i=0;i<price.length;i++){
+					if(parseFloat(price[i].innerHTML)>max&&eMs[i].innerHTML>0){
+						max = parseFloat(price[i].innerHTML)
+					}	
+				}
+				aEms[2].innerHTML = max;
+			}
+			
+		</script>
+	</body>
+
+</html>

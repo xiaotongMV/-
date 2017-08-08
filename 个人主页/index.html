@@ -39,6 +39,7 @@
 					<li><a href="https://github.com/xiaotongMV" target="_blank">HTML</a></li>
 					<li><a href="https://github.com/nizp" target="_blank">CSS</a></li>
 					<li><a href="https://github.com/WYseven" target="_blank">JAVAscript</a></li>
+					<li><a href="https://github.com/xiaotongMV" target="_blank">About myself</a></li>
 				</ul>
 			</div>
 			<div class="con">
@@ -72,12 +73,11 @@
 						<li><img src="img/MVVA_board6.jpg"/></li>
 						<li><img src="img/MVVA_board7.jpg"/></li>
 						<li><img src="img/MVVA_board8.jpg"/></li>
-						<li><img src="img/MVVA_board4.jpg"/></li>
-						<li><img src="img/MVVA_board5.jpg"/></li>
-						<li><img src="img/MVVA_board6.jpg"/></li>
 						<li><img src="img/MVVA_board1.jpg"/></li>
 						<li><img src="img/MVVA_board2.jpg"/></li>
 						<li><img src="img/MVVA_board3.jpg"/></li>
+						<li><img src="img/MVVA_board4.jpg"/></li>
+						<li><img src="img/MVVA_board5.jpg"/></li>
 						<li><img src="img/MVVA_board6.jpg"/></li>
 						<li><img src="img/MVVA_board7.jpg"/></li>
 						<li><img src="img/MVVA_board8.jpg"/></li>
@@ -90,44 +90,51 @@
 				<h2>Select a design team to review their project renderings and design concept summary.</h2>
 				<ul class="practice">
 					<li>
-						<a href="../短信发送/index.html" target="_blank">短信发送</a>
+						<img src="img/f1.jpg"/>
+						<a href="html/短信发送/index.html" target="_blank">短</br>信</br>发</br>送</a>
 					</li>
 					<li>
-						<a href="../双模式图片切换/index.html" target="_blank">模式图片切换</a>
+						<img src="img/f2.jpg"/>
+						<a href="html/双模式图片切换/index.html" target="_blank">模</br>式</br>图</br>片</br>切</br>换</a>
 					</li>
 					<li>
-						<a href="../多个图片切换/index.html" target="_blank">双变量图片切换</a>
+						<img src="img/f12.jpg"/>
+						<a href="html/多个图片切换/index.html" target="_blank">双</br>变</br>量</br>图</br>片</br>切</br>换</a>
 					</li>
 					<li>
-						<a href="../缩略图作业/index.html" target="_blank">缩略图切换</a>
+						<img src="img/f4.jpg"/>
+						<a href="html/缩略图作业/index.html" target="_blank">缩</br>略</br>图</br>切</br>换</a>
 					</li>
 					<li>
-						<a href="../评分练习/index.html" target="_blank">评分练习</a>
+						<img src="img/f5.jpg"/>
+						<a href="html/评分练习/index.html" target="_blank">评</br>分</br>练</br>习</a>
 					</li>
 					<li>
-						<a href="../for循环练习/index.html" target="_blank">for循环练习</a>
+						<img src="img/f6.jpg"/>
+						<a href="html/for循环练习/index.html" target="_blank">for</br>循</br>环</br>练</br>习</a>
 					</li>
 					<li>
-						<a href="../擦擦擦/index.html" target="_blank">擦擦擦擦</a>
+						<img src="img/f7.jpg"/>
+						<a href="html/擦擦擦/index.html" target="_blank">擦</br>擦</br>擦</a>
 					</li>
 					<li>
-						<a href="../数据类型判断/根据结果想办法.html" target="_blank">数据类型判断</a>
+						<img src="img/f8.jpg"/>
+						<a href="html/数据类型判断/根据结果想办法.html" target="_blank">数</br>据</br>类</br>型</br>判</br>断</a>
 					</li>
 					<li>
-						<a href="../音乐全选/index.html" target="_blank">音乐全选</a>
+						<img src="img/f9.jpg"/>
+						<a href="html/音乐全选/index.html" target="_blank">音</br>乐</br>全</br>选</a>
 					</li>
 					<li>
-						<a href="../商品累计/index.html" target="_blank">商品累计</a>
+						<img src="img/f14.jpg"/>
+						<a href="html/商品累计/index.html" target="_blank">商</br>品</br>累</br>计</a>
 					</li>
-					<li>
-						<a href="../让子弹飞/让子弹飞.html" target="_blank">让子弹飞</a>
-					</li>
-					
 				</ul>
 			</div>
 		</div>
 		<script type="text/javascript" src="js/Mtween.js"></script>
 		<script type="text/javascript">
+
 			
 			//获取元素
 			var heaD = document.getElementsByClassName('header')[0];
@@ -205,34 +212,62 @@
 					n=arr.length-1;
 					
 				}
-				if(imgs.style.transform == 'rotateY(0deg)'){
+				/*if(imgs.style.transform == 'rotateY(0deg)'){
 					imgs.style.transform = 'rotateY(180deg)';
 				}else if(imgs.style.transform == 'rotateY(180deg)'){
 					imgs.style.transform = 'rotateY(0deg)';
-				}else if(imgs.style.transform == 'rotateY(180deg)'){
-					imgs.style.transform = 'rotateY(0deg)';
-				}
+				}else if(imgs.style.transform == 'rotateY(0deg)'){
+					imgs.style.transform = 'rotateY(180deg)';
+				}*/
 				imgs.src = arr[n];
 				for(var i=0;i<aS.length;i++){
 					aS[i].style.backgroundPosition = 'top';
 				}
 				aS[n].style.backgroundPosition = 'bottom';
 			}
-			//点击右边按钮图片切换
+			var timer = null;
 			
+			timer = setInterval(tab,2000)
+			function tab(){
+					n++;
+					if(n>arr.length-1){
+						n=0;
+						
+					}
+//					if(imgs.style.transform == 'rotateY(0deg)'){
+//						imgs.style.transform = 'rotateY(-180deg)';
+//					}else if(imgs.style.transform == 'rotateY(-180deg)'){
+//						imgs.style.transform = 'rotateY(0deg)';
+//					}else if(imgs.style.transform == 'rotateY(0deg)'){
+//						imgs.style.transform = 'rotateY(-180deg)';
+//					}
+					imgs.src = arr[n];
+					for(var i=0;i<aS.length;i++){
+							aS[i].style.backgroundPosition = 'top';
+					}
+					aS[n].style.backgroundPosition = 'bottom';
+			}
+			conB.onmouseenter = function(){
+				clearInterval(timer)
+			}
+			conB.onmouseleave = function(){
+				timer = setInterval(tab,2000)
+			}
+			
+			//点击右边按钮图片切换
 			next.onclick = function(){
 				n++;
 				if(n>arr.length-1){
 					n=0;
 					
 				}
-				if(imgs.style.transform == 'rotateY(0deg)'){
-					imgs.style.transform = 'rotateY(-180deg)';
-				}else if(imgs.style.transform == 'rotateY(-180deg)'){
-					imgs.style.transform = 'rotateY(0deg)';
-				}else if(imgs.style.transform == 'rotateY(-180deg)'){
-					imgs.style.transform = 'rotateY(0deg)';
-				}
+//				if(imgs.style.transform == 'rotateY(0deg)'){
+//					imgs.style.transform = 'rotateY(-180deg)';
+//				}else if(imgs.style.transform == 'rotateY(-180deg)'){
+//					imgs.style.transform = 'rotateY(0deg)';
+//				}else if(imgs.style.transform == 'rotateY(0deg)'){
+//					imgs.style.transform = 'rotateY(-180deg)';
+//				}
 				imgs.src = arr[n];
 				for(var i=0;i<aS.length;i++){
 						aS[i].style.backgroundPosition = 'top';
@@ -278,7 +313,7 @@
 			}
 			drag(uls);
 			
-			
+
 		</script>
 	</body>
 </html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	<style type="text/css">
+			#bg{
+				width: 764px;
+				height: 800px;
+				background: url(img/bg.png);
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			#box{
+				width: 460px;
+				height: 200px;
+				background: url(img/pic_03.png);
+				margin: 300px auto;
+				position: relative;
+			}
+			ul,li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.list{
+				width: 220px;
+				height: 30px;
+				position: absolute;
+				left: 89px;
+				top: 85px;
+			}
+			.list li{
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				font-size: 40px;
+				color: #FFFFFF;
+				float: left;
+				margin-right: 11px;
+			}
+			.blue{
+				color: blue;
+			}
+			.yellow{
+				color: yellow;
+			}
+			.red{
+				color: red;
+			}
+			#btn{
+				display: block;
+				width: 57px;
+				height: 26px;
+				line-height: 26px;
+				border: 2px solid #ffffff;
+				border-radius: 3px;
+				font-size: 14px;
+				text-align: center;
+				text-decoration: none;
+				color: #ffffff;
+				position: absolute;
+				right: 90px;
+				top: 87px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="bg">
+			<div id="box">
+				<ul class="list" id="list">
+					<li>★</li>
+					<li>★</li>
+					<li>★</li>
+					<li>★</li>
+					<li>★</li>
+				</ul>
+				<a href="javascript:;" id="btn">推荐</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			/*1.鼠标滑动到五角星之后改变颜色
+			 *		鼠标滑动到五角星上之后变色
+			 * 			鼠标滑动到第一个之后变色  滑动到第二个 第三个前面的全部变色
+			 * 		鼠标滑出之后颜色回到初始化颜色
+			 *2.当鼠标点击五角星
+			 * 		没有变化
+			 * 
+			 * 		当点击之后鼠标滑动继续改变颜色
+			 
+			 * */
+			
+			
+			//获取元素
+			var oList = document.getElementById('list');
+			var aLi = list.getElementsByTagName('li');
+			var aS = document.getElementById('btn');
+			//声明一个变量
+			var n = -1;
+			
+			var arr = ['极差','一般','普通','力荐','好评'];
+			//多个循环，声明for循环
+			for(var i=0;i<aLi.length;i++){
+				//获取自定义属性下标
+				aLi[i].index = i;
+				//鼠标滑入改变颜色
+				aLi[i].onmouseover = function(){
+					//大清洗 回到初始化
+					for(var i=0;i<aLi.length;i++){
+							aLi[i].style.color = '';
+							//aS.innerHTML = '推荐';
+					}
+					
+				aS.innerHTML = arr[this.index];
+				//当鼠标滑动到第n个的时候星星改变不同的颜色判断
+					for(var i=0;i<=this.index;i++){
+						
+						if(this.index<2){
+							aLi[i].style.color = 'pink';
+						}else if(this.index<4){
+							aLi[i].style.color = 'yellow';
+						}else if(this.index==4){
+							aLi[i].style.color = 'red';
+						}
+						
+					}
+				}
+				
+				
+				//鼠标滑出五角星之后回归原始颜色
+				aLi[i].onmouseout = function(){
+					for(var i=0;i<aLi.length;i++){
+							aLi[i].style.color = '';	
+							//aS.innerHTML = '推荐';
+					}
+
+					if(n!=this.index){
+						aS.innerHTML = '推荐';
+					}
+					
+					
+					if(n>=0){
+						for(var i=0;i<=n;i++){						
+							if(n<2){
+								aLi[i].style.color = 'pink';
+							}else if(n<4){
+								aLi[i].style.color = 'yellow';
+							}else if(n==4){
+								aLi[i].style.color = 'red';
+							}
+						}
+					}
+				}
+					//鼠标点击时五角星变色
+				aLi[i].onclick = function(){
+					n = this.index;					
+				}
+			}
+				
+		</script>
+	</body>
+</html>

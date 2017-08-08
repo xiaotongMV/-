@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			 body,h1,h2,h3,h4,h5,h6,dl,dt,dd,p,ul,li{margin:0;padding:0;}
+			ul,li{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width:700px;
+				height: 800px;
+				background: url(1.png);
+				margin: 0 auto;
+				position: relative;
+			}			
+			.opa{
+				width: 480px;
+				height: 300px;
+				background: #000000;
+				opacity: 0.3;
+				border-radius: 20px;
+				position: absolute;
+				left: 120px;
+				top: 200px;				
+			}
+			.list{
+				width: 480px;
+				height: 280px;
+				position: absolute;
+				left: 120px;
+				top: 200px;
+				padding-top: 20px;
+			}
+			.list li{
+				height: 35px;
+				line-height: 35px;
+				/*background: pink;*/
+				margin-bottom: 2px;
+			}
+
+			.list li span{
+				margin: 0;
+				display: inline-block;
+				width: 15px;
+				height: 15px;
+				line-height:15px;
+				border: 1px solid #fff;
+				margin-left: 30px;
+				font-size: 12px;
+				color: #fff;
+				text-align: center;
+			}
+			.list li h4{
+				display: inline-block;
+				height: 35px;
+				font-size: 16px;
+				line-height:35px;
+				text-decoration: none;
+				color: #fff;
+				margin-left: 10px;
+			}
+			.bottom{
+				width: 480px;
+				height: 50px;
+				background: #000000;
+				border-bottom-left-radius: 20px;
+				border-bottom-right-radius: 20px;
+				position: absolute;
+				left: 121px;
+				top: 453px;
+			}
+			.qx{
+				width: 130px;
+				height: 50px;
+			}
+			.bottom p{
+				margin: 0;
+				padding: 0;
+				display: inline-block;
+				width: 15px;
+				height: 15px;
+				line-height:15px;
+				border: 1px solid #fff;
+				margin-left: 30px;
+				font-size: 12px;
+				color: #fff;
+				text-align: center;
+				margin-top: 15px;
+				float: left;
+				/*position: absolute;
+				left: 0px;
+				top: 17px;*/
+			}
+			.bottom a{
+				display: inline-block;
+				width: 40px;
+				font-size: 16px;
+				text-align: center;
+				text-decoration: none;
+				color: #fff;
+				margin-left: 10px;
+				margin-top: 14px;
+				float: left;
+				/*position: absolute;
+				left: 50px;
+				top: 10px;*/
+			}
+			.back{
+				background: #2c1823;
+				opacity: 0.6;
+			}
+			.back2{
+				background: #1d1117;
+				opacity: 0.6;
+			}
+			li:hover{
+				background: #000000;
+				/*opacity: 0.8;*/
+			}
+			.list .oncl{
+				background: #bc486f;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="opa"></div>
+			<ul class="list">
+				<li>
+					<span></span>
+					<h4>私奔</h4>
+				</li>
+				<li>
+					<span></span>
+					<h4>北京北京</h4>
+				</li>
+				<li>
+					<span></span>
+					<h4>我爱你中国</h4>
+				</li>
+				<li>
+					<span></span>
+					<h4>花火</h4>
+				</li>
+				<li>
+					<span></span>
+					<h4>回来</h4>
+				</li>
+				<li>
+					<span></span>
+					<h4>爱要你才完美</h4>
+				</li>
+			</ul>
+			<div class="bottom">
+				<div class="qx">
+					<p></p>
+					<a href="javascript:;">全选</a>
+				</div>				
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			//获取元素
+			
+			var list = document.getElementsByClassName('list')[0];
+			var lis = list.getElementsByTagName('li');
+			var spans = document.getElementsByTagName('span');
+			//获取全选勾勾的元素
+			var ps = document.getElementsByTagName('p')[0];
+			//获取全选按钮的元素
+			var btn = document.getElementsByClassName('qx')[0];
+			//创建一个数组用来隔行变色
+			var arr = ['back','back2'];
+			//声明一个变量
+			var n = 0;
+			for(var i=0;i<lis.length;i++){				
+				//隔行变色
+				lis[i].className = arr[i%arr.length];
+				//声明一个自定义属性存储数据
+				lis[i].index = i;
+				//属性值记录背景颜色还原
+				lis[i].arr = lis[i].className;
+				//声明一个自定义开关来控制颜色的切换
+				lis[i].onOff = true;
+				//鼠标点击选中 再次点击恢复初始值
+				lis[i].onclick = function(){
+					if(this.onOff){
+						n++;
+						this.className = 'oncl';
+						spans[this.index].innerHTML = '✔';
+						this.onOff = false;
+					}else{
+						n--;
+						this.className = this.arr;
+						spans[this.index].innerHTML = '';
+						this.onOff = true;
+					}
+					//控制全选按钮的开关以及勾勾选中未选中  (当n等于lis的长度的时候勾选全选并把开光转为false反之为true)
+					if(n==lis.length){
+						ps.innerHTML = '✔';
+						btn.cleck = false;
+					}else{
+						ps.innerHTML = '';
+						btn.cleck = true;
+					}					
+				}
+			}
+			//声明一个切换全选的开关
+			btn.cleck = true;
+			//点击全选 所有全被选中 再次点击恢复初始值
+			btn.onclick = function(){
+				if(btn.cleck){
+					for(var i=0;i<lis.length;i++){
+						lis[i].className = 'oncl';
+						spans[i].innerHTML = '✔';
+						lis[i].onOff = false;
+					}
+					//当点击全被选中的时候把n赋值为lis的长度
+					n = lis.length;
+
+					ps.innerHTML = '✔';					
+					btn.cleck = false;
+				}else{
+					for(var i=0;i<lis.length;i++){
+						lis[i].className = lis[i].arr;
+						spans[i].innerHTML = '';
+						lis[i].onOff = true;
+					}
+					//当恢复初始的时候让n变成0
+					n = 0;
+					
+					ps.innerHTML = '';
+					btn.cleck = true;
+				}
+				console.log(n)
+			}
+		</script>
+	</body>
+</html>

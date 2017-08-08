@@ -16,6 +16,10 @@ body{
 	font-family:"American";
 	src: url("../font/American Scribe.ttf");
 }
+@font-face {
+	font-family:"blzw";
+	src: url("../font/伯乐油画体.ttf");
+}
 ol,ul,li{
 	list-style:none;
 	}
@@ -251,7 +255,7 @@ img{
 	width: 100%;
 	height: 650px;
 	display: block;
-	transition: 0.2s;
+	transition: 2s;
 	transform: rotateY(0deg);
 }
 
@@ -340,6 +344,7 @@ img{
 	padding: 20px 0;
 	background: url(../img/hbj2.jpg) repeat;
 	background-size: 100% 100%; 
+	overflow: hidden; 	
 }
 .floor h1{
 	font-family: 'American';
@@ -355,31 +360,45 @@ img{
     text-align: center;
     color: #FFF;
 }
+
 .practice{
-	 width: 100%;
+	 width: 2000px;
     margin: 40px auto;
     position: relative;
     height: 400px;
-    overflow: hidden;
+    overflow: hidden;   
 }
 .practice li{
 	height: 400px;
-	width: 130px;
+	width: 140px;
    cursor: pointer;
    /*width: 325px;*/
    overflow: visible;
    float: left;
    transition: 1s;
+   background: #000;
+   position: relative;
+   top: 0;
+   left: 0;
    
 }
 .practice li a{
-	width: 40px;
+	width: 200px;
+	height: 300px;
 	color: #fff;
 	font-size: 30px;
-	line-height: 50px;
+	line-height: 35px;
 	text-align: center;
-	margin: 20px auto 0;
+	font-family: 'blzw';
+	position: absolute;
+	left: -50px;
+	top: 45px;		
+}
+.practice li img{
+	width: 500px;
+	height: 100%;
 }
 .practice li:hover{
-	width: 160px;
+	width: 500px;
+	border-right: 2px solid #333333;
 }

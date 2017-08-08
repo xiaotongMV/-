@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			body,ul,li,p{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: url(img/bg.png);
+				background-size: 100% 100%;
+			}
+			ul,li{
+				list-style: none;
+			}
+			.bg{
+				width: 1000px;
+				height: 800px;
+				background: url(img/bg.png);
+				overflow: hidden;
+				position: relative;
+				margin: 0 auto;
+			}
+			.box{
+				width: 356px;
+				height: 679px;
+				background: url(img/phonebac.png);
+				margin: 0 auto;
+				margin-top: 66px;
+				position: relative;
+			}
+			.textbg{
+				width: 318px;
+				height: 558px;
+				background: url(img/bac2.png);
+				position: absolute;
+				left: 21px;
+				top: 49px;
+			}
+			.text{
+				width: 318px;
+				height: 498px;
+				overflow: auto;
+			}
+			.con{
+				width: 314px;
+				height: 60px;
+				position: absolute;
+				left: 4px;
+				bottom: 7px;
+			}
+			.tran{
+				display: block;
+				height: 60px;
+				background: #000;
+				opacity: 0.5;
+			}
+			.pic{
+				position: absolute;
+				left: 17px;
+				top: 11px;
+			}
+			.txt{
+				width: 190px;
+				height: 40px;
+				border: 0;
+				border-radius: 3px;
+				font-size: 20px;
+				position: absolute;
+				left: 64px;
+				top: 11px;
+			}
+			.send{
+				width:32px;
+				height: 40px;
+				line-height: 40px;
+				font-size: 16px;
+				color: #e15671;
+				font-family: "微软雅黑";
+				text-decoration: none;
+				position: absolute;
+				right: 16px;
+				top: 11px;
+			}
+			/*li属性*/
+			.list,.list2{
+				width: 274px;
+				margin-top: 22px;
+				margin-left: 22px;
+				overflow: hidden;
+				position: relative;
+			}
+			.list p,.list2 p{
+				max-width: 200px;
+				font-size: 16px;
+				background:#bf4e6f ;
+				border-radius: 3px;
+				padding: 10px;
+				color: #fff;				
+				word-wrap: break-word;
+			}
+			.list p{
+				float: right;
+				margin-right: 15px;
+			}
+			.list2 p{
+				float: left;
+				margin-left: 15px;
+				background: #21141a;
+			}
+			.list b{
+				display: block;
+				height: 0;
+				width: 0;
+				border: 5px solid transparent;
+				border-left-color: #bf4e6f;
+				position: absolute;
+				right: 39px;
+				top: 16px;
+			}
+			.list2 b{
+				display: block;
+				height: 0;
+				width: 0;
+				border: 5px solid transparent;
+				border-right-color: #21141a;
+				position: absolute;
+				left: 41px;
+				top: 15px;
+			}
+			.list img{
+				float: right;
+			}
+			.list2 img{
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg">			
+			<div class="box">
+				<div class="textbg">
+					<ul class="text" id="text">
+						<!--<li class="list">
+							<b></b>
+							<img src="img/red.png"/>
+							<p>ksad</p>
+						</li>-->
+						<!--<li class="list2">
+							<b></b>
+							<img src="img/blue.png"/>
+							<p>dsfsdsdfsdfsdfsdf</p>
+						</li>-->
+					</ul>
+					<div class="con">
+						<b class="tran"></b>
+						<img src="img/red.png" class="pic" id="pic"/>
+						<input type="text" placeholder="请输入内容" class="txt" id="txt"/>
+						<a href="javascript:;" class="send" id="send">发送</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//获取元素
+			var conT = document.getElementById('text');//显示内容
+			var imgs = document.getElementById('pic');//头像元素
+			var txt = document.getElementById('txt');//输入内容
+			var btn = document.getElementById('send');//点击按钮
+			
+			//声明一个开关
+			var onOff = true;
+			//点击头像切换
+			imgs.onclick = function(){
+				if(onOff){
+					imgs.src = 'img/blue.png';
+					onOff = false;
+				}else{
+					imgs.src = 'img/red.png';
+					onOff = true;
+				}
+			}
+			
+			//点击发送按钮发送内容
+			btn.onclick  = function(){
+				var val = txt.value;
+				
+				if(val!=''){
+					if(onOff){
+						conT.innerHTML = '<li class="list">'+
+							'<b></b>'+
+							'<img src="img/red.png"/>'+
+							'<p>'+val+'</p>'+
+						'</li>'+conT.innerHTML;
+					}else{
+						conT.innerHTML = '<li class="list2">'+
+							'<b></b>'+
+							'<img src="img/blue.png"/>'+
+							'<p>'+val+'</p>'+
+						'</li>'+conT.innerHTML;
+					}
+					txt.value = '';
+				}else{
+					alert('请输入内容');
+				}
+			}
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background:dodgerblue;
+			}
+			
+			ul,li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			p{
+				margin: 0;
+			}
+			#box{
+				width: 320px;
+				height: 600px;
+				background: #fff;
+				border-radius: 20px;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+			}
+			.top{
+				width: 60px;
+				height: 8px;
+				background: #000;
+				border-radius: 30px;
+				/*position: absolute;
+				left: 0px;
+				top: 0px;*/
+				margin: 15px auto 0;
+			}
+			.bottom{
+				width: 40px;
+				height: 40px;
+				border: 1px solid #000;
+				border-radius: 50%;
+				position: absolute;
+				left: 145px;
+				bottom: 8px;
+			}
+			.bottom p{
+				width: 15px;
+				height: 15px;
+				border: 1px solid #000;
+				border-radius: 5px;
+				margin: 11px auto;
+			}
+			.con{
+				width: 260px;
+				height: 490px;
+				background: url(img/bg.png) no-repeat;
+				background-size: 100% 100%;
+				padding: 10px 10px 0;
+				position: absolute;
+				left: 20px;
+				top: 40px;
+			}
+			.con div{
+				width: 260px;
+				height: 35px;
+				line-height: 35px;
+				background: #000000;
+				color: #FFFFFF;
+				font-size: 14px;
+				/*text-align: center;*/
+				margin-top: 5px;
+				opacity: 0.8;
+			}
+			.list{
+				width: 260px;
+				display: none;
+			}
+			.list li{
+				width: 260px;
+				/*height: 40px;*/
+				line-height: 35px;
+				background: #000000;
+				color: #FFFFFF;
+				text-align: center;
+				opacity: 0.8;
+			}
+			.con .active{
+				background: #FF1493;
+			}
+			.list .back{
+				background: #999999;
+			}
+			span{
+				width: 0;
+				height: 0;
+				display: inline-block;
+				border-width: 5px;
+				border-style: solid;
+				border-color:  transparent transparent transparent #FFFFFF ;
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div class="top"></div>
+			<div class="con">
+				<div><span></span>我的好友</div>
+				<ul class="list">
+						<li>1111</li>
+						<li>22222</li>
+						<li>3333</li>
+						<li>4444</li>
+				</ul>
+				<div><span></span>企业好友</div>
+				<ul class="list">
+						<li>11111</li>
+						<li>2222</li>
+						<li>3333</li>
+				</ul>
+				<div><span></span>黑名单</div>
+				<ul class="list">
+						<li>1111</li>
+						<li>2222</li>
+				</ul>
+			</div>
+			<div class="bottom">
+				<p></p>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			
+			//获取元素
+			
+			var con = document.getElementsByClassName('con')[0];
+			var divs = con.getElementsByTagName('div');
+			var list = document.getElementsByClassName('list');
+			var lis = document.getElementsByTagName('li');
+			var spans = document.getElementsByTagName('span');
+			
+			//点击div更换背景颜色以及展开下拉框
+			
+			for(var i=0;i<divs.length;i++){
+				divs[i].index = i;
+				divs[i].onOff = true;	
+				
+				divs[i].onclick = function(){	
+					/*for(var i=0;i<divs.length;i++){
+							divs[i].className = '';
+							list[i].style.display = 'none';
+							divs[i].onOff = true;
+					}*/
+					if(this.onOff){	
+						for(var i=0;i<divs.length;i++){
+							divs[i].className = '';
+							list[i].style.display = 'none';
+							spans[i].style.borderColor = 'transparent transparent transparent #FFFFFF';
+							divs[i].onOff = true;
+						}
+						for(var i=0;i<lis.length;i++){
+							lis[i].style.background = '';
+						}
+						this.className = 'active';	
+						list[this.index].style.display = 'block';
+						spans[this.index].style.borderColor = '#FFFFFF transparent transparent transparent';
+						this.onOff = false;
+					}else{		
+						
+						this.className = '';	
+						list[this.index].style.display = 'none';
+						spans[this.index].style.borderColor = 'transparent transparent transparent #FFFFFF';
+						this.onOff = true;						
+					}						
+				}
+			}
+			//鼠标划过li改变背景颜色
+			for(var i=0;i<lis.length;i++){
+				//鼠标滑入之后发生的事件
+				//lis[i].className = '';
+				lis[i].onmouseover = function(){
+					
+					this.className = 'back';					
+				}
+				lis[i].onmouseout = function(){
+					
+					this.className = '';					
+				}
+				//lis[i].style.background = '';
+				//鼠标点击时发生的事件
+				lis[i].onclick = function(){
+					for(var i=0;i<lis.length;i++){
+						lis[i].style.background = '';
+					}
+					this.style.background = 'pink';					
+				}
+			}
+			
+		</script>
+	</body>
+</html>
