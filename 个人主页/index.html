@@ -47,7 +47,11 @@
 				<h2>Michael Van Valkenburgh Associates, Inc. and Thomas Phifer & Partners</h2>
 				<div class="con_a">
 					<div class="con_b">
-						<img src="img/1.jpg"/>
+						<ul class="listwf">
+							<li><img src=""/></li>
+							<li><img src=""/></li>
+						</ul>
+						<!--<img src="img/1.jpg"/>-->
 						<a href="javascript:;" class="prev">
 							<span></span>
 						</a>
@@ -126,194 +130,17 @@
 						<a href="html/音乐全选/index.html" target="_blank">音</br>乐</br>全</br>选</a>
 					</li>
 					<li>
-						<img src="img/f14.jpg"/>
+						<img src="img/f11.jpg"/>
 						<a href="html/商品累计/index.html" target="_blank">商</br>品</br>累</br>计</a>
+					</li>
+					<li>
+						<img src="img/f14.jpg"/>
+						<a href="html/修改文本框的值/index.html" target="_blank">修</br>改</br>文</br>本</br>框</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<script type="text/javascript" src="js/Mtween.js"></script>
-		<script type="text/javascript">
-
-			
-			//获取元素
-			var heaD = document.getElementsByClassName('header')[0];
-			var h3S = heaD.getElementsByTagName('h3')[0];
-			//获取内容区元素
-			var seC = document.getElementsByClassName('section')[0];
-			//获取导航栏的元素
-			var naV = document.getElementsByClassName('nav')[0];
-			//获取导航栏logo元素
-			var lhome = document.getElementsByClassName('list_home')[0];
-			
-			
-			//获取轮播图元素
-			var conB = document.getElementsByClassName('con_b')[0];
-			//获取图片元素
-			var imgs = conB.getElementsByTagName('img')[0];
-			//获取左边点击按钮
-			var prev = document.getElementsByClassName('prev')[0];
-			//获取右边点击按钮
-			var next = document.getElementsByClassName('next')[0];			
-			//获取图片圆点元素
-			var photo = document.getElementsByClassName('photo')[0];
-			var aS = photo.getElementsByTagName('a');
-			
-			//拖拽元素
-			var uls = document.getElementsByClassName('uls')[0];
-			
-			
-			//声明一个数组存储图片数据
-			var arr = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
-			//声明一个变量控制图片切换
-			var n = 0;
-			//声明一个开光控制运动函数的开关
-			var onOff = true;
-			//点击下拉三角跳转
-			h3S.onclick = function(){
-				if(onOff){
-					onOff = false;
-					move({
-						obj:seC,
-						attrs:{top:70},
-						duration:1000,
-						callBack:function(){
-							naV.style.position = 'fixed';
-							naV.style.zIndex = '999';
-							naV.style.top = '0';
-							onOff = true;
-						}
-					})
-				}
-			}
-			
-			//点击导航栏logo返回上层
-			lhome.onclick = function(){
-				if(onOff){
-					onOff = false;
-					naV.style.position = 'absolute';
-					naV.style.zIndex = '0';
-					naV.style.top = '-70px';
-					move({
-						obj:seC,
-						attrs:{top:735},
-						duration:1000,
-						callBack:function(){
-							onOff = true;
-						}
-					})
-				}
-			}
-			imgs.style.transform = 'rotateY(0deg)';
-			//点击左边按钮图片切换
-			prev.onclick = function(){				
-				n--;
-				if(n<0){
-					n=arr.length-1;
-					
-				}
-				/*if(imgs.style.transform == 'rotateY(0deg)'){
-					imgs.style.transform = 'rotateY(180deg)';
-				}else if(imgs.style.transform == 'rotateY(180deg)'){
-					imgs.style.transform = 'rotateY(0deg)';
-				}else if(imgs.style.transform == 'rotateY(0deg)'){
-					imgs.style.transform = 'rotateY(180deg)';
-				}*/
-				imgs.src = arr[n];
-				for(var i=0;i<aS.length;i++){
-					aS[i].style.backgroundPosition = 'top';
-				}
-				aS[n].style.backgroundPosition = 'bottom';
-			}
-			var timer = null;
-			
-			timer = setInterval(tab,2000)
-			function tab(){
-					n++;
-					if(n>arr.length-1){
-						n=0;
-						
-					}
-//					if(imgs.style.transform == 'rotateY(0deg)'){
-//						imgs.style.transform = 'rotateY(-180deg)';
-//					}else if(imgs.style.transform == 'rotateY(-180deg)'){
-//						imgs.style.transform = 'rotateY(0deg)';
-//					}else if(imgs.style.transform == 'rotateY(0deg)'){
-//						imgs.style.transform = 'rotateY(-180deg)';
-//					}
-					imgs.src = arr[n];
-					for(var i=0;i<aS.length;i++){
-							aS[i].style.backgroundPosition = 'top';
-					}
-					aS[n].style.backgroundPosition = 'bottom';
-			}
-			conB.onmouseenter = function(){
-				clearInterval(timer)
-			}
-			conB.onmouseleave = function(){
-				timer = setInterval(tab,2000)
-			}
-			
-			//点击右边按钮图片切换
-			next.onclick = function(){
-				n++;
-				if(n>arr.length-1){
-					n=0;
-					
-				}
-//				if(imgs.style.transform == 'rotateY(0deg)'){
-//					imgs.style.transform = 'rotateY(-180deg)';
-//				}else if(imgs.style.transform == 'rotateY(-180deg)'){
-//					imgs.style.transform = 'rotateY(0deg)';
-//				}else if(imgs.style.transform == 'rotateY(0deg)'){
-//					imgs.style.transform = 'rotateY(-180deg)';
-//				}
-				imgs.src = arr[n];
-				for(var i=0;i<aS.length;i++){
-						aS[i].style.backgroundPosition = 'top';
-				}
-				aS[n].style.backgroundPosition = 'bottom';
-			}
-			
-			//初始化圆点颜色
-			aS[0].style.backgroundPosition = 'bottom';
-			//点击圆点切换图片
-			for(var i=0;i<aS.length;i++){
-				aS[i].index = i;
-				aS[i].onclick = function(){
-					for(var i=0;i<aS.length;i++){
-						aS[i].style.backgroundPosition = 'top';
-					}
-					this.style.backgroundPosition = 'bottom';
-					imgs.src = arr[this.index];
-					n = this.index;
-				}
-			}
-			
-			//拖拽图片
-			function drag(obj){
-				//1.元素上按下
-				obj.onmousedown = function(ev){					
-					ev.preventDefault();
-					var disX = ev.clientX-obj.getBoundingClientRect().left;
-					//var disY = ev.clientY-obj.getBoundingClientRect().top;
-					//2.移动
-					document.onmousemove = function(ev){
-						var l = ev.clientX-disX;
-						//var t = ev.clientY-disY;
-						obj.style.left = l+'px';
-						//obj.style.top = t+'px';	
-					}
-					//3.抬起
-					document.onmouseup = function(){
-						document.onmousemove = null;
-						document.onmouseup = null;
-					}
-				}
-			}
-			drag(uls);
-			
-
-		</script>
+		<script type="text/javascript" src="js/new.js"></script>
 	</body>
 </html>

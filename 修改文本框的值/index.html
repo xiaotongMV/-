@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrap {
+				width: 764px;
+				height: 800px;
+				margin: 0 auto;
+				display: flex;
+				background: url(bg.png) no-repeat center center;
+			}
+			
+			.text {
+				width: 442px;
+				height: 242px;
+				margin: auto;
+				background: url(bg1.png) no-repeat center center;
+				box-sizing: border-box;
+				padding-top: 76px;
+				border-radius: 3px;
+			}
+			
+			.text_i {
+				width: 100%;
+				height: 79px;
+			}
+			
+			.text .text_i:nth-of-type(1){
+				border-bottom: 1px dashed #ccc;
+			}
+			
+			.text_i .show {
+				width: 100%;
+				height: 100%;
+				position: relative;
+				padding-left: 28px;
+				box-sizing: border-box;
+				display: -none;
+			}
+			
+			.text_i .show .info {
+				float: left;
+				height: 100%;
+				font: 16px/79px "微软雅黑";
+				color: #fff;
+				margin-right: 22px;
+			}
+			
+			.text_i .show .btn {
+				float: left;
+				width: 24px;
+				height: 24px;
+				background: url(c.png) no-repeat center center;
+				margin: 29px 0 0 0;
+			}
+			
+			.text_i .alter {
+				display: none;
+				width: 100%;
+				height: 100%;
+				padding-left: 24px;
+				padding-top: 22px;
+				box-sizing: border-box;
+			}
+			
+			.text_i .alter input[type=text] {
+				display: inline-block;
+				width: 248px;
+				height: 32px;
+				border: 1px solid #e15671;
+				margin-right: 6px;
+				outline: none;
+			}
+			
+			.text_i .alter .sure,
+			.text_i .alter .cancel {
+				display: inline-block;
+				width: 60px;
+				height: 36px;
+				background: #E15671;
+				border-radius: 3px;
+				font: 14px/36px "微软雅黑";
+				text-align: center;
+				color: #fff;
+				margin-right: 6px;
+				position: relative;
+				top: 1px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="text">
+				<div class="text_i">
+					<div class="show">
+						<p class="info">欢迎来到妙味课堂</p>
+						<a href="javascript:;" class="btn"></a>
+					</div>
+					<div class="alter">
+						<input type="text" />
+						<span class="sure">确定</span>
+						<span class="cancel">取消</span>
+					</div>
+				</div>
+				<div class="text_i">
+					<div class="show">
+						<p class="info">欢迎来到妙味课堂</p>
+						<a href="javascript:;" class="btn"></a>
+					</div>
+					<div class="alter">
+						<input type="text" />
+						<span class="sure">确定</span>
+						<span class="cancel">取消</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			/*
+			 1.当点击小图片按钮之后 当前div消失 隐藏div显示 
+			    当在文本框输入内容以后，点击确定就会获取到输入的内容  然后当前div消失   隐藏div显现 
+			    点击取消当前div消失  被隐藏div不改变内容显现
+			 * */
+			
+			//获取元素
+			
+			var text_i = document.getElementsByClassName('text_i');
+			
+			//循环一下有几个然后传值给形参
+			for(var i=0;i<text_i.length;i++){
+				fn(i);
+			}
+			
+			//封装一个函数用于传参
+			function fn(n){			
+				//获取文本框元素
+				var show = text_i[n].getElementsByClassName('show')[0];
+				//获取文本内容元素
+				var info = show.getElementsByClassName('info')[0];
+				//获取编辑按钮元素
+			 	var btn = show.getElementsByClassName('btn')[0];
+			 	//获取隐藏框元素
+			 	var alter = text_i[n].getElementsByClassName('alter')[0];
+			 	//获取input元素
+			 	var inps = alter.getElementsByTagName('input')[0];
+			 	//获取确定按钮元素
+			 	var sure = alter.getElementsByClassName('sure')[0];
+			 	//获取取消按钮元素
+			 	var cancel = alter.getElementsByClassName('cancel')[0];
+			 	
+			 	//点击编辑按钮事件
+			 	btn.onclick = function(){
+			 		show.style.display = 'none';
+			 		alter.style.display = 'block';
+			 		inps.value = info.innerHTML;
+			 	}
+			 	//点击确定按钮事件
+			 	sure.onclick = function(){
+			 		if(inps.value==''){
+			 			alert('请输入内容')
+			 		}else{
+			 			show.style.display = 'block';
+			 			alter.style.display = 'none';
+			 			info.innerHTML = inps.value;
+			 		}
+			 	}
+			 	//点击取消按钮事件
+			 	cancel.onclick = function(){
+			 		show.style.display = 'block';
+			 		alter.style.display = 'none';
+			 		inps.value = info.innerHTML;
+			 	}
+			}
+		</script>
+	</body>
+
+</html>
