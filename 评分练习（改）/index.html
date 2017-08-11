@@ -94,10 +94,74 @@
 			
 			
 			//获取元素
-			var oList = document.getElementById('list');
-			var aLi = list.getElementsByTagName('li');
+			var oList = document.getElementById('list');			
 			var aS = document.getElementById('btn');
-			//声明一个变量
+			var aLi = list.getElementsByTagName('li')
+			
+			var n = -1;
+			var arr = ['极差','一般','普通','力荐','好评'];
+
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].index = i;
+				aLi[i].onmouseover = function(){
+					for(var i=0;i<aLi.length;i++){
+							aLi[i].style.color = '';
+							//aS.innerHTML = '推荐';
+					}
+					fn(this.index);
+				}
+				fn1(aLi[i].index);
+			}
+
+
+			function fn(index){
+				//var aLi = list.getElementsByTagName('li')[m];
+				for(var i=0;i<=index;i++){
+					if(index<2){
+						//console.log(index)
+						aLi[i].style.color = 'pink';
+					}else if(index<4){
+						aLi[i].style.color = 'yellow';
+					}else if(index==4){
+						aLi[i].style.color = 'red'; 
+					}
+				}
+				aS.innerHTML = arr[index];
+			}
+			
+			function fn1(index){
+				aLi[i].onmouseout = function(){
+					for(var i=0;i<aLi.length;i++){
+						aLi[i].style.color = '';
+					}
+					
+//					if(n!=this.index){
+//						aS.innerHTML = '推荐';
+//					}
+					
+					if(n>=0){
+						for(var i=0;i<=n;i++){						
+							if(n<2){
+								aLi[i].style.color = 'pink';
+							}else if(n<4){
+								aLi[i].style.color = 'yellow';
+							}else if(n==4){
+								aLi[i].style.color = 'red';
+							}
+						}
+						aS.innerHTML = arr[n];
+					}
+				}
+				
+				aLi[i].onclick = function(){
+					n = index;					
+				}
+			}
+				
+				
+
+			
+		/*	//声明一个变量
 			var n = -1;
 			
 			var arr = ['极差','一般','普通','力荐','好评'];
@@ -136,6 +200,9 @@
 							//aS.innerHTML = '推荐';
 					}
 
+					if(n!=this.index){
+						aS.innerHTML = '推荐';
+					}
 					
 					
 					if(n>=0){
@@ -148,14 +215,13 @@
 								aLi[i].style.color = 'red';
 							}
 						}
-						aS.innerHTML = arr[n];
 					}
 				}
 					//鼠标点击时五角星变色
 				aLi[i].onclick = function(){
 					n = this.index;					
 				}
-			}
+			}*/
 				
 		</script>
 	</body>

@@ -136,10 +136,7 @@
 							//aS.innerHTML = '推荐';
 					}
 
-					if(n!=this.index){
-						aS.innerHTML = '推荐';
-					}
-					
+			
 					
 					if(n>=0){
 						for(var i=0;i<=n;i++){						
@@ -151,6 +148,7 @@
 								aLi[i].style.color = 'red';
 							}
 						}
+						aS.innerHTML = arr[n];
 					}
 				}
 					//鼠标点击时五角星变色
