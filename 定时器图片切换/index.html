@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li,p{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			img{
+				display: block;
+				border: 0;
+			}
+			.box{
+				width: 810px;
+				height: 330px;
+				margin: 100px auto;
+				position: relative;
+				background: #000000;
+				overflow: hidden;
+			}
+			.list{
+				width: 1620px;
+				height: 330px;
+				position: absolute;
+				left: 0;
+			}
+			.list li{
+				float: left;
+			}
+			.con{
+				width: 100%;
+				height: 80px;
+				position: absolute;
+				bottom: 0px;
+				
+			}
+			.con p{
+				width: 100%;
+				height: 80px;
+				background: #000;
+				opacity: 0.5;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.con span{
+				display: block;
+				width: 100%;
+				height: 80px;
+				color: #FFFFFF;
+				line-height: 80px;
+				text-align: center;
+				font-size: 30px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1;
+			}
+			a{
+				display: block;
+				width: 50px;
+				height: 50px;
+				position: absolute;
+			}
+			.prev{
+				left: 10px;
+				top: 50%;
+			}
+			.next{
+				right: 10px;
+				top: 50%;
+			}
+			a img{
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<ul class="list">
+				<li><img src=""/></li>
+				<li><img src=""/></li>
+			</ul>
+			<a href="javascript:;" class="prev"><img src="img/left.png"/></a>
+			<a href="javascript:;" class="next"><img src="img/right.png"/></a>
+			<div class="con">
+				<span></span>
+				<p></p>
+			</div>
+		</div>
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			
+			
+			//获取元素
+			
+			var box = document.getElementsByClassName('box')[0];
+			
+			var list = document.getElementsByClassName('list')[0];
+			var imgs = list.getElementsByTagName('img');
+			var con = document.getElementsByClassName('con')[0];
+			var spans = con.getElementsByTagName('span')[0]; 
+			var prev = document.getElementsByClassName('prev')[0];
+			var next = document.getElementsByClassName('next')[0];
+			
+			//创建一个图片数据的数组
+			var arr = ['img/img1.gif','img/img2.gif','img/img3.gif','img/img4.gif'];
+			//创建一个文本数据的数组
+			var txt = ['文本一','文本二','文本三','文本四'];
+			//声明一个改变图片以及文本的变量
+			var n = 0;
+			//声明一个定时器的开关变量
+			var timer = null;
+			//初始化图片
+			imgs[0].src = arr[n];
+			//初始化文本
+			spans.innerHTML = txt[n];
+			//点击右边
+			next.onclick = function(){
+				n++;
+				if(n>arr.length-1){
+					n=0;
+				}
+				imgs[1].src = arr[n];
+				
+				move({
+					obj:con,
+					attrs:{bottom:-80},
+					duration:1000,
+					callBack:function(){
+						move({
+							obj:list,
+							attrs:{left:-810},
+							duration:1000,
+							callBack:function(){
+								list.style.cssText = '';
+								imgs[0].src = arr[n];
+								spans.innerHTML = txt[n];
+								move({
+									obj:con,
+									attrs:{bottom:0},
+									duration:1000		
+								})
+							}
+						})
+					}
+				})
+			}
+			
+			//开启一个定时器
+			timer = setInterval(next.onclick,3500);
+			
+			//移入关闭定时器
+			box.onmouseover = function(){
+				clearInterval(timer);
+			}
+			//移出重启定时器
+			box.onmouseover = function(){
+				timer = setInterval(next.onclick,3500);
+			}
+		</script>
+	</body>
+</html>

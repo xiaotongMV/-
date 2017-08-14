@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style>
+	body { 
+		background:#f1f1f1; 
+		}
+	#box { 
+		width:640px;
+		height:320px;
+		position:relative; 
+		top:100px; 
+		margin:0 auto;
+		overflow:hidden; 
+		box-shadow:0 0 20px rgba(0,0,0,0.4); 
+		border:1px solid rgba(255,255,255,0.5); 
+		}
+	#box a {
+		width:28px; 
+		height:100px; 
+		line-height:100px; 
+		text-align:center; 
+		background:rgba(0,0,0,0.2); 
+		color:#fff; font-size:26px; 
+		text-decoration:none; 
+		position:absolute; 
+		top:110px; 
+		z-index:2; 
+		transition:0.3s; 
+		}
+	#box a:hover {
+		background:rgba(0,0,0,0.6); 
+		transform:scale(1.1); 
+		font-size:32px; 
+		}
+	#box .prev { 
+		left:-1px; 
+		border-radius:0 8px 8px 0; 
+		}
+	#box .next { 
+		right:-1px; 
+		border-radius:8px 0 0 8px; 
+		}
+	#box ul { 
+		padding:0; 
+		margin:0; 
+		width:1280px; 
+		position:absolute; 
+		top:0; 
+		left:0; 
+		}
+	#box li { 
+		list-style:none; 
+		float:left; 
+		width:640px; 
+		}
+	#box img { 
+		width:640px; 
+		height:320px; 
+		}
+	.con{
+		width: 100%;
+		height: 50px;
+		position: absolute;
+		z-index: 5;		
+		bottom: 0;
+	}
+	.con span{
+		display: block;
+		width: 20px;
+		height: 20px;
+		background: #fff;
+		float: left;
+		position: absolute;
+		left: 0px;
+		bottom: 8px;
+
+		margin-left: 240px;
+	}
+</style>
+</head>
+
+<body>
+
+<div id="box">
+	<a class="prev" href="javascript:;"><</a>
+	<a class="next" href="javascript:;">></a>
+	<ul>
+		<li><img src="" /></li>
+		<li><img src="" /></li>
+	</ul>
+	<div class="con">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+</div>
+<script src="Mtween.js"></script>
+<script>
+	
+	//获取元素 
+	var box = document.getElementById('box');
+	//获取左右两边点击按钮元素
+	var aS = document.getElementsByTagName('a');
+	//获取ul元素
+	var list = document.getElementsByTagName('ul')[0];
+	//获取图片元素
+	var imgs = list.getElementsByTagName('img');
+	//获取小方块的元素
+	var spans = document.getElementsByTagName('span');
+	
+	//初始化小方块位置
+	for(var i=0;i<spans.length;i++){
+		spans[i].style.left = i*40+'px';
+	}
+	
+	//创建一个数组存储图片
+	var arr = ['img/img1.jpg','img/img2.jpg','img/img3.jpg','img/img4.jpg','img/img5.jpg'];
+	//控制点击切换图片的开关
+	var onOff = true;
+	//声明一个定时器开关
+	var timer = null;
+	//声明一个变量
+	var n = 0;
+	//初始化图片
+	imgs[0].src = arr[n];
+	//初始化小方块
+	spans[0].style.height = '35px';
+	//点击右边按钮切换图片
+	aS[1].onclick = function(){
+		//用开关来判断多次点击
+		if(onOff){
+			//点击之后立刻关闭开关
+			onOff = false;
+			n++;
+			if(n>arr.length-1){
+				n=0;
+			}
+			imgs[1].src = arr[n];
+			move({
+				obj:list,
+				attrs:{left:-640},
+				duration:500,
+				callBack:function(){
+					//让第0张变成第一张
+					imgs[0].src = arr[n];
+					//还原list的left值
+					list.style.cssText = '';
+					//回调的时候重新打开开关
+					onOff = true;
+				}
+			})
+		}
+		//清洗还原小方块的高度
+		for(var i=0;i<spans.length;i++){
+			move({
+				obj:spans[i],
+				attrs:{height:20},
+				duration:500
+			})
+		}
+		//控制小方块改变高度
+		move({
+				obj:spans[n],
+				attrs:{height:35},
+				duration:500
+			})
+		//spans[n].style.height = '35px';
+	}
+	
+	//点击右边按钮图片切换
+	aS[0].onclick = function(){
+		//用开关来判断多次点击
+		if(onOff){
+			//点击之后立刻关闭开关
+			onOff = false;
+			//点击的同时让ul的left值瞬间改变成-640
+			list.style.left = '-640px';
+			//初始化让imgs[1]变成第一张图片
+			imgs[1].src = arr[n];
+			n--;
+			if(n<0){
+				n = arr.length-1;
+			}
+			//--以后让imgs[0]根据n值来获取数组的下标图片
+			imgs[0].src = arr[n];
+			move({
+				obj:list,
+				attrs:{left:0},
+				duration:500,
+				callBack:function(){
+					//回调的时候重新打开开关
+					onOff = true;
+				}
+			})
+		}
+		//清洗还原小方块的高度
+		for(var i=0;i<spans.length;i++){
+			move({
+				obj:spans[i],
+				attrs:{height:20},
+				duration:500
+			})
+		}
+		//控制小方块改变高度
+		move({
+			obj:spans[n],
+			attrs:{height:35},
+			duration:500
+		})
+	}
+	
+	//开启定时器
+	timer = setInterval(aS[1].onclick,1500);
+	//移入关闭定时器
+	box.onmouseover = function(){
+		clearInterval(timer);
+	}
+	//移出开启定时器
+	box.onmouseout = function(){
+		timer = setInterval(aS[1].onclick,1500);
+	}
+</script>
+</body>
+</html>
