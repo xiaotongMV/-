@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul,li,p{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 600px;
+				height: 350px;
+				border: 1px solid #000000;
+				margin: 0 auto;
+			}
+			.nav{
+				width: 100%;
+				height: 50px;
+			}
+			.nav a{
+				width: 200px;
+				display: block;
+				float: left;
+				text-decoration: none;
+				text-align: center;
+				line-height: 50px;
+				color: #000000;
+				font-size: 22px;
+			}
+			.nav  .active{
+				background: yellow;
+			}
+			.con{
+				width: 100%;
+				height: 300px;	
+				display: none;			
+			}
+			.con p{
+				width: 220px;
+				height: 220px;
+				border: 2px solid #000000;
+				margin-left: 30px;
+				margin-top: 30px;
+				float: left;
+			}
+			.list{
+				width: 320px;				
+				float: left;
+				margin-top: 30px;
+			}
+			.list li{
+				width: 320px;
+				height: 75px;
+				line-height: 75px;
+				text-align: center;
+				font-size: 30px;
+			}
+			.list .back{
+				background: #CCCCCC;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="nav">
+				<a href="javascript:;">专题</a>
+				<a href="javascript:;">视频</a>
+				<a href="javascript:;">图片</a>
+			</div>
+			<div class="con">
+				<p></p>
+				<ul class="list">
+					<li>一</li>
+					<li>二</li>
+					<li>三</li>
+				</ul>
+			</div>
+			<div class="con">
+				<p></p>
+				<ul class="list">
+					<li>四</li>
+					<li>五</li>
+					<li>六</li>
+				</ul>
+			</div>
+			<div class="con">
+				<p></p>
+				<ul class="list">
+					<li>七</li>
+					<li>八</li>
+					<li>九</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			//获取元素
+			var box = document.getElementsByClassName('box')[0];
+			//导航栏元素
+			var aS = document.getElementsByTagName('a');
+			//盒子的元素
+			var con = document.getElementsByClassName('con');
+			//下面小盒子的元素
+			var ps = document.getElementsByTagName('p');
+			
+			//声明一个数组存取颜色
+			var arr = ['pink','purple','blue'];
+			//声明一个变量控制颜色切换
+			var m = 0;
+			var n = 0;
+			//创建一个定时器的开关
+			var timer = null;
+			//初始化导航栏背景颜色
+			aS[0].className = 'active';
+			//初始化下方盒子
+			con[0].style.display = 'block';
+			con[0].style.background = 'yellow';
+			
+			//循环导航栏
+			for(var i=0;i<aS.length;i++){
+				aS[i].index = i;
+				aS[i].onclick = function(){
+					n = this.index;
+					m=0;
+					toP();
+					bottom();
+					console.log(n,m)
+				}
+				fn(i);
+			}
+			
+			//上方导航栏函数
+			function toP(){
+				for(var i=0;i<aS.length;i++){
+					aS[i].className = '';
+					con[i].style.display = '';
+					con[i].style.background = '';
+				}
+				aS[n].className = 'active';
+				con[n].style.display = 'block';
+				con[n].style.background = 'yellow';
+			}
+			
+			
+			function fn(j){
+				var lis = con[j].getElementsByTagName('li');
+				var ps = con[j].getElementsByTagName('p')[0];
+				//初始化内容栏导航背景颜色
+				lis[0].className = 'back';
+				//初始化小盒子背景颜色
+				ps.style.background = arr[0];
+				//开启一个for循环 循环li
+				for(var i=0;i<lis.length;i++){
+					lis[i].index = i;
+					lis[i].onclick = function(){
+						m = this.index;
+						bottom();
+					}
+				}				
+			}
+			//下方导航栏的函数
+			function bottom(){
+				var lis = con[n].getElementsByTagName('li');
+				var ps = con[n].getElementsByTagName('p')[0];
+				for(var i=0;i<lis.length;i++){
+					lis[i].className = '';
+				}					
+				lis[m].className = 'back';
+				ps.style.background = arr[m];	
+			}
+			//开启定时器
+			timer = setInterval(val,1000);
+			
+			//封装定时器执行函数
+			function val(){
+				var lis = con[n].getElementsByTagName('li');
+				m++;
+				if(m==lis.length){
+					n++;
+					if(n>con.length-1){
+						n=0;
+					}
+					m =0;
+					toP();
+				}
+				bottom();
+			}
+			
+			//移入关闭定时器
+			box.onmouseover = function(){
+				clearInterval(timer);
+			}
+			//移出开启定时器
+			box.onmouseout = function(){
+				timer = setInterval(val,1000);
+			}
+		</script>
+	</body>
+</html>

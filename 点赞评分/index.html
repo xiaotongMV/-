@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body, div, img, ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ul li {
+            list-style: none;
+        }
+        .clear{
+            clear: both;
+        }       
+        .box{
+            width: 1000px;
+            height:500px ;
+            position: relative;
+            background: url(img/img1.gif) no-repeat;
+            background-size: 100% 100%;
+            margin: 50px auto;
+        }
+        .lineF{
+        		/*margin-top: 120px;
+        		margin-right: 40px;*/
+        		width: 170px;
+        		height: 200px;
+            position: absolute;
+            /*visibility: hidden;*/
+            top: 120px;
+            margin-left: 40px;
+            
+        }
+        .boxF, .boxS, .boxT{
+            width: 150px;
+            height: 240px;
+            overflow: hidden;
+        }
+        .boxF, .boxS{
+            visibility: hidden;
+        }
+        .boxF{
+            transform: rotate(120deg);
+            float: left;
+            margin-left: 10px;
+            -ms-transform: rotate(120deg);
+            -moz-transform: rotate(120deg);
+            -webkit-transform: rotate(120deg);
+        }
+        .boxS{
+            transform: rotate(-60deg);
+            -ms-transform: rotate(-60deg);
+            -moz-transform: rotate(-60deg);
+            -webkit-transform: rotate(-60deg);
+        }
+        .boxT{
+            transform: rotate(-60deg);
+            background: no-repeat 50% center;
+            /*background-size: 125% auto;*/
+            -ms-transform: rotate(-60deg);
+            -moz-transform: rotate(-60deg);
+            -webkit-transform: rotate(-60deg);
+            visibility: visible;
+        }
+        .con{
+        		position: absolute;
+        		left: 50px;
+        		top: 6px;
+        }
+     		.conF, .conS, .conT{
+            width: 50px;
+            height: 60px;
+            overflow: hidden;
+        }
+        .text{
+        	width: 30px;
+        	height: 30px;
+        	line-height: 30px;
+        	position: absolute;
+        	left: 9px;
+        	top: 17px;
+        	text-align: center;
+        	font-size: 16px;
+        	/*background: red; 
+        	background-size: 100% 100%; */
+        	color: deeppink;   	
+        }
+        .back{        	
+        	display: none;
+        	position: absolute;
+        	left: 75px;
+        	top: -10px;
+        	font-size: 20px;
+        	color: pink;
+        	opacity: 1;
+        	text-decoration: none;
+        }
+		</style>
+	</head>
+	<body>
+	   <div class="box">   
+         <div class="lineF">
+            <div class="boxF">
+                <div class="boxS">
+                    <div class="boxT" style="background:url(img/img2.gif) no-repeat;">                    	
+                    </div>
+                </div>
+            </div>
+            <div class="con">
+            	<div class="boxF conF">
+	               <div class="boxS conS">
+	                  <div class="boxT conT" style="background-color: #fff;">
+	                    	<div class="text">+1</div>	                    	
+	                  </div>
+	               </div>
+          	  </div>
+            </div>
+            <a href="javascript:;" class="back">❤</a>
+         </div>
+         
+         <div class="lineF">
+            <div class="boxF">
+                <div class="boxS">
+                    <div class="boxT" style="background:url(img/img2.gif) no-repeat;">                    	
+                    </div>
+                </div>
+            </div>
+            <div class="con">
+            	<div class="boxF conF">
+	               <div class="boxS conS">
+	                  <div class="boxT conT" style="background-color: #fff;">
+	                    	<div class="text">+1</div>	                    	
+	                  </div>
+	               </div>
+          	  </div>
+            </div>
+            <a href="javascript:;" class="back">❤</a>
+         </div>
+         
+         
+         <div class="lineF">
+            <div class="boxF">
+                <div class="boxS">
+                    <div class="boxT" style="background:url(img/img2.gif) no-repeat;">                    	
+                    </div>
+                </div>
+            </div>
+            <div class="con">
+            	<div class="boxF conF">
+	               <div class="boxS conS">
+	                  <div class="boxT conT" style="background-color: #fff;">
+	                    	<div class="text">+1</div>	                    	
+	                  </div>
+	               </div>
+          	  </div>
+            </div>
+            <a href="javascript:;" class="back">❤</a>
+         </div>
+         
+         <div class="lineF">
+            <div class="boxF">
+                <div class="boxS">
+                    <div class="boxT" style="background:url(img/img2.gif) no-repeat;">                    	
+                    </div>
+                </div>
+            </div>
+            <div class="con">
+            	<div class="boxF conF">
+	               <div class="boxS conS">
+	                  <div class="boxT conT" style="background-color: #fff;">
+	                    	<div class="text">+1</div>	                    	
+	                  </div>
+	               </div>
+          	  </div>
+            </div>
+            <a href="javascript:;" class="back">❤</a>
+         </div>
+ 		</div>
+           
+		<script type="text/javascript" src="js/Mtween.js"></script>
+		<script>
+			
+			
+			
+			
+			//获取元素
+			var line = document.getElementsByClassName('lineF');
+			//初始化位置
+			for(var i=0;i<line.length;i++){
+				line[i].style.left = i*250+'px';
+				fn(i);
+			}
+			
+			function fn(j){
+				var line = document.getElementsByClassName('lineF')[j];
+				var con = line.getElementsByClassName('con')[0];
+				//获取文字元素
+				var texts = line.getElementsByClassName('text')[0];
+				//获取运动的红心元素
+				var back = line.getElementsByClassName('back')[0];
+				
+				//声明一个变量控制数字
+				var n = 1;
+				//声明一个开关控制多次点击
+				var onOff = true;
+				//点击文字事件
+				con.onclick = function(){
+					if(onOff){
+						onOff = false;
+						n++;
+						texts.innerHTML = '+'+n;
+						back.style.display = 'block';
+						move({
+							obj:back,
+							attrs:{top:-40},
+							duration:400,
+							callBack:function(){
+								var toP = back.style.top;
+								if(toP=='-40px'){
+									back.style.opacity = 0;
+									back.style.cssText = '';
+									onOff = true;
+								}
+							}
+						})
+					}
+				}
+			}			
+			
+		</script>
+		
+	</body>
+</html>
