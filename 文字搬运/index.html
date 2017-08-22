@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box{
+				width: 800px;
+				height: 400px;
+				background: #CCCCCC;
+				margin: 0 auto;
+				position: relative;
+			}
+			textarea{
+				width: 330px;
+				height: 394px;
+				resize: none;
+				font-size: 14px;
+			}
+			.leftInp{
+				float: left;
+			}
+			.leftRight{
+				float: right;
+				background: darkturquoise;
+			}
+			a{
+				display: block;
+				text-decoration: none;
+				width: 100px;
+				height: 50px;
+				background: aqua;
+				text-align: center;
+				line-height: 50px;
+				color: #000000;
+				position: absolute;
+				left: 350px;
+				top: 100px;	
+			}
+			span{
+				display: block;
+				position: absolute;
+				left: 388px;
+				top: 160px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<textarea class="leftInp"></textarea>
+			<a href="javascript:;">文字右移</a>
+			<span>0/0</span>
+			<textarea class="leftRight"></textarea>
+		</div>
+		
+		
+		<script type="text/javascript">
+			
+			//获取元素
+			
+			
+			//获取文本框元素
+			var txt = document.getElementsByTagName('textarea');
+			//获取文字右移点击元素
+			var aS = document.getElementsByTagName('a')[0];
+			//获取文本序号元素
+			var spans = document.getElementsByTagName('span')[0];
+			
+			//声明一个定时器开关
+			var timer = null;
+			//声明一个开关防止定时器多次点击
+			var onOff = true;
+			//点击按钮搬运
+			aS.onclick = function(){
+				
+				if(onOff){
+					//点击之后关闭开关防止多次点击
+					onOff = false;
+					//声明右边value为空字符串
+					txt[1].value = '';
+					//获取左边框的文本
+					var val = txt[0].value;
+					//获取左边文本框的长度
+					var len = val.length;
+	
+					//开水器一个定时器
+					timer = setInterval(function(){
+						//定时器每走一次就把左边第0位赋值给右边
+						txt[1].value += val[0];
+						//截取掉第一位返回新字符串
+						val = val.slice(1);
+						//截取完之后获取新字符串
+						txt[0].value = val;
+						
+						spans.innerHTML = len-val.length+'/'+len;
+						console.log(val)
+						//不等于左边文字长度的时候关闭定时器
+						if(!val.length){
+							clearInterval(timer);
+							//定时器关闭以后重新打开开关	
+							onOff = true;
+						}
+					},100)
+				}
+				
+				
+			}
+			
+			
+		</script>
+	</body>
+</html>
