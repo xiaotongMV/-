@@ -2,140 +2,300 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
-		<style>
+		<title></title>		
+		<style type="text/css">
+			body{
+				background: #3BB0D0;
+			}
 			.box{
-				width: 600px;
-				height: 500px;
+				width: 700px;
+				height: 600px;
 				margin: 0 auto;
 			}
-			.box p{
-				width: 400px;
-				height: 300px;
-				border: 1px solid #000000;
-				margin-left: 20px;
-				font-size: 14px;
-				line-height: 26px;
-				background: skyblue;
-				padding: 20px;
+			.boxTop{
+				width: 640px;
+				height: 340px;
+				background: #FFFFFF;
+				border-radius: 10px;
+				padding: 30px;
+				
 			}
-			a{
-				width: 80px;
-				height: 80px;
-				display: block;
+			.txt{
+				width: 470px;
+				height: 310px;
+				background: mediumaquamarine;
+				float: left;
+				border-radius: 5px;
+				padding: 15px;
+				line-height: 28px;
+				font-size: 16px;
+			}
+			.txt span{
 				background: red;
-				text-decoration: none;
-				text-align: center;
-				line-height: 80px;
-				position: absolute;
-				left: 678px;
-				top: 25px;
-				color: #ffffff;
 			}
-			.cen{
-				display: none;
-				top: 100px;
-			}
-			.bott{
-				display: none;
-				top: 180px;
-			}
-			.con{
-				width: 550px;
-				height: 100px;
-				border: 1px solid #000000;
-				margin-left: 20px;
-				display: none;
-			}
-			.con1{
-				width: 550px;
-				height: 100px;
-				border: 1px solid #000000;
-				margin-left: 20px;
-				position: relative;
-				display: none;
-			}
-			.con span{
-				width: 100px;
-				height: 40px;
-				display: block;
-				text-decoration: none;
-				text-align: center;
-				line-height: 40px;
-				color: #ffffff;
-				margin-left: 40px;
-				margin-top: 10px;
-			}
-			.con input{
-				width: 350px;
-				height: 30px;
-				margin-left: 20px;
-				margin-top: 5px;
-			}
-			.con .btn{
-				-display: block;
-				width: 100px;
-				height: 38px;
-				background: springgreen;
+			.nav{
 				float: right;
-				text-align: center;
-				line-height: 40px;
-				margin: 0;
-				margin-right: 60px;
-				margin-top: 3px;
+				width: 140px;
+				height: 100%;
+				position: relative;
 			}
-			.con1 span{
-				width: 100px;
-				height: 40px;
+			.nav a{
 				display: block;
-				text-decoration: none;
+				width: 90px;
+				height: 90px;
 				text-align: center;
-				line-height: 40px;
-				color: #ffffff;
-				margin-left: 40px;
-				margin-top: 10px;
+				line-height: 90px;
+				border-radius: 10px;
+				text-decoration: none;
+				color: #FFFFFF;
+				font-size: 18px;
+				position: absolute;
+				left:40px ;
+				top: 5px;
+			}
+			.nav a:nth-child(1){
+				z-index: 2;
+				background: deepskyblue;
+			}
+			.nav a:nth-child(2){
+				z-index: 1;
+				background: blueviolet;
+			}
+			.nav a:nth-child(3){
+				background: deeppink;
+			}
+			.boxBottom{
+				width: 640px;
+				height: 120px;
+				margin-top: 20px;
+				background: #FFFFFF;
+				border-radius: 10px;
+				padding: 30px;
+				display: none;				
+			}
+			.tab{
+				width: 100%;
+				height: 50px;
+			}
+			.tab a{
+				display: inline-block;
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+				background: blueviolet;
+				text-align: center;
+				text-decoration: none;
+				color: #FFFFFF;
+				font-size: 18px;
+				border-radius: 5px;
+				margin-left: 20px;
+			}
+			.search,.info{
+				width: 100%;
+				height: 50px;
+				margin-top: 30px;				
+			}
+			.info{
+				display: none;
+			}
+			.search input,.info input{
+				width: 495px;
+				height: 35px;
+				border: 0;
+				border: 1px solid #CCCCCC;
+				border-radius: 5px;
 				float: left;
 			}
-			.con1 input{
-				width: 180px;
-				height: 30px;
-				margin-left: 20px;
-				margin-top: 5px;
-				position: absolute;
-				left: 15px;
-				bottom: 4px;
+			.info input{
+				width: 240px;
+				margin-right: 10px;
 			}
-			.con1 .btn2{				
-				width: 100px;
+			.search a,.info a{
+				display: block;
+				width: 70px;
 				height: 38px;
-				background: springgreen;
+				background: deepskyblue;
+				border-radius: 5px;
+				font-size: 18px;
+				line-height: 38px;
 				text-align: center;
-				line-height: 40px;
-				position: absolute;
-				right: 20px;
-				bottom: 4px;
+				color: #fff;
+				margin-left: 8px;
+				float: left;
+				text-decoration: none;
 			}
+			
 		</style>
 	</head>
 	<body>
 		<div class="box">
-			<p>目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。目前主要针对的是javascript培训			</p>
-			<a href="javascript:;" style="background: deepskyblue;">展开</a>
-			<a href="javascript:;" style="background: purple;" class="cen">查找</a>
-			<a href="javascript:;" style="background: greenyellow;" class="bott">替换</a>
-			
-			<div class="con">
-				<span style="background: purple;" class="cen">查找</span>
-				<input type="text" placeholder="请输入要查找的内容" />
-				<span class="btn">确定</span>
+			<div class="boxTop">
+				<div class="txt">
+					目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。目前主要针对的是javascript培训
+				</div>
+				<div class="nav">
+					<a href="javascript:;">展开</a>
+					<a href="javascript:;">查找</a>
+					<a href="javascript:;">替换</a>
+				</div>
 			</div>
-			<div class="con1">
-				<span style="background: purple;">查找</span>
-				<span style="background: greenyellow;">替换</span>
-				<input type="text" placeholder="请输入要查找的内容" />
-				<input type="text" placeholder="请输入要替换的内容" style="left: 210px;"/>
-				<span class="btn2">确定</span>
+			<div class="boxBottom">
+				<div class="tab">
+					<a href="javascript:;">查找</a>
+					<a href="javascript:;" style="background: deeppink;">替换</a>
+				</div>
+				<div class="search">
+					<input type="text" placeholder="输入要查找的内容"/>
+					<a href="javascript:;">确定</a>
+				</div>
+				<div class="info">
+					<input type="text" placeholder="输入要查找的内容"/>
+					<input type="text" placeholder="输入要替换的内容"/>
+					<a href="javascript:;">确定</a>
+				</div>
 			</div>
 		</div>
+		
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			
+			//获取元素
+			
+			//获取文本的元素
+			var txt = document.getElementsByClassName('txt')[0];						
+			//获取展开收缩以及查找替换按钮元素
+			var nav = document.getElementsByClassName('nav')[0];
+			var aS = nav.getElementsByTagName('a');
+			//获取下边盒子的元素
+			var boxBottom = document.getElementsByClassName('boxBottom')[0];
+			//获取查找替换按钮的元素
+			var tab = document.getElementsByClassName('tab')[0];
+			var aT = tab.getElementsByTagName('a');
+			
+			//获取查找input盒子的元素
+			var search = document.getElementsByClassName('search')[0];
+			//获取查找输入框的元素
+			var inp = search.getElementsByTagName('input')[0];
+			//获取查找确定按钮的元素
+			var btn = search.getElementsByTagName('a')[0];
+						
+			//获取替换input盒子的元素
+			var info = document.getElementsByClassName('info')[0];
+			//获取替换输入框的元素
+			var inpS = info.getElementsByTagName('input');
+			//获取替换确定按钮的元素
+			var btnS = info.getElementsByTagName('a')[0];
+			
+			var txts = txt.innerText;
+			
+			
+			//声明一个开关控制展开的再次点击
+			var onOff = true;
+			//声明一个开关防止展开按钮多次点击出现问题
+			var sevint = true;
+			//点击展开按钮显示查找替换按钮
+			aS[0].onclick = function(){
+				if(sevint){
+					//点击之后直接关闭开关
+					sevint = false;
+					if(onOff){
+						aS[0].innerHTML = '收缩';
+						//查找按钮top变动
+						move({
+							obj:aS[1],
+							attrs:{top:120},
+							duration:500
+						})
+						//替换按钮top变动
+						move({
+							obj:aS[2],
+							attrs:{top:120},
+							duration:500,
+							callBack:function(){
+								//回调函数继续让替换按钮运动
+								move({
+									obj:aS[2],
+									attrs:{top:240},
+									duration:500,
+									callBack:function(){
+										//当事件运动完以后再次打开开关
+										sevint = true;
+										//运动完后显示下边盒子
+										boxBottom.style.display = 'block';
+									}									
+								})	
+							}
+						})
+						
+					}else{						
+						//再点点击之后替换按钮top值往上走
+						move({
+							obj:aS[2],
+							attrs:{top:120},
+							duration:500,
+							callBack:function(){
+								//当替换按钮运动完之后回调直接让替换跟查找top值运动到初始值
+								move({
+									obj:aS[1],
+									attrs:{top:5},
+									duration:500
+								})
+								move({
+									obj:aS[2],
+									attrs:{top:5},
+									duration:500,
+									callBack:function(){
+										aS[0].innerHTML = '展开';
+										//当事件运动完以后再次打开开关
+										sevint = true;
+										//运动完后隐藏下面盒子
+										boxBottom.style.display = 'none';
+									}
+								})
+							}
+						})
+						
+					}
+					//开关取反
+					onOff = !onOff;
+				}
+			}
+			//点击查找按钮
+			aS[1].onclick = aT[0].onclick = function(){
+				search.style.display = 'block';
+				info.style.display = 'none';
+			}
+			//点击替换按钮
+			aS[2].onclick = aT[1].onclick = function(){
+				search.style.display = 'none';
+				info.style.display = 'block';
+			}
+			//点击查找的确定按钮
+			btn.onclick = function(){
+				var val = inp.value;		
+				if(val==''){
+					alert('请输入内容');
+				}else{
+					if(txts.indexOf(val)!=-1){
+						//用查找的词分隔字符串，再用包着span的查找词拼接给字符串
+						txt.innerHTML = txts.split(val).join('<span>'+val+'</span>');
+					}else{
+						alert('文本内没有此内容')
+					}
+				}
+			}
+			//点击替换的确定按钮
+			btnS.onclick = function(){
+				var val1 = inpS[0].value;
+				var val2 = inpS[1].value;
+				if(val1==''||val2==''){
+					alert('请输入内容');
+				}else{
+					txt.innerHTML = txts.split(val1).join('<span>'+val2+'</span>');
+				}
+				//txt存的是所有内容，当替换修改了内容，所以txt要重新存一下
+				txts = txt.innerText;
+			}
+		</script>
 	</body>
 </html>
