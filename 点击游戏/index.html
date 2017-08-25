@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.box{
+				width: 700px;
+				height: 500px;
+				background: deepskyblue;
+				margin: 0 auto;
+				position: relative;
+			}
+			.txt{
+				width: 60px;
+				position: absolute;
+				top: 75px;
+				left: 160px;
+				z-index: 1;
+			}
+			.txt a{
+				display: block;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				margin-bottom: 6px;
+				text-align: center;
+				text-decoration: none;
+				font-size: 14px;
+				line-height: 28px;
+			}
+			.list{
+				width: 500px;
+				height: 400px;
+				border: 8px solid #FFFFFF;
+				background: #66CDAA;
+				overflow: hidden;
+				position: absolute;
+				top: 60px;
+				left:145px;
+			}
+			.list li{
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				background: #FFFFFF;		
+				position: absolute;
+				top: -60px;
+			}			
+			.btn{
+				width: 110px;
+				height: 45px;
+				background: #41B4CA;
+				border: 0;
+				font-size: 16px;
+				color: #FFFFFF;
+				position: absolute;
+				bottom: 60px;
+				left: 355px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="txt">
+				<a href="javasrcipt:;" style="background: blueviolet;">0分</br>得分</a>
+				<a href="javasrcipt:;" style="background: #009EC1;">0分</br>失分</a>
+			</div>
+			<ul class="list">
+				<!--<li></li>-->
+			</ul>
+			<input type="button" value="开始游戏" class="btn"/>
+		</div>
+		
+		
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			
+			
+			//获取元素
+			
+			//获取开始按钮的元素
+			var btn = document.getElementsByClassName('btn')[0];
+			//获取得分框元素
+			var txt = document.getElementsByClassName('txt')[0];
+			//获取得分失分框文本元素
+			var aS = txt.getElementsByTagName('a');			
+			//获取掉落框元素
+			var list = document.getElementsByClassName('list')[0];
+									
+			//创建一个数组存储颜色数据
+			var arr = ['pink','red','yellow','blue','green','#fff','#000'];
+			//创建一个变量控制得分失分
+			var n = 0;
+			var m = 0;
+			//点击开始游戏按钮
+			btn.onclick = function(){
+				//让开始游戏按钮消失
+				btn.style.display = 'none';
+				
+				//得分框向左移动
+				move({
+					obj:txt,
+					attrs:{left:60},
+					duration:1000,
+					callBack:function(){
+						//回调函数调用执行
+						fn();
+					}
+				})
+				
+				//声明一个开关控制小球运动中不被多次点击
+				var onOff = true;
+				
+				//封装一个小球生成运动的函数
+				function fn(){
+					if(onOff){
+						onOff = false;
+						//随机left值
+						var leFt = Math.round(Math.random()*450);
+						//随机颜色
+						var color = Math.round(Math.random()*arr.length);
+						
+						//生成往下掉的小球
+						list.innerHTML = '<li style="left:'+leFt+'px;background:'+arr[color]+'"></li>';
+						//获取生成的小球元素
+						var lis = list.getElementsByTagName('li')[0];
+						//获取之后控制小球的元素往下掉，
+						move({
+							obj:lis,
+							attrs:{top:400},
+							duration:2500,
+							callBack:function(){
+								//当掉出掉落框以后掉落框抖动并失分的数值根据n来变化
+								var Top = lis.style.top;
+								if(Top=='400px'){
+									shake(list,'top');
+									n++;
+									aS[1].innerHTML = n+'分</br>失分';
+								}
+								
+								onOff = true;
+								//当小球消失掉落框抖动之后在回调函数中重新调用函数
+								fn();
+							}
+						})
+						
+						//声明一个开关防止小球被多次点击
+						var onFF = true;
+						//点击小球之后抖动消失并加分
+						lis.onclick = function(){
+							if(onFF){
+								onFF = false;
+								//关闭move的定时器
+								clearInterval(this.timer);
+								//点击之后让小球抖动并消失，并且得分根据m的数值变化
+								shake(lis,'left',function(){
+									//抖动之后小球消失
+									lis.style.display = 'none';
+									m++;
+									aS[0].innerHTML = m+'分</br>得分';							
+									onOff = true;
+									onFF = true;
+									//消失以后重新调用执行函数
+									fn();
+								});	
+							}												
+						}
+					}					
+				}	
+			}
+		</script>
+	</body>
+</html>

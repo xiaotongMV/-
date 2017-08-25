@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li,ol,dl,dd,dt,p{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.box{
+				width: 1000px;
+				/*height: 500px;*/
+				background: #FF557A;
+				padding: 50px;
+				margin: 0 auto;
+			}
+			.list{
+				width: 100%;
+				height: 400px;
+			}
+			.list li{
+				width: 229px;
+				height: 400px;
+				float: left;
+				margin-right: 28px;
+				background: #FFF;
+			}
+			.goods{
+				position: relative;
+			}
+			.opc{
+				width: 100%;
+				height: 100%;
+				background: #000000;
+				opacity: 0.6;
+				position: absolute;
+				display: none;
+			}
+			.list .nomar{
+				margin-right: 0;
+			}
+			.dipn{
+				width: 100%;
+				height: 40px;
+				background: #000;
+			}
+			.txt{
+				width: 134px;
+				height: 30px;
+				border: 0;
+				margin: 0;
+				padding: 0;
+				background: 0;
+				color: #FF557A;
+				margin-left: 20px;
+				border-bottom: 1px solid #FF557A;
+			}
+			.btn{
+				border: 0;
+				margin: 0;
+				padding: 0;
+				background: 0;
+				color: #FF557A;
+				width: 50px;
+				height: 30px;
+				float: right;
+				margin-right: 10px;
+				margin-top: 2px;
+			}
+			.new{
+				width: 214px;
+				height: 50px;
+				padding-left: 15px;
+			}
+			.new span{
+				display: block;
+				float: left;
+				font-size: 14px;
+				margin-top: 16px;
+				margin-right: 10px;
+			}
+			.new img{
+				width: 15px;
+				height: 20px;
+				border: 0;
+				margin-top: 15px;
+			}
+			.con{
+				width: 100%;
+				height: 310px;
+			}
+			.con dt{
+				width: 100%;
+				height: 245px;
+			}
+			.con dt img{
+				border: 0;
+				width: 100%;
+				height: 100%;
+			}
+			.conS p{
+				width: 100%;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				font-size: 14px;
+				font-weight: bold;
+			}
+			.conS span{
+				display: block;
+				width: 100%;
+				font-size: 12px;
+				text-align: center;
+			}
+			.conS span em{
+				font-style: normal;
+				color: red;
+			}
+			.detail{
+				width: 100%;
+				height: 50px;
+				background: #000000;
+				margin-top: 20px;
+			}
+			.detail p{
+				width: 470px;
+				height: 50px;
+				float: left;
+				color: #fff;
+				font-style: normal;
+				line-height: 50px;
+				padding-left: 20px;
+			}
+			.box ol{
+				width: 100%;
+			}
+			.lis{
+				width: 100%;
+				height: 60px;
+				background: #fff;
+			}			
+			.lis p{
+				width: 470px;
+				height: 60px;
+				text-indent: 15px;
+				line-height: 60px;
+				float: left;
+				font-size: 14px;
+			}
+			.lis span{
+				display: block;
+				width: 410px;
+				height: 60px;
+				text-indent: 15px;
+				line-height: 60px;
+				float: left;
+				font-size: 14px;
+				color: red;
+				margin-left: 25px;
+			}
+			.lis img{
+				width: 60px;
+				height: 60px;
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list">
+				<li>
+					<div class="goods">
+						<div class="opc"></div>
+						<div class="dipn">
+							<input type="text" value="2017 08 25 17:48:00" class="txt"/>
+							<input type="button" value="确定"  class="btn"/>
+						</div>
+						<div class="new"> 
+							<span>剩余:</span>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+						</div>
+						<dl class="con">
+							<dt><img src="img/txd.jpg"/></dt>
+							<dd class="conS">
+								<p>飞利浦（Philips）RQ370</p>
+								<span>抢购价：<em>￥455.00</em></span>
+							</dd>
+						</dl>
+					</div>
+				</li>
+				<li>
+					<div class="goods">
+						<div class="opc"></div>
+						<div class="dipn">
+							<input type="text" value="2017 08 25 17:48:00" class="txt"/>
+							<input type="button" value="确定"  class="btn"/>
+						</div>
+						<div class="new"> 
+							<span>剩余:</span>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+						</div>
+						<dl class="con">
+							<dt><img src="img/dn.jpg"/></dt>
+							<dd class="conS">
+								<p>索尼（SONY）15.5英寸触控笔记本</p>
+								<span>抢购价：<em>￥5599.00</em></span>
+							</dd>
+						</dl>
+					</div>
+				</li>
+				<li>
+					<div class="goods">
+						<div class="opc"></div>
+						<div class="dipn">
+							<input type="text" value="2017 08 25 17:48:00" class="txt"/>
+							<input type="button" value="确定"  class="btn"/>
+						</div>
+						<div class="new"> 
+							<span>剩余:</span>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+						</div>
+						<dl class="con">
+							<dt><img src="img/sj.jpg"/></dt>
+							<dd class="conS">
+								<p>联想VIBE Z K910双卡双待双通</p>
+								<span>抢购价：<em>￥2299.00</em></span>
+							</dd>
+						</dl>
+					</div>
+				</li>
+				<li class="nomar">
+					<div class="goods">
+						<div class="opc"></div>
+						<div class="dipn">
+							<input type="text" value="2017 08 25 17:48:00" class="txt"/>
+							<input type="button" value="确定"  class="btn"/>
+						</div>
+						<div class="new"> 
+							<span>剩余:</span>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/c.jpg"/>
+							<img src="images/0.jpg"/>
+							<img src="images/0.jpg"/>
+						</div>
+						<dl class="con">
+							<dt><img src="img/watch.jpg"/></dt>
+							<dd class="conS">
+								<p>巴宝莉 时尚英伦格纹优雅石英中性</p>
+								<span>抢购价：<em>￥899.00</em></span>
+							</dd>
+						</dl>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="detail">
+		    	<p>商品</p>
+		   	<p>价钱</p>
+		 	</div>
+		 	<ol>
+		 		<!--<li class="lis">
+		 			<p>飞利浦（Philips）RQ370</p>
+		 			<span>￥ 899.00</span>
+		 			<img src="img/txd.jpg"/>
+		 		</li>-->
+		 	</ol>
+		</div>
+		
+		
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			
+			
+			//获取元素
+			
+			
+			var lis = document.getElementsByClassName('list')[0].getElementsByTagName('li');
+			var ols = document.getElementsByTagName('ol')[0];
+			//开启for循环传参
+			for(var i=0;i<lis.length;i++){
+
+				fn(i);
+			}
+			
+			function fn(n){	
+				var goods = lis[n].getElementsByClassName('goods')[0];
+				//获取透明层元素
+				var opc = goods.getElementsByClassName('opc')[0];
+				//获取设定时间value元素
+				var txt = goods.getElementsByClassName('txt')[0];
+				//获取确定按钮的元素
+				var btn = goods.getElementsByClassName('btn')[0];
+				//获取倒计时的时间元素
+				var news = goods.getElementsByClassName('new')[0];
+				var imgs = news.getElementsByTagName('img');
+				//获取商品数据元素
+				var con = goods.getElementsByClassName('con')[0];
+				//获取商品内图片的src
+				var src = con.getElementsByTagName('img')[0].src;
+				//获取标题文本属性
+				var ps = con.getElementsByTagName('p')[0].innerHTML;
+				//获取价格文本属性
+				var ems = con.getElementsByTagName('em')[0].innerHTML;
+				
+				//创建一个控制定时器的开关
+				var timer = null;
+				
+				
+				//点击确定按钮开始倒计时
+				btn.onclick = function(){
+					
+					//获取当前设定时间
+					var val = txt.value;
+					//设置目标时间
+					var tar = new Date(val);
+					console.log(val)
+					timer = setInterval(function(){
+						//获取当前的时间
+						var now = new Date();
+						//计算剩余时间
+						var shyTime = (tar-now)/1000;
+						
+						//获取当前时间，返回时:分:秒的字符串，用来循环每一个图片设置成对应的数字
+						function getTime(){
+							var shT = Math.floor(shyTime/86400);
+							var shH = Math.floor(shyTime%86400/3600);
+							var shM = Math.floor(shyTime%3600/60);
+							var shS = Math.floor(shyTime%60);
+							var str = '';
+							str = two(shH)+':'+two(shM)+':'+two(shS);
+							//补0函数,时间小于10，一般都是01，02，所以需要补0
+							function two(n){
+								return n<10?'0'+n:''+n;
+							}
+							return str;
+						}
+						
+						
+						if(shyTime>0){
+							//调用函数作为变量引用
+							var neTime = getTime();
+							for(var i=0;i<imgs.length;i++){
+								
+								var s = neTime[i];
+								//处理（:）方法
+								if(s==':'){
+									s = 'c';
+								}
+								imgs[i].src = 'images/'+s+'.jpg';
+							}
+							//处理点闪烁，延时半秒设置成无点
+							setTimeout(function(){
+								imgs[2].src = imgs[5].src = 'images/b.jpg';
+							},500)
+						}else{
+							//时间到了关闭定时器					
+							clearInterval(timer);
+							//关闭之后商品框抖动
+							shake(goods,'left',function(){
+								//抖动完以后显示遮罩层
+								opc.style.display = 'block';
+								//并在下方生成数据
+								ols.innerHTML += '<li class="lis">'+
+												 			'<p>'+ps+'</p>'+
+												 			'<span>'+ems+'</span>'+
+												 			'<img src="'+src+'"/>'+
+												 		'</li>';
+								
+							});
+						}
+						
+					},1000)
+				}	
+			}
+			
+				
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
