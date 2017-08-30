@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 550px;
+				height: 550px;
+				margin:50px auto 0;
+			}
+			#box div{
+				width: 50px;
+				height: 50px;
+				margin-right:5px;
+				margin-bottom: 5px;
+				background: #3FB4C8;
+				line-height: 50px;
+				text-align: center;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script>
+			
+			//获取元素
+			
+			var box = document.getElementById('box');
+			
+			//声明一个空字符串存储数据
+			var str = '';
+			
+			//生成100个div
+			for(var i=0;i<100;i++){
+				str += '<div>'+(i+1)+'</div>';
+			}
+			box.innerHTML = str;
+			
+			//获取生成的div的元素
+			var divs = box.getElementsByTagName('div');
+			//循环div
+			for(var i=0;i<divs.length;i++){
+				//声明一个自定义属性
+				divs[i].index = i;
+				//创建一个自定义开关
+				divs[i].onOff = true;
+				//点击div事件
+				divs[i].onclick = function(){
+					fn(this.index);
+				}
+			}
+			
+			
+			//封装一个函数用于控制div回调
+			function fn(index){
+				//当div[i]为false的时候返回当前函数重新运行
+				if(!divs[index].onOff){
+					return;
+				}
+				
+				//点击当前div改变颜色
+				divs[index].style.background = 'deeppink';
+				//开关转成false
+				divs[index].onOff = false;
+				//开始一个延时定时器循环开关变换
+				
+				setTimeout(function(){
+					check();
+				},2000)
+				//左
+				if(Math.floor(index/10)==Math.floor((index-1)/10)){
+					
+					setTimeout(function(){
+						fn(index-1);
+					},100)
+				}
+				//右
+				if(Math.floor(index/10)==Math.floor((index+1)/10)){
+					
+					setTimeout(function(){
+						fn(index+1);
+					},100)
+				}
+				//上
+				if(index-10>=0){
+					setTimeout(function(){
+						fn(index-10);
+					},100)
+				}
+				//下
+				if(index+10<divs.length){
+					setTimeout(function(){
+						fn(index+10);
+					},100)
+				}
+			}
+			//封装一个循环div自定义开关的函数
+			function check(){
+				var m = 0;
+				for(var i=0;i<divs.length;i++){
+					if(!divs[i].onOff){
+						m++;
+					}
+				}
+				//当m等于div的长度的时候回到初始化
+				if(m==divs.length){
+					for(var i=0;i<divs.length;i++){
+						divs[i].style.background = '';
+						divs[i].onOff = true;
+					}
+				}
+			}
+		</script>
+		
+		
+	</body>
+</html>
