@@ -4,14 +4,43 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>无标题文档</title>
     <style>
-        body { margin: 0; line-height: 26px; }
-        span { color: #06F; text-decoration: underline; }
-        #box { width: 300px; height: auto; border: 1px solid #6C0; padding: 10px; display: none; position: absolute; background: #FFF; font-size: 12px; overflow: hidden; }
+        body { 
+        	margin: 0; 
+        	line-height: 26px; 
+        	}
+        span {
+        	 color: #06F; 
+        	 text-decoration: underline; 
+        	}
+        #box {
+        	 width: 300px; 
+        	 height: auto; 
+        	 border: 1px solid #6C0; 
+        	 padding: 10px; 
+        	 display: none; 
+        	 position: absolute; 
+        	 background: #FFF; 
+        	 font-size: 12px; 
+        	 overflow: hidden; 
+        	}
 
-        #div1 { width: 550px; margin: 100px auto 0; border: 20px solid #888; padding: 5px; position: relative; }
-        #div1 p {text-indent: 2em;}
-        #box a { text-decoration: none; color: #1176ED; }
-        #box a:hover { color: red; }
+        #div1 {
+        	 width: 550px; 
+        	 margin: 100px auto 0; 
+        	 border: 20px solid #888; 
+        	 padding: 5px; 
+        	 position: relative; 
+        	 }
+        #div1 p {
+        	text-indent: 2em;
+        	}
+        #box a { 
+        	text-decoration: none; 
+        	color: #1176ED; 
+        	}
+        #box a:hover { 
+        	color: red; 
+        	}
     </style>
 
 </head>
@@ -44,11 +73,11 @@
 		for(var i=0;i<spans.length;i++){
 			//鼠标移入
 			spans[i].onmouseover = function(){
-				//获取span的左边距离可视区的数值
+				//获取当前span的左边距离可视区的数值
 				var le = this.getBoundingClientRect().left;
-				//获取span的上面距离可视区的数值
+				//获取当前span的上面距离可视区的数值
 				var bo = this.getBoundingClientRect().bottom;
-				//从span中调用获取命名存储的数据
+				//从当前span中调用获取命名存储的数据
 				var l = this.getAttribute('l');
 				var c = this.getAttribute('c');
 				//移入显示详情页
