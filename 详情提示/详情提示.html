@@ -73,6 +73,7 @@
 		for(var i=0;i<spans.length;i++){
 			//鼠标移入
 			spans[i].onmouseover = function(){
+				clearInterval(timer);
 				//获取当前span的左边距离可视区的数值
 				var le = this.getBoundingClientRect().left;
 				//获取当前span的上面距离可视区的数值
@@ -109,7 +110,7 @@
 			spans[i].onmouseout = function(){
 				timer = setTimeout(function(){
 					box.style.display = 'none';
-				},2000)
+				},1000)
 			}
 		}
 		box.onmouseenter = function(){
