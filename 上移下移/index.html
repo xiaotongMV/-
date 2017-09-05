@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul,li{
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 500px;
+				height: 600px;
+				background: pink;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.list{
+				width: 320px;
+				height: 320px;
+				margin: 100px auto;
+				padding: 40px;
+				position: relative;	
+			}
+			.list li{
+				width: 320px;
+				height: 50px;
+				border-radius: 10px;
+				/*margin-bottom: 10px;*/
+				background: #fff;
+				position: absolute;
+				left: 30px;
+				top: 0;
+			}
+			.list li span{
+				display: block;
+				width: 200px;
+				height: 50px;
+				line-height: 50px;
+				text-indent: 20px;
+				float: left;
+			}
+			.list li input{
+				width: 50px;
+				height: 30px;
+				border: 0;
+				border: 1px solid hotpink;
+				color: hotpink;
+				margin-top: 10px;
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list">
+				<li>
+					<span>AJAX</span>
+					<input type="button" value="上移" />
+					<input type="button" value="下移" />
+				</li>
+				<li>
+					<span>JS-基础</span>
+					<input type="button" value="上移" />
+					<input type="button" value="下移" />
+				</li>
+				<li>
+					<span>jQuery</span>
+					<input type="button" value="上移" />
+					<input type="button" value="下移" />
+				</li>
+				<li>
+					<span>CSS</span>
+					<input type="button" value="上移" />
+					<input type="button" value="下移" />
+				</li>
+				<li>
+					<span>HTML</span>
+					<input type="button" value="上移" />
+					<input type="button" value="下移" />
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			
+			//获取元素
+			
+			var list = document.querySelector('.list');
+			var lis = list.querySelectorAll('li');
+			
+			
+			//循环li
+			for(var i=0;i<lis.length;i++){
+				//设置li的top值
+				lis[i].style.top = i*60+'px';
+				//获取每个li里的input
+				var inp = lis[i].children;
+				
+				//下移
+				inp[2].onclick = function(){
+					//获取当前点击按钮的li
+					var paren = this.parentNode;
+					//判断如果有兄弟级走true没有走false
+					if(this.parentNode.nextElementSibling){	
+						//获取当前点击按钮的li的下一个兄弟元素
+						var next = this.parentNode.nextElementSibling;
+						//获取当前点击按钮的li的下一个兄弟元素的top值
+						var topO = parseInt(this.parentNode.nextElementSibling.style.top);
+						//获取当前点击按钮的li的top值
+						var topT = parseInt(this.parentNode.style.top)
+						
+						move({
+							obj:paren,
+							attrs:{top:topO},
+							duration:300,
+							callBack:function(){
+								//运动top值以后两个元素互相替换
+								list.insertBefore(paren,next)
+							}
+						})
+						
+						move({
+							obj:next,
+							attrs:{top:topT},
+							duration:300,
+							callBack:function(){
+								//运动top值以后两个元素互相替换
+								list.insertBefore(next,paren)
+							}
+						})
+					}else{
+						//重新获取li
+						var li = list.querySelectorAll('li');
+						
+						//当点击最后一个的li下移按钮时让当前li的top值变为0并且跟第一个li互相交换
+						move({
+							obj:paren,
+							attrs:{top:0},
+							duration:300,
+							callBack:function(){
+								list.insertBefore(paren,list.children[0]);
+							}
+						})
+						//当最后一个li运动完以后重新循环剩下的li重新赋值top值
+						for(var i=0;i<li.length-1;i++){
+							move({
+								obj:li[i],
+								attrs:{top:i*60+60},
+								duration:300
+							})
+						}
+					}
+				}
+				
+				
+				
+				//上移事件
+				inp[1].onclick = function(){
+					
+				//获取当前点击上移的li	
+				var parent = this.parentNode;	
+				//判断当前li有没有上一个兄弟
+				if(this.parentNode.previousElementSibling){
+					//获取当前点击按钮的li的上一个兄弟元素
+					var previous = this.parentNode.previousElementSibling;
+					//获取当前点击按钮的li的top值
+					var topM = parseInt(this.parentNode.style.top);
+					//获取当前点击按钮的上一个兄弟元素的top值
+					var topN = parseInt(previous.style.top);
+					
+					//运动当前的li的top值
+					move({
+						obj:parent,
+						attrs:{top:topN},
+						duration:300,
+						callBack:function(){
+							//运动top值以后两个元素互相替换
+							list.insertBefore(previous,parent)
+						}	
+					})
+					//运动当前li的上一个兄弟的top值
+					move({
+						obj:previous,
+						attrs:{top:topM},
+						duration:300,
+						callBack:function(){
+							//运动top值以后两个元素互相替换
+							list.insertBefore(parent,previous)
+						}	
+					})
+				}
+					
+					
+					//当当前点击的按钮的li的top值为0时	
+					if(this.parentNode.style.top == '0px'){
+						//重新获取一下li
+						var li = document.querySelectorAll('li');
+						//让第一个li直接跳到最后一个
+						move({
+							obj:parent,
+							attrs:{top:240},
+							duration:300,
+							callBack:function(){
+								//top值运动完之后插入到最后一个
+								list.appendChild(parent);
+							}
+						})
+						//当第0个li移动完之后从第一个开始重新循环剩下的li重新赋予top值
+						for(var i=1;i<li.length;i++){
+							move({
+								obj:li[i],
+								attrs:{top:i*60-60},
+								duration:300
+							})
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
