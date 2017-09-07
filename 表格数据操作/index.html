@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				margin: 0;
+			}
+			.box{
+				width: 800px;
+				height: 600px;
+				background: #009EC1;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.form{
+				width: 410px;
+				height: 110px;
+				background: #fff;
+				margin: 0 auto;
+				margin-top: 100px;
+				border-radius: 10px;
+				padding: 20px;
+			}
+			.form p{
+				width: 200px;
+				height: 40px;
+				float: left;
+				margin-bottom: 20px;
+				line-height: 40px;
+				font-size: 16px;
+			}
+			.form p input{
+				width: 140px;
+				height: 30px;
+				border: 0;
+				border: 1px solid #009EC1;
+				border-radius: 20px;
+				background: 0;
+				outline: none;
+				font-size: 16px;
+				color: #0088A4;
+				text-indent: 10px;
+			}
+			.form select{
+				width: 140px;
+				height: 34px;
+				border: 0;
+				border: 1px solid #009EC1;
+				border-radius: 20px;
+				background: 0;
+				outline: none;
+				font-size: 16px;
+				text-indent: 10px;
+			}
+			.form .btn{
+				background: #00AFC7;
+				width: 185px; 
+				height: 35px; 
+				color: #fff;
+			}
+			.table{
+				width: 450px;
+				margin: 50px auto 0;
+			}
+			.table thead,.table tbody{
+				width: 100%;
+				height: 35px;
+				background: #098CB5;
+				color: #fff;				
+			}
+			.table thead tr,.table tbody tr{
+				height: 35px;	
+				text-align: center;
+			}
+			.table tbody{
+				background: #fff;
+				color: #009EC1;
+			}
+			
+			span,b{
+				display:inline-block;
+				width: 10px;
+				height: 10px;
+				border: 1px solid #00FFFF;
+				margin-left: 2px;
+			}
+			a{
+				display: inline-block;
+				text-decoration: none;
+				padding: 5px;
+				color: #009EC1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<form action="" class="form">
+				<p>姓名: <input type="text" name="username"/></p>
+				<p>年龄: <input type="text" name="age"/></p>
+				<p>
+			        性别: <select name="sex">
+			         	<option value="男">男</option>
+			         	<option value="女">女</option>
+			      	 </select>
+			   </p>
+				<p><input type="button" name="btn" class="btn" value="添加" /></p>
+			</form>
+			
+			<table border="0" cellspacing="0" cellpadding="1" class="table">
+				<thead>
+		        <tr>
+		            <th>
+		                <span class="all"></span> 全选
+		            </th>
+		            <th>ID</th>
+		            <th>姓名</th>
+		            <th>年龄</th>
+		            <th>性别</th>
+		            <th>操作</th>
+		        </tr>
+		       </thead>
+		       
+		       <tbody>
+             	<!--<tr>
+	               <td>
+	                  <span></span>
+	               </td>
+	               <td>1</td>
+	               <td>111</td>
+	               <td>37</td>
+	               <td>男</td>
+	               <td>
+	                    <a href="javascript:;">↑</a>
+	                    <a href="javascript:;">↓</a>
+	                    <a href="javascript:;">删除</a>
+	               </td>
+            	</tr> -->
+        		</tbody>
+			</table>
+		</div>
+		
+		
+		<script type="text/javascript">
+			
+			//获取元素
+			
+			//获取表单元素
+			var form = document.querySelector('form');
+			//获取生成的表格元素
+			var tbody = document.querySelector('table tbody');
+			//获取全选按钮的元素
+			var all = document.querySelector('.all');
+			
+			
+			//声明一个变量控制ID的排序
+			var n = 0;
+			//声明一个变量控制全选选中
+			var m = 0;
+			
+			
+			//声明一个开关控制全选
+			var allonOff = true;			
+			
+			//点击添加按钮添加数据
+			form.btn.onclick = function(){
+				
+				//获取姓名的value值
+				var name = form.username.value;
+				//获取年龄的value值
+				var age = form.age.value;
+				//获取性别的value值
+				var sex = form.sex.value;
+				if(name!=''&&age!=''){
+					n++;
+					//生成表格把数据渲染出来
+					var trs = document.createElement('tr');
+					var span = document.createElement('span');
+					
+					for(var i=0;i<6;i++){
+						var tds = document.createElement('td');
+						trs.appendChild(tds);
+					}
+					var tds = trs.querySelectorAll('td');
+					tds[0].appendChild(span);
+					tds[1].innerHTML = n;
+					tds[2].innerHTML = name;
+					tds[3].innerHTML = age;
+					tds[4].innerHTML = sex;
+					for(var i=0;i<3;i++){
+						var aT = document.createElement('a');
+						tds[5].appendChild(aT);
+					}
+					var aT = trs.querySelectorAll('a');
+					aT[0].innerHTML = '↑';
+					aT[1].innerHTML = '↓';
+					aT[2].innerHTML = '删除';
+					tbody.appendChild(trs);s
+					/*tbody.innerHTML += '<tr>'+
+		               '<td>'+
+		                  '<span></span>'+
+		              ' </td>'+
+		               '<td>'+n+'</td>'+
+		               '<td>'+name+'</td>'+
+		               '<td>'+age+'</td>'+
+		               '<td>'+sex+'</td>'+
+		               '<td>'+
+		                    '<a href="javascript:;">↑</a>'+
+		                    '<a href="javascript:;">↓</a>'+
+		                    '<a href="javascript:;">删除</a>'+
+		               '</td>'+
+	            	'</tr>';*/
+				}else{
+					alert('请输入完整内容')
+				}
+				
+				
+            
+            //获取tbody下生成的tr元素
+          	var trs = tbody.querySelectorAll('tr');
+            //循环生成的tr
+            for(var i=0;i<trs.length;i++){
+            	//获取每个tr里面的上下移以及删除元素
+            	var aS = trs[i].querySelectorAll('a');
+	
+            	//点击上移
+            	aS[0].onclick = function(){
+            		//获取当前的tr
+            		var _thisTr = this.parentNode.parentNode;
+            		//获取当前tr的上一个兄弟元素
+            		var prev = this.parentNode.parentNode.previousElementSibling;
+            		
+            		//判断有没有上一个兄弟元素，没有弹出提示框
+            		if(this.parentNode.parentNode.previousElementSibling){
+            			tbody.insertBefore(_thisTr,prev);
+            		}else{
+            			alert('已经是第一个了')
+            		}
+            	}
+            	//点击下移
+            	aS[1].onclick = function(){
+            		//获取当前的tr
+            		var _thisTr = this.parentNode.parentNode;	
+            		//判断有没有下一个兄弟元素，没有弹出提示框
+            		if(this.parentNode.parentNode.nextElementSibling){
+            			//获取当前tr的下一个兄弟元素
+            			var next = this.parentNode.parentNode.nextElementSibling.nextElementSibling;
+            			
+            			tbody.insertBefore(_thisTr,next);
+            		}else{
+            			alert('已经是最后一个了')
+            		}
+            	}
+            	
+            	//点击删除
+            	aS[2].onclick = function(){
+            		//当前要被删除的tr
+            		var _thisTR = this.parentNode.parentNode;
+            		//删除当前的tr
+            		tbody.removeChild(_thisTR);
+            		//删除之后重新获取剩下的tr
+            		var tR = tbody.querySelectorAll('tr');
+            		//循环被删除以后剩下的tr并重新给ID赋值
+            		for(var i=0;i<tR.length;i++){
+            			var tds = tR[i].querySelectorAll('td');
+            			tds[1].innerHTML = i+1;
+            		}
+            		//赋值之后把剩下的tr的长度赋值给变量
+            		n = tR.length;
+            	}            	    
+            }
+            
+            
+//				//获取span元素
+        		var span = tbody.querySelectorAll('span');
+            //全选单机事件
+            for(var i=0;i<span.length;i++){
+            	//声明一个自定义开关
+            	span[i].onOff = true;
+            	//点击span改变背景颜色
+            	span[i].onclick = function(){
+            		if(this.onOff){
+            			//改变当前点击span的背景颜色
+            			this.style.background = 'red';
+            			//把开关改为假
+            			this.onOff = false;
+            			//每点击一个span就让m加一次
+            			m++;
+            		}else{
+            			//再次点击恢复初始
+            			this.style.background = '';
+            			//把开关改为真
+            			this.onOff = true;
+            			//每点击一个span就让m减一次
+            			m--;
+            		}
+            		
+            		//如果当m的值等于spans的长度的时候走true，不等走false
+            		if(m==span.length){
+	            		all.style.background = 'red';
+	            		allonOff = false;
+	            	}else{
+	            		all.style.background = '';
+	            		allonOff = true;
+	            	}
+            	}	
+            }
+           
+           
+           
+           
+            //点击全选
+            all.onclick = function(){            	
+            	if(allonOff){
+            		//开关为真的时候循环所有span改变背景颜色并把所有span的开关都改为假
+            		for(var i=0;i<span.length;i++){
+            			span[i].style.background = 'red';
+            			span[i].onOff = false;
+            		}
+            		//全选按钮高亮
+            		all.style.background = 'red';
+            		//开关改为假
+            		allonOff = false;
+            		//span的长度赋值给m
+            		m = span.length;
+            	}else{
+            		//开关为假的时候循环所有span把背景颜色改为初始并把所有span的开关都改为真
+            		for(var i=0;i<span.length;i++){
+            			span[i].style.background = '';
+            			span[i].onOff = true;
+            		}
+            		//全选背景恢复初始值
+            		all.style.background = '';
+            		//开关改为真
+            		allonOff = true;
+            		//重新给m赋值为0
+            		m = 0;
+            	}
+            }
+           
+           
+           
+			}
+			
+		</script>
+	</body>
+</html>
