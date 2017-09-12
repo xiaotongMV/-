@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+
+			body{
+				background: tomato;
+			}
+			input{
+				display: block;
+				width: 150px;
+				height: 50px;
+				border: 0;
+				border-radius: 20px;
+				background: deeppink;
+				color: #fff;
+				position: absolute;
+				outline-style: none;
+				margin-top: 50px;
+				font-size: 20px;
+			}
+			.box{
+				width: 300px;
+				height: 300px;
+				border: 5px solid deeppink;
+				border-radius: 10px;
+				position: absolute;
+			}
+			.box .opa{
+				width: 100%;
+				height: 100%;
+				background: #000;
+				opacity: 0.5;
+				border-radius: 5px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -100;
+			}
+			.box .txt{
+				width: 100%;
+				margin: 0;
+				color: #fff;
+				text-align: center;
+				font-size: 25px;
+				margin-top: 100px;
+			}
+			.box .btn{
+				display: block;
+				width: 120px;
+				height: 30px;
+				border-radius: 10px;
+				border: 1px solid #fff;
+				background: deeppink;
+				text-align: center;
+				line-height: 30px;
+				text-decoration: none;
+				color: #fff;
+				margin-left: 90px;
+				margin-top: 50px;
+			}
+			span{
+				display: block;
+				font-size: 20px;
+				position: absolute;
+				top: 10px;
+				right: 20px;
+				color: #fff;
+			}
+			span:hover{
+				color: deeppink;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<input type="button" value="提交" />
+		
+		<!--<div class="box">
+			<div class="opa"></div>
+			<span>X</span>
+			<p class="txt">恭喜你，提交成功</p>
+			<a href="javascript:;" class="btn">确定</a>
+		</div>-->
+		
+		<script type="text/javascript">
+			
+			//获取元素
+			var inp = document.querySelector('input');
+			//计算距离左边的位置
+			var inpLeft = (window.innerWidth - inp.offsetWidth)/2;
+			var inpTop= (window.innerHeight - inp.offsetHeight)/2-300;
+			//计算好的值赋值给弹出框的left
+			inp.style.left = inpLeft+'px';
+			inp.style.top = inpTop+'px';
+			
+			var onOff =  true;
+			
+			//点击提交按钮事件
+			inp.onclick = function(){
+				
+				if(onOff){
+					onOff =  false;
+					//创建弹出框
+					var divs = document.createElement('div');
+					//遮罩层
+					var divOpa = document.createElement('div');
+					//右上角XX
+					var spans = document.createElement('span');
+					//文本
+					var ps = document.createElement('p');
+					//按钮
+					var aS = document.createElement('a');
+					
+					divs.className = 'box';
+					divOpa.className = 'opa';
+					spans.innerHTML = 'X';
+					ps.innerHTML = '恭喜你，提交成功';
+					aS.innerHTML = '确定';
+					ps.className = 'txt';
+					aS.className = 'btn';
+					
+					divs.appendChild(divOpa);
+					divs.appendChild(spans);
+					divs.appendChild(ps);
+					divs.appendChild(aS);
+					//把创建好的元素添加到body里面
+					document.body.appendChild(divs);
+					
+					//计算距离顶部的位置
+					var divsTop = (window.innerHeight - divs.offsetHeight)/2;
+					//计算距离左边的位置
+					var divsLeft = (window.innerWidth - divs.offsetWidth)/2;
+					
+					//计算好的值赋值给弹出框的top
+					divs.style.top = divsTop+'px';
+					//计算好的值赋值给弹出框的left
+					divs.style.left = divsLeft+'px';
+				}
+				//点击确定按钮事件
+				aS.onclick = function(){
+					//删除创建的弹出框
+					document.body.removeChild(divs);
+					onOff =  true;
+				}
+				//点击右上角XX事件
+				spans.onclick = function(){
+					//删除创建的弹出框
+					document.body.removeChild(divs);
+					onOff =  true;
+				}
+			}
+			
+			
+		</script>
+	</body>
+</html>
