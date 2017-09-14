@@ -3,7 +3,89 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style>
+			
+			body{
+				margin: 0;
+			}
+			div{
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				background: deepskyblue;
+				position: absolute;
+			}
+		</style>
 	</head>
 	<body>
+		<div></div>
+		
+		<script type="text/javascript">
+			
+			//获取元素
+			var divs = document.querySelector('div');
+			
+			
+			//创建一组开关控制每个按键的按下、抬起
+			var onOff = {
+				l:false,
+				t:false,
+				r:false,
+				b:false
+			}
+			
+			//键盘按下事件
+			document.onkeydown = function(ev){
+				if(ev.keyCode==37){
+					onOff.l = true;
+				}else if(ev.keyCode==38){
+					onOff.t = true;
+				}else if(ev.keyCode==39){
+					onOff.r = true;
+				}else if(ev.keyCode==40){
+					onOff.b = true;
+				}
+			}
+			//键盘抬起事件
+			document.onkeyup = function(ev){
+				if(ev.keyCode==37){
+					onOff.l = false;
+				}else if(ev.keyCode==38){
+					onOff.t = false;
+				}else if(ev.keyCode==39){
+					onOff.r = false;
+				}else if(ev.keyCode==40){
+					onOff.b = false;
+				}
+			}
+			//开启定时器
+			timer = setInterval(function(){
+				var divLeft = parseFloat(divs.offsetLeft);
+				var divTop = parseFloat(divs.offsetTop);
+				
+				//向左移动
+				if(onOff.l){
+					if(divLeft<=0){
+						divLeft = 0;
+					}
+					divs.style.left = (divLeft-5)+'px';
+				}
+				//向上移动
+				if(onOff.t){
+					if(divTop<=0){
+						divTop = 0;
+					}
+					divs.style.top = (divTop-5)+'px';
+				}
+				//向右移动
+				if(onOff.r){
+					divs.style.left = (divLeft+5)+'px';
+				}
+				//向下移动
+				if(onOff.b){
+					divs.style.top = (divTop+5)+'px';
+				}	
+			},10)
+		</script>
 	</body>
 </html>

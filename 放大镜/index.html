@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				border: 0;
+			}
+			.box{
+				width: 320px;
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.box img{
+				width: 100%;
+				height: 100%;
+			}
+			.box span{
+				width: 60px;
+				height: 60px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: #000000;
+				opacity: 0.3;
+				display: none;
+			}
+			
+			.con{
+				width: 320px;
+				height: 300px;
+				position: absolute;
+				left: 360px;
+				top: 0;
+				display: none;
+				overflow: hidden;
+			}
+			.con img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+				<img src="img8.jpg"/>
+				<span></span>
+		</div>
+		<div class="con">
+			<img src="img8.jpg"/>
+		</div>
+		
+		
+		<script type="text/javascript">
+			
+			
+			//获取元素
+			
+			var box = document.querySelector('.box');
+			var span = document.querySelector('span');
+			
+			var con = document.querySelector('.con');
+			var imgs = document.querySelectorAll('img');
+			
+			
+			//鼠标移入
+			box.onmouseover = function(){
+				span.style.display = 'block';
+				con.style.display = 'block';
+			}
+			//鼠标移出
+			box.onmouseout = function(){
+				span.style.display = 'none';
+				con.style.display = 'none';
+			}
+			
+			//鼠标移动操作放大镜
+			box.onmousemove = function(ev){
+				
+				var spanLeft = ev.clientX-span.offsetWidth/2;
+				var spanTop = ev.clientY-span.offsetHeight/2;
+				
+				var maxL = this.clientWidth - span.offsetWidth;
+				var maxT = this.clientHeight - span.offsetHeight;
+				
+				if(spanLeft<0) spanLeft = 0;
+				
+				if(spanTop<0) spanTop = 0;
+				
+				if(spanLeft>maxL) spanLeft = maxL;
+				
+				if(spanTop>maxT) spanTop = maxT;
+				
+				
+				span.style.left = spanLeft+'px';
+				span.style.top = spanTop+'px';
+				
+				var l = spanLeft/maxL;
+				var t = spanTop/maxT;
+				
+				//console.log(l,t)
+				var imgLeft = imgs[1].offsetWidth - con.clientWidth;
+				var imgTop = imgs[1].offsetHeight - con.clientHeight;
+				//console.log(imgLeft,imgTop)
+				
+				
+				imgs[1].style.left = -l*imgLeft+'px';
+				imgs[1].style.top = -t*imgTop+'px';
+				
+				console.log(imgs[1].style.left,imgs[1].style.top)
+			}
+			
+		</script>
+	</body>
+</html>
