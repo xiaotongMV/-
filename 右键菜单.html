@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			ul{
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				width: 150px;
+				height: 150px;
+				border: 1px solid #00CED1;
+				border-bottom: none;
+				position: absolute;
+			}
+			li{
+				width: 150px;
+				height: 49px;
+				border-bottom: 1px solid #00CED1;
+				line-height: 49px;
+				text-align: center;	
+				background: #808080;					
+			}
+			a{
+				text-decoration: none;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<ul>
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+		</ul>-->
+		
+		
+		
+		<script type="text/javascript">
+			
+			
+			document.rightMenu = {
+				
+				openFile:'打开',
+				share:'分享',
+				jump:'跳转'
+			}
+			
+			
+			document.oncontextmenu = function(ev){
+				
+				//创建一个ul
+				var uls = document.createElement('ul');
+				//给ul添加id
+				uls.id = 'box';
+				
+				//数组的变量
+				var rightM = this.rightMenu;
+								
+				//声明一个空字符串用来保存数据
+				var str = '';
+				//生成数组里的结构
+				for(var key in rightM){
+					
+					 str += '<li><a href="javascript:;">'+rightM[key]+'</a></li>';					
+					
+				}
+				//把生成的结构赋值给ul
+				uls.innerHTML = str;
+				
+				//获取生成的元素id
+				var boxs = document.querySelector('#box');
+				
+				//用获取的元素来判断有没有此元素 如有有就删除
+				if(boxs){
+					document.body.removeChild(boxs);
+				}
+				//生成好的结构渲染给body显示出来
+				document.body.appendChild(uls);
+				
+				//点击空白区域删除菜单
+				document.onclick = function(){
+					
+					document.body.removeChild(uls);	
+				}
+				
+				//获取鼠标的可视区距离
+				var x = ev.clientX;
+				var y= ev.clientY;
+				
+				//鼠标的可视区距离赋值给ul定位
+				uls.style.left = x+'px';
+				uls.style.top = y+'px';
+				
+				//阻止右键 点击默然行为
+				return false;
+			}
+			
+			
+			
+		</script>
+		
+		
+		
+		
+	</body>
+</html>
