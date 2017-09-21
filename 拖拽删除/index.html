@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				
+				width: 800px;
+				height: 600px;
+				border: 1px solid #000;
+				margin: 0 auto;
+			}
+			.conLeft{
+				width: 200px;
+				height: 100%;
+				background: sienna;
+				overflow: hidden;
+				float: left;
+			}
+			.conLeft a{
+				display: block;
+				width: 100%;
+				height: 50px;
+				text-decoration: none;
+				text-align: center;
+				line-height: 50px;
+				color: mediumvioletred;
+				font-size: 18px;
+				background: darkslategray;
+				margin-top: 400px;
+				position: relative;
+			}
+			.conRight{
+				width: 600px;
+				height: 100%;
+				float: right;
+				-background: #009999;
+			}
+			.all{
+				width: 100%;
+				height: 50px;	
+				margin-top: 100px;	
+				overflow: hidden;	
+			}
+			.all span{
+				display: block;
+				width: 18px;
+				height: 18px;
+				color: #fff;
+				border: 1px solid #CCCCCC;
+				border-radius: 3px;
+				margin-top: 15px;	
+				margin-left: 20px;
+				text-align: center;
+				line-height: 18px;
+				-background: #009999;
+			}	
+			.active{
+				color: #fff;
+				background: #009999;
+			}
+			.list{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 100%;
+				-border-top: 1px solid #3C3C3C;
+			}	
+			.list li{
+				width: 100%;
+				height: 74px;
+				border-top: 1px solid #3C3C3C
+			}	
+			.btn{
+				display: block;
+				width: 18px;
+				height: 18px;
+				color: #fff;
+				border: 1px solid #CCCCCC;
+				border-radius: 3px;
+				margin-top: 15px;	
+				margin-left: 20px;
+				float: left;
+				text-align: center;
+				line-height: 18px;
+			}
+			.bt{
+				margin: 0;
+				width: 150px;
+				height:20px ;
+				font-size: 18px;
+				float: left;
+				line-height: 20px;
+				margin-top: 15px;
+				margin-left: 20px;
+			}
+			.txt{
+				margin: 0;
+				width: 100%;
+				height: 40px;
+				float: left;
+				line-height: 40px;
+				font-size: 14px;
+				text-indent: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+				<div class="conLeft">
+					<a href="javascript:;">删除</a>
+				</div>
+				<div class="conRight">
+					<div class="all">
+						<span></span>
+					</div>
+					<ul class="list">
+						<!--<li>
+							<span class="btn"></span>
+							<h4 class="bt">妙味课堂1</h4>
+							<p class="txt">JS的拖拽进一步的学习</p>
+						</li>-->						
+					</ul>
+				</div>			
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			
+			var data = [
+				{
+					tab:'秒微课堂1',
+					txt:'JS的拖拽进一步的学习'
+				},
+				{
+					tab:'秒微课堂2',
+					txt:'JS的拖拽进一步的学习'
+				},
+				{
+					tab:'秒微课堂3',
+					txt:'JS的拖拽进一步的学习'
+				},
+				{
+					tab:'秒微课堂4',
+					txt:'JS的拖拽进一步的学习'
+				},
+				{
+					tab:'秒微课堂5',
+					txt:'JS的拖拽进一步的学习'
+				},
+				{
+					tab:'秒微课堂6',
+					txt:'JS的拖拽进一步的学习'
+				}
+			];
+			
+			//获取元素
+		
+			//获取删除按钮的元素
+			var back = document.querySelector('.conLeft a');
+			//获取全选按钮的元素
+			var all = document.querySelector('.all span');	
+			//获取生成列表元素
+			var list = document.querySelector('.list');
+			
+			var str = '';
+			//循环数组生成结构
+			for(var key in data){
+				str += '<li><span class="btn"></span><h4 class="bt">'+data[key].tab+'</h4><p class="txt">'+data[key].txt+'</p></li>';
+			}
+			list.innerHTML = str;
+			
+			var lis = list.querySelectorAll('li');
+			
+			//获取span的集合
+			var spans = list.querySelectorAll('span');
+			//声明一个变量
+			var n = 0;
+			
+			var backX = back.offsetLeft+back.offsetWidth/2;
+			var backY = back.offsetTop+back.offsetHeight/2;
+			
+			
+			var backW = back.offsetWidth/2;
+			var backH = back.offsetHeight/2;
+			
+			for(var i=0;i<spans.length;i++){
+				spans[i].sponOff = true;
+				spans[i].onclick = function(){	
+					if(this.sponOff){
+						this.innerHTML = '√';
+						this.style.background = '#009999';
+						this.style.color = '#fff';
+						this.parentNode.style.background = '#CCCCCC';
+						this.sponOff = false;
+						n++;
+					}else{
+						this.innerHTML = '';
+						this.style.background = '';
+						this.style.color = '';
+						this.parentNode.style.background = '';
+						this.sponOff = true;
+						n--;
+					}
+					
+					if(n==spans.length){
+						all.innerHTML = '√';
+						all.className = 'active';
+						all.onOff = false;
+					}else{
+						all.innerHTML = '';
+						all.className = '';
+						all.onOff = true;
+					}
+				}
+			}
+			document.onmousedown = function(ev){
+							
+					
+					document.onmousemove = function(ev){
+						var movL = ev.clientX;
+						var movT = ev.clientY;
+						
+						
+						var l = movL-backX;
+						var t = movT-backY;
+						
+						if(Math.abs(l)<backW&&Math.abs(t)<backH){
+							window.iscollision = true;
+						}else{
+							window.iscollision = false;
+						}
+						
+					}
+					return false;
+				}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				
+				if(window.iscollision){
+					for(var i=0;i<spans.length;i++){
+						if(!spans[i].sponOff){
+							list.removeChild(spans[i].parentNode);
+							all.innerHTML = '';
+							all.className = '';
+							all.onOff = true;
+							//document.onmouseup = null;
+						}
+					}	
+					//all.onOff = false;
+					lis = list.querySelectorAll('li');
+				}
+				
+			}
+			//全选开关
+			all.onOff = true;
+			//点击全选
+			all.onclick = function(){
+				if(this.onOff){
+					for(var i=0;i<spans.length;i++){
+						
+						spans[i].parentNode.style.background = '#CCCCCC';
+						spans[i].innerHTML = '√';
+						spans[i].style.background = '#009999';
+						spans[i].style.color = '#fff';
+						spans[i].sponOff = false;
+					}
+					all.innerHTML = '√';
+					all.className = 'active';
+					this.onOff = false;
+					n = spans.length;
+				}else{
+					for(var i=0;i<spans.length;i++){
+						spans[i].parentNode.style.background = '';
+						spans[i].innerHTML = '';
+						spans[i].style.background = '';
+						spans[i].style.color = '';
+						spans[i].sponOff = true;
+					}
+					all.innerHTML = '';
+					all.className = '';
+					this.onOff = true;
+					n = 0;
+				}
+			}
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

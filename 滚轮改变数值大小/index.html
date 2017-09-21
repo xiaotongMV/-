@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 400px;
+				height: 500px;
+				background: #00CED1;
+				border-radius: 20px;
+				overflow: hidden;
+			}
+			.list{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 290px;
+				height: 40px;
+				border: 1px solid #fff;
+				border-radius: 3px;
+				margin: 250px auto;
+				overflow: hidden;
+				position: relative;
+			}
+			.list li{
+				float: left;
+				width: 35px;
+				height: 80px;
+				background: #fff;
+				border-radius: 3px;
+				
+				position: absolute;
+			}
+			.list li img{
+				width: 35px;
+				height: 40px;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="list">
+				<li>
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>
+				<li>
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>
+				<li>
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>
+				<li>
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>
+				<li>
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>
+				<li>
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>
+				<li style="margin-right: 0;">
+					<img src="img/0.jpg"/>
+					<img src="img/1.jpg"/>
+				</li>	
+			</ul>
+		</div>
+		
+		
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			
+			
+			var list = document.querySelector('.list');
+			var lis = list.querySelectorAll('li');
+			
+			
+			//声明一个数组存储数据
+			var arr = ['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg'];
+			//声明一个变量控制数组的图片切换
+			var n = 0;
+			//声明一个开关防止运动多次滚动
+			var onOff = true;
+			//循环定位li
+			for(var i=0;i<lis.length;i++){
+				lis[i].style.left = i*42+'px';
+				
+				fn(lis[i]);
+				
+			}
+				
+				
+			function fn(obJ){
+				//var imgs = obJ.querySelectorAll('img');
+				
+				//调用滚轮函数
+				scroll(obJ,function(ev){					
+					bottom(obJ)
+					console.log('向下')
+	
+				},function(ev){					
+					toP(obJ);
+					console.log('向上')
+				})
+			}
+			
+			
+			
+			
+			//向上翻页函数
+			function toP(obJ){
+				var imgs = obJ.querySelectorAll('img');
+				
+				if(onOff){
+					onOff = false;
+					n++;
+					if(n>arr.length-1){
+						n = 0;
+					}
+					imgs[1].src = arr[n];
+					move({
+						obj:obJ,
+						attrs:{top:-40},
+						duration:300,
+						callBack:function(){
+							//让第0张变成第一张
+							imgs[0].src = arr[n];
+							//还原lis的top值
+							obJ.style.top = 0;
+							//回调的时候重新打开开关
+							onOff = true;
+						}
+					})
+				}
+			}
+			//向下翻页函数
+			function bottom(obJ){
+				var imgs = obJ.querySelectorAll('img');
+				if(onOff){
+					//滚动之后立刻关闭开关
+					onOff = false;
+					//运动的同时让ul的left值瞬间改变成-640
+					obJ.style.top = '-40px';
+					//初始化让imgs[1]变成第一张图片
+					imgs[1].src = arr[n];
+					n--;
+					if(n<0){
+						n = arr.length-1;
+					}
+					//--以后让imgs[0]根据n值来获取数组的下标图片
+					imgs[0].src = arr[n];
+					move({
+						obj:obJ,
+						attrs:{top:0},
+						duration:300,
+						callBack:function(){
+							//回调的时候重新打开开关
+							onOff = true;
+						}
+					})
+				}
+			}
+		
+				
+			
+			
+			
+			//滚轮事件函数
+			function scroll(obj,downFn,upFn){
+	
+	         obj.onmousewheel = function(ev){
+	
+	
+	            if(ev.wheelDelta>0){
+	                upFn&&upFn(ev);
+	            }
+	
+	            if(ev.wheelDelta<0){
+	                downFn&&downFn(ev);
+	            }
+	
+	
+	         };
+	    	}
+			
+			
+		</script>
+	</body>
+</html>
