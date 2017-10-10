@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li class="li"></li>
+			<li id="lis"></li>
+			<li class="li li2 lis3"></li>
+		</ul>
+		<script type="text/javascript">
+			
+			
+			function $(name){
+				//找到元素内的指定位置字符
+				var tilie = name.charAt();
+				var aEle = document.getElementsByTagName('*');
+				//存储符合条件的元素
+				var arr = [];
+				//判断如果当前的元素内的指定位置字符为#的时候获取当前元素
+				if(tilie === '#'){
+					//如果找到了把当前截取到的元素返回出去
+					return document.getElementById(name.substring(1));
+				}else if(tilie === '.'){//判断如果当前元素内的指定位置字符为.的时候
+					
+					//截取当前元素的指定范围字符
+					var sClass = name.substring(1);
+					//循环获取到的集合
+					for(var i=0;i<aEle.length;i++){
+						//用空格字符分隔元素内获取到的指定范围字符存为一个数组
+						var arrS = aEle[i].className.split(' ');
+						//循环分隔完之后得到数组
+						for(var j=0;j<arrS.length;j++){
+							//如果当前数组内的值等于指定字符的时候把当前的字符push到数组中
+							if(arrS[j] === sClass){
+								arr.push(aEle[i])
+							}
+						}
+					}	
+					//获取到的值返回给数组
+					return arr;
+				}else{
+					//返回到当前获取到的元素
+					return document.getElementsByTagName(name);
+				}
+			}
+			
+			console.log($('li'))
+			
+			
+		</script>
+	</body>
+</html>

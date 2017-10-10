@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}    
+</style>
+</head>
+<body>
+   <div id="box"></div>
+<script>
+    
+    function Drag(id){    	    		
+    		//获取元素
+        var box = document.getElementById(id);
+        //创建两个变量用来存储计算得到的值
+        var disX = 0;
+        var disY = 0;
+        //绑定一个鼠标按下事件
+        box.addEventListener('mousedown',down);
+        //鼠标按下事件函数
+        function down(ev){
+        	//当前鼠标距离box元素的left值
+          disX = ev.clientX - this.offsetLeft;
+          //当前鼠标距离box元素的top值
+          disY = ev.clientY - this.offsetTop;
+					//绑定一个鼠标移动事件
+          document.addEventListener('mousemove',move);
+          //绑定一个鼠标抬起事件
+          document.addEventListener('mouseup',up);
+          //鼠标移动事件函数
+          function move(ev){
+          	//鼠标移动后的值减去原先鼠标存储好的值得出的值重新给元素赋值left，top值
+            box.style.left = ev.clientX - disX + 'px'; 
+            box.style.top = ev.clientY - disY + 'px';
+          }
+          //鼠标抬起事件函数
+          function up(){
+          	//鼠标抬起是解绑移动以及抬起事件
+            document.removeEventListener('mousemove',move);
+            document.removeEventListener('mouseup',up);
+          }
+          //阻止默认行为
+					ev.preventDefault();
+        }
+    }
+
+    Drag('box');
+
+</script>
+</body>
+</html>
