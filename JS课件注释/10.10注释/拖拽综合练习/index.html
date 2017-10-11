@@ -119,13 +119,11 @@ li{
 		//绑定一个鼠标在滚动条元素按下事件		
 		div3.addEventListener('mousedown',function(ev){
 			//获取当前鼠标距离元素顶端的top值
-			var disY = ev.clientY - this.offsetTop;
-			
+			var disY = ev.clientY - this.offsetTop;			
 			//绑定一个鼠标移动事件
 			document.addEventListener('mousemove',Move);
 			//绑定一个鼠标抬起事件
-			document.addEventListener('mouseup',Up);
-			
+			document.addEventListener('mouseup',Up);			
 			//鼠标移动函数
 			function Move(ev){
 				//获取当前鼠标移动的距离
