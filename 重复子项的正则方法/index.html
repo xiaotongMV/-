@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			
+			var str = '0df12ds329912nd32f0a3sd38003002320jbd0sf0da0s';
+			
+			//分隔，排序，拼接
+			str = str.split('').sort().join('');
+			//负无穷
+			var min = -Infinity;	
+
+			var index = '';
+			
+			str.replace(/(\w)\1+/,function($0,$1){
+				//判断最小值是否小于匹配到的字符串的长度		
+				if(min<$0.length){
+					//把匹配到的字符串的长度赋值给min
+					min = $0.length;
+					//把匹配到的子项的索引值赋值给index；
+					index = $1;
+				}
+			})
+			//console.log('重复最多的是'+index+' 重复了'+min+'次')
+			
+			
+			var json = {};
+			
+			
+			for(var i=0;i<str.length;i++){
+				
+				if(!json[str[i]]){
+					json[str[i]] = 1;
+				}else{
+					json[str[i]]++;
+				}
+			}
+			
+			console.log(json)
+			for(var attr in json){
+				
+				if(json[attr] > min){
+					min = json[attr];
+					index = attr;
+				}
+			}
+			console.log('重复最多的是'+index+' 重复了'+min+'次')
+		</script>
+	</body>
+</html>
