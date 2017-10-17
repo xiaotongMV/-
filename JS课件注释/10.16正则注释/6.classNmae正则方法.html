@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+        <li>1</li>
+        <li class="li1  li">2</li>
+        <li>3</li>
+        <li class="li li2">4</li>
+        <li>5</li>
+    	</ul>
+		<script type="text/javascript">
+			
+			/*
+			 
+			 * 重点：
+			 * 	1，找规律
+			 * 	2，使用new RegExp()
+			 * 	如果使用标准正则写法，那么第一个里面可以为字符串，
+			 * 	这个时候就可以使用变量，如果规则中使用转义符，
+			 * 	记得要转义。比如：\\s
+			 * 
+			 * 
+			 * */
+			function getByClass(sClass){
+	         var s = sClass.charAt();
+	         if(s === '#'){
+					//如果检测是id，返回到获取到的id元素 
+	            return document.getElementById(sClass.substring(1))
+	         }else if(s === '.'){
+	            if(document.getElementsByClassName){
+	            	//如果检测是class，返回到获取的class元素
+	               return document.getElementsByClassName(sClass.substring(1));
+	            }else{
+	            	//创建一个用于存储数据的空数组
+	               var arr = [];
+	               //获取元素的集合
+	               var aEle = document.getElementsByTagName('*');
+	               //使用正则标准写法来使用变量
+	               var re = new RegExp('(^|\\s)' + sClass.substring(1) + '(\\s|$)','g');
+	               for(var i=0;i<aEle.length;i++){
+	                  if(re.test(aEle[i].className)){
+	                  	//把获取的元素添加到数组中
+	                     arr.push(aEle[i]);
+	                  }
+	               }
+	               return arr;
+	            }
+	         } 
+		   }
+			
+			console.log(getByClass('.li').length);
+			
+		</script>
+		
+	</body>
+</html>

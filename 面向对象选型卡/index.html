@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #000000;
+				display: none;
+				text-align: center;
+				line-height: 200px;
+				font-size: 30px;
+			}
+			.active{
+				background: red;
+			}
+			.show{
+				display: block;
+				
+			}
+			button{
+				width: 64px;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="active">按钮一</button>
+		<button>按钮二</button>
+		<button>按钮三</button>
+		<div class="show">11111</div>
+		<div>22222</div>
+		<div>33333</div>
+		
+		
+		<script type="text/javascript">
+			
+			var arr = ['green','pink','blue'];
+			
+			function Tab(){
+				this.btn = document.getElementsByTagName('button');
+				this.con = document.getElementsByTagName('div');
+				
+				this.con[0].style.background = arr[0];
+			}
+			
+			Tab.prototype.Event = function(){
+				//存储Tab的this指向
+				var _this = this;
+				for(var i=0;i<this.btn.length;i++){
+					//自定义属性
+					this.btn[i].index = i;
+					this.btn[i].onclick = function(){
+						//alert(1)
+						_this.tabs(this);
+					}
+				}				
+			}
+			
+			Tab.prototype.tabs = function(thas){
+				//console.log(1)
+				for(var i=0;i<this.btn.length;i++){
+					this.btn[i].className = '';
+					this.con[i].className = '';
+					//this.con[i].style.background = '';
+				}
+				thas.className = 'active';
+				this.con[thas.index].className = 'show';
+				this.con[thas.index].style.background = arr[thas.index];
+			}
+			
+			
+			var t = new Tab;
+			t.Event();
+			//console.log(t)
+		</script>
+		
+	</body>
+</html>

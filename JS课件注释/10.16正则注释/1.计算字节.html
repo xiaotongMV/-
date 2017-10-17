@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			var str = 'hello!欢迎大家来到妙味课程!';//27
+			
+			//创建一个变量
+			var num = 0;
+			
+			for(var i=0;i<str.length;i++){
+				//判断如果是中文就+2，不是就+1
+				if(/[\u4e00-\u9fa5]/.test(str[i])){
+					num += 2;
+				}else{
+					num ++;
+				}
+			}
+			
+			console.log(num)
+		</script>
+		
+	</body>
+</html>

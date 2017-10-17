@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="txt"/>
+    	<button id="btn">提交</button>
+		
+		<script type="text/javascript">
+			/*
+    			 qq的规则要求
+    			 
+    			 必须都为数字，第一个不能为0， 5-12位数字
+    			 * */
+			
+			
+			var txt = document.getElementById('txt');
+    		var btn = document.getElementById('btn');
+    		
+    		
+    		btn.onclick = function(){
+    			//获取当前输入的文本
+    			var val = txt.value;
+    			//判断是否为空
+    			if(val){
+    				//if判断方法
+    				if(/^[1-9]\d{4,11}$/.test(val.trim())){
+    					txt.style.borderColor = 'green';
+    				}else{
+    					txt.style.borderColor = 'red';
+    				}
+    				
+    				//三目方法
+    				
+    				//txt.style.borderColor = /^[1-9]\d{4,11}$/.test(val.trim())?'green':'red';
+    			}else{
+    				alert('请输入内容')
+    			}    			
+    		}
+			
+			
+			
+		</script>
+	</body>
+</html>

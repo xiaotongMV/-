@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			/*
+			 
+			 * {}:
+			 * 
+			 * 数量的范围 -> 量词
+			 * 
+			 * + {1，}	最少一次，最多不限
+			 * ? {0,1}  最少没有，最多一次
+			 * * {0,}   最小0次，最多不限
+			 * 
+			 * 
+			 * */
+			
+			var str = 'a31389ca6372ca7434364737ca1ca12ca56c';
+			//是数字类型，最少一位，最多不限
+			console.log(str.match(/\d{1,}/g));
+			
+			console.log(str.match(/\d{1,}\D+\d+\D+\d+\D{0,1}/g))
+			//数字类型，最少 3位，最多5位
+			console.log(str.match(/\d{3,5}/g));
+		</script>
+	</body>
+</html>
