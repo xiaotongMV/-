@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			.active{
+			    background: yellow;
+			}
+			#box div,#box2 div{
+			    width:200px;
+			    height: 200px;
+			    border: 1px solid #000;
+			    display: none;
+			}
+			#box div.show,#box2 div.show{
+			    display: block;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<button class="active">按钮一</button>
+		   <button>按钮二</button>
+		   <button>按钮三</button>
+		   <div class="show">1111111</div>
+		   <div>22222222222</div>
+		   <div>3333333333333</div>
+		</div>
+		<div id="box2">
+			<button class="active">按钮一</button>
+		   <button>按钮二</button>
+		   <button>按钮三</button>
+		   <div class="show">1111111</div>
+		   <div>22222222222</div>
+		   <div>3333333333333</div>
+		</div>
+		
+	   
+		   <!-- 点击它让第一个停 -->
+	   <button id="btn1">按钮一</button>
+	   <!-- 点击它让第二个开 -->
+	   <button id="btn2">按钮二</button>
+	   <!-- 点击它都关,再点一下都开 -->
+	   <button id="btn3">按钮三</button>
+	   <!-- 点击它开的关，关的开 -->
+	   <button id="btn4">按钮四</button>
+	   
+	   <script type="text/javascript">
+	   	
+	   	function Tab(id){	   
+	   		this.box = document.getElementById(id);
+	   		this.btn = this.box.getElementsByTagName('button');
+	   		this.con = this.box.getElementsByTagName('div');
+	   		this.timer = null;
+	   		this.num = 0;
+	   	}
+	   	
+	   	Tab.prototype.Event = function(){
+	   		var _this = this;
+	   		for(var i=0;i<this.btn.length;i++){
+	   			this.btn[i].index = i;
+	   			this.btn[i].onclick = function(){
+	   				_this.tabs(this.index);
+	   			}
+	   		}
+	   	}
+	   	
+	   	Tab.prototype.tabs = function(index){
+	   		
+	   		for(var i=0;i<this.btn.length;i++){
+	   			this.btn[i].className = '';
+	   			this.con[i].className = '';
+	   		}
+	   		this.btn[index].className = 'active';
+	   		this.con[index].className = 'show';
+	   	}
+	   	
+	   	Tab.prototype.toPlay = function(){
+	   		var _this = this;
+	   		this.timer = setInterval(function(){
+	   			_this.num++;
+	   			_this.tabs(_this.num %= _this.btn.length);
+	   			
+	   		},1000)
+	   		
+	   	}
+	   	
+	   	Tab.prototype.stop = function(){
+	   		clearInterval(this.timer);
+	   		this.timer = null;
+	   	}
+	   	
+	   	var t = new Tab('box');
+	   	var l = new Tab('box2');
+	   	l.Event();
+	   	t.Event();
+	   	t.toPlay();
+			
+			//点击第一个让第一个定时器停
+			btn1.onclick = function(){
+				t.stop();
+			}
+			//点击第二个让第二个开启定时器
+			btn2.onclick = function(){
+				l.toPlay();
+			}
+			//点击第三个按钮把所有定时器都关掉，再点都打开
+			
+			var onOff = true;
+			btn3.onclick = function(){
+				if(onOff){
+					t.stop();
+					l.stop();
+				}else{
+					t.toPlay();
+					l.toPlay();
+				}
+				onOff = !onOff;
+			}
+			
+			//点击它开的关，关的开
+			btn4.onclick = function(){
+				
+				if(t.timer){
+					t.stop();
+				}else{
+					t.toPlay();
+				}
+				if(l.timer){
+					l.stop();
+				}else{
+					l.toPlay();
+				}
+			}
+			
+	   </script>
+	</body>
+</html>

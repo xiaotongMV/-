@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			
+			/*
+			 	面向对象：
+			 		面向对象的一种思想（一种开发的方式）
+			 		是将具有共同性的功能或者代码，把它们归为一类，
+			 		把它们需要详细描述的特性挂在原型上的一种编程方式
+		
+			 * */
+			
+			
+			function Person(name,age,sex){
+				
+				var name = name;
+				var age = age;
+				var sex = sex;	
+				var say = function(say){
+					alert(say)
+				}
+				return {name,age,sex,say} //ES6方法-写法
+			}
+			
+			var l = Person('小明',18,'男')
+			l.say('嘿嘿')
+			
+			console.log(l)
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			function person(name,age,sex){
+				
+				var obj = {};//原材料
+				
+				//加工
+				obj.name = name;
+				obj.age = age;
+				obj.sex = sex;
+				obj.say = function(){
+					alert('我叫'+this.name)
+				}
+				
+				return obj;
+			}
+			
+			var l = new person('小明',16,'男');
+			
+			l.say()
+			console.log(l)
+		</script>
+		
+		
+	</body>
+</html>

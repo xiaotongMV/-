@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			function Person(name,age,sex){
+				
+				this.name = name;
+	         this.age = age;
+	         this.sex = sex;
+	         this.say = function(){
+	            alert('我叫'+this.name);
+	         }
+				
+				
+			}
+			
+			
+			var l = new Person('小明',19,'男');
+			var t = new Person('111',19,'女')
+			l.say();
+			t.say();
+			
+			console.log(l.say==t.say)
+		</script>
+	</body>
+</html>

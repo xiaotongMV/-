@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			/*			
+			 原型：
+			 	prototype 函数的一个属性，解决性能问题
+			 	
+			原型链：
+				__proto__ 实例化对象与构造函数原型的桥梁
+				
+				__proto__ === 构造函数 prototype
+				
+				
+			原型链规则：
+				实例化对象 - 构造函数原型 - object - 报错
+				
+				 Object.say -> Object.__proto__ -> Function.prototype
+        -> Object.prototype -> 报错
+				
+				
+				
+				
+			 * */
+			
+			
+			/*function Fn(name){
+				
+				this.name = name;
+			}
+			
+			Fn.prototype.say = function(){
+				alert(this.name)
+			}
+			
+			
+			var l = new Fn('小明')
+			var t = new Fn('小li')
+			l.say();
+			t.say();
+			console.log(l.say==t.say)*/
+			
+			
+			
+			
+			
+			function Person(name,age,sex,job){
+		        this.name = name;
+		        this.age = age;
+		        this.sex = sex ;
+		        this.job = job;
+		    }
+			
+			  Function.prototype.say = function(){
+		         alert(123);
+		     }
+		   /* Object.say = function(){
+		        alert('oo');
+		    }*/
+		    Object.prototype.say = function(){
+		        alert('oooo');
+		    }
+		    Person.prototype.say = function(){
+		        alert('33333');
+		    }
+		    
+		    var p = new Person('陈树营',25,'男','前端开发');
+		    Person.say();
+		    //console.dir(Person);
+			
+			console.log(p)
+			
+		</script>
+	</body>
+</html>
