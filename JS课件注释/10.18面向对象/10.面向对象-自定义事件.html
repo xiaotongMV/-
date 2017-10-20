@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//绑定器
+			 function addEvent(obj,eventName,fn){
+			 	//如果是第一次绑定那么创建一个新的对象，如果之前已经绑定过了，就用之前的那个对象
+			 	obj.event = obj.event || {};
+			 	//第一次绑定obj.event这个对象下创建一个key值为事件名，value值为空数组
+			 	//第二次之后绑定就以第一次的数组进行添加
+			 	obj.event[eventName] = obj.event[evenName]||[];
+			 	//把对应的事件名下的数组中push事件函数
+			 	obj.event[eventName].push(fn);
+			 }
+			//触发器
+			function trigger(obj,eventName){
+				//看看这个对象下有没有绑定这个事件名，没有就ruturn
+				if(!obj.event[eventName])return;
+				//如果有就循环事件名对应的数组，依次调用
+				obj.event[eventName].forEach((e,i)=>{
+					e.call(obj);
+				})
+			}
+			
+			
+		</script>
+	</body>
+</html>

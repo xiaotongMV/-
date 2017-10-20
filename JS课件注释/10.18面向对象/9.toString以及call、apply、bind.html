@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+		<script>
+			
+			/*var  arr = [1,2,3,4,5];
+			var str = '1,2,3'
+			var obj = {
+				name:'小明'
+			}
+			
+			Array.prototype.toString = function(){
+				alert('我把你改了')
+			}		
+			//var num = 1100;
+			//alert(arr)
+			console.log(obj.toString())
+
+			function fn(a,b,c,d,e){
+				alert(a+b);
+			}
+			
+			var f = fn.bind(document);
+			f();
+			console.log(f)
+			fn.call(document,1,2,3,4,5);
+			fn.apply(document,[1,2,3,4,5]);*/
+			
+			
+			//**********找到类型的面试题***********
+			
+			
+			/*var lis = document.getElementsByTagName('li');
+			
+			lis = Array.prototype.slice.call(lis);
+			
+			lis.forEach((ele,i)=>{
+				ele.onclick = function(){
+					alert(i)
+				}
+			})*/
+			
+			/*fn = function(){
+				alert(1)
+			}
+			fn.call();
+			
+			Object.prototype.toString = function(){
+				
+			}*/
+			/*var arr = '123';
+			var s = Object.prototype.toString;
+			
+			Object.call(arr)*/
+			 
+//			console.log(Object.prototype.toString.call(arr) === '[object Array]')
+
+
+			function Teacher(name,age){
+	         this.name = name;
+	         this.age = age;
+	      }
+			/* Teacher.prototype.say = function(){
+            alert(this.name);
+       	}*/
+			Teacher.prototype = {
+				constructor:Teacher,
+				say:function(){					
+					alert(this.name)
+				}
+			} 
+			
+			var t = new Teacher('小明',18)
+			t.say();
+			
+			console.log(t.constructor)
+			
+			var arr = [1,2,3,4];
+			
+			console.log(arr.constructor == Array)
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		#box{
+		   width:100px;
+		   height: 100px;
+		   background: red;
+		   position: absolute;
+		   top:0;
+		   left:0;
+		}
+	</style>
+	<body>
+		
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			
+			
+			
+			class Drag {
+				constructor(id){
+				this.box = document.getElementById(id);
+				this.disX = 0;
+				this.disY = 0;
+				//在对象下绑定一个鼠标按下事件				
+				this.box.addEventListener('mousedown',(ev)=>{
+					this.down(ev);
+				});
+
+			}
+
+			down(ev){
+				//获取鼠标按下的位置
+				this.disX = ev.clientX - this.box.offsetLeft;
+				this.disY = ev.clientY - this.box.offsetTop;
+				
+				//创建一个move函数的变量用于方便调用解绑
+				var move = (ev) => {
+					this.move(ev);
+				}
+				//创建一个up函数的变量用于方便调用解绑
+				var up = (ev) => {
+					this.up(ev,move,up);
+				}
+				//
+				document.addEventListener('mousemove',move);
+				document.addEventListener('mouseup',up);
+				ev.preventDefault();
+			}
+			
+			move(ev){
+				this.box.style.left = ev.clientX - this.disX +'px';
+				this.box.style.top = ev.clientY - this.disY +'px';
+			}
+			up(ev,move,up){
+				document.removeEventListener('mousemove',move);
+				document.removeEventListener('mouseup',up);
+			}
+			
+		}
+			
+			var t =  new Drag('box');
+			
+		</script>
+	</body>
+</html>
