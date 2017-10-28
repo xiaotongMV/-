@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 700px;
+				height: 500px;
+				border: 5px solid #000;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+				-background: url(img/4.jpg) no-repeat;
+				background-size: 100% 100%;
+			}
+			#box div{
+				width: 100px;
+				height: 500px;
+				position: absolute;				
+				background-size: 700px 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+		<script type="text/javascript" src="Mtween.js"></script>
+		<script type="text/javascript">
+			var box = document.getElementById('box');
+			//图片数组
+			let arr = ['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+			//控制图片切换的变量
+			let m = 0;
+			let str = '';
+			//生成结构
+			for(var i=0;i<8;i++){
+				str += `<div style="
+							left:${i%8*100}px;							
+							top:-500px;
+							background-image:url(${arr[m]});
+							background-position:${-i%8*100}px ${-Math.floor(i/8)*100}px;"></div>`;
+			}
+			box.innerHTML = str;
+			//获取生成的div的元素
+			var divs = box.getElementsByTagName('div');	
+			//声明一个定时器开关
+			let timer = null;
+			//控制每个div下标的变量
+			let n = 0;
+			//防止运动中的元素再次点击的开关
+			let onOff = true;
+			//初始化背景
+			box.style.backgroundImage = 'url('+arr[arr.length-1]+')';
+			
+			
+			//点击box图片切换
+			box.onclick = function(){
+				if(onOff){					
+					onOff = false;
+					//开启定时器运动每个div元素
+					timer = setInterval(function(){
+						
+						if(n==divs.length-1){
+							//当所有div都运动完之后给box添加背景
+							box.style.backgroundImage = 'url('+arr[m]+')';
+							onOff = true;	
+							clearInterval(timer);
+							
+							m++;
+							if(m>arr.length-1){
+								m = 0;
+							}
+							
+						}						
+						//调用运动函数让每个div往下运动
+						move({
+							obj:divs[n],
+							attrs:{top:0},
+							duration:500
+						})	
+						n++;
+
+					},500)
+					//当所有div都运动完之后循环所有div恢复初始值并切换背景
+					for(var i=0;i<divs.length;i++){
+						divs[i].style.top = '-500px';
+						divs[i].style.backgroundImage = 'url('+arr[m]+')';
+					}
+					//恢复n的初始值
+					n = 0;
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>
