@@ -28,7 +28,7 @@
 		</div>
 		<script type="text/javascript" src="Mtween.js"></script>
 		<script type="text/javascript">
-			var box = document.getElementById('box');
+			const box = document.getElementById('box');
 			//图片数组
 			let arr = ['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
 			//控制图片切换的变量
@@ -44,7 +44,7 @@
 			}
 			box.innerHTML = str;
 			//获取生成的div的元素
-			var divs = box.getElementsByTagName('div');	
+			const divs = box.getElementsByTagName('div');	
 			//声明一个定时器开关
 			let timer = null;
 			//控制每个div下标的变量
@@ -53,36 +53,32 @@
 			let onOff = true;
 			//初始化背景
 			box.style.backgroundImage = 'url('+arr[arr.length-1]+')';
-			
-			
+
 			//点击box图片切换
 			box.onclick = function(){
 				if(onOff){					
 					onOff = false;
 					//开启定时器运动每个div元素
-					timer = setInterval(function(){
-						
+					timer = setInterval(function(){						
 						if(n==divs.length-1){
 							//当所有div都运动完之后给box添加背景
 							box.style.backgroundImage = 'url('+arr[m]+')';
 							onOff = true;	
-							clearInterval(timer);
-							
+							clearInterval(timer);							
 							m++;
 							if(m>arr.length-1){
 								m = 0;
-							}
-							
+							}	
 						}						
 						//调用运动函数让每个div往下运动
 						move({
 							obj:divs[n],
 							attrs:{top:0},
-							duration:500
+							duration:200
 						})	
 						n++;
 
-					},500)
+					},200)
 					//当所有div都运动完之后循环所有div恢复初始值并切换背景
 					for(var i=0;i<divs.length;i++){
 						divs[i].style.top = '-500px';
